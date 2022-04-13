@@ -1,6 +1,6 @@
 $(document).ready(() => {
     let files = [];
-    let $imagesContainer = $('.images-upload-zone');
+    let $imagesContainer = $('.images-container');
 
     const rerenderFilesContainer = () => {
         $imagesContainer.html('');

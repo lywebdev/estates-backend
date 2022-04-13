@@ -33,6 +33,7 @@
     "/img/safely-map.jpg": "/img/safely-map.jpg",
     "/img/safely-map.png": "/img/safely-map.png",
     "/js/admin/adminlte.min.js": "/js/admin/adminlte.min.js",
+    "/js/admin/customize.js": "/js/admin/customize.js",
     "/js/admin/dashboard.js": "/js/admin/dashboard.js",
     "/css/admin/adminlte.min.css": "/css/admin/adminlte.min.css",
     "/css/admin/customize.scss": "/css/admin/customize.scss",

@@ -69,7 +69,8 @@
                                                 <input type="file" name="files[]" multiple="multiple" id="files" style="display: none;">
                                                 <input type="hidden" name="filesInJson" id="filesInJson">
 
-                                                <div class="images-container"></div>
+                                                <div class="images-container">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

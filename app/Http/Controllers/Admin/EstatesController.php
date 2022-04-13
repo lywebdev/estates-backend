@@ -25,6 +25,7 @@ class EstatesController extends Controller
     public function store(Request $request)
     {
         $files = $request->filesInJson;
+
     }
 
     /**
