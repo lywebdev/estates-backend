@@ -60,26 +60,16 @@
 
                                     <div class="row">
                                         <div class="col-md-12">
+                                            <div class="images-upload-zone">
+                                                <div class="btns-container">
+                                                    <div class="btn btn-add-file">Добавить изображения</div>
+                                                    <div class="btn btn-remove-all">Удалить все</div>
+                                                    <div class="btn btn-send-in-server">Отправить на сервер</div>
+                                                </div>
+                                                <input type="file" name="files[]" multiple="multiple" id="files" style="display: none;">
+                                                <input type="hidden" name="filesInJson" id="filesInJson">
 
-                                            <style>
-                                                .image-upload-dropzone {
-                                                    width: 250px;
-                                                    height: 150px;
-                                                    border: 2px solid #ccc;
-                                                }
-
-                                                .image-upload-dropzone img {
-                                                    max-width: 100%;
-                                                    max-height: 100%;
-                                                    object-fit: cover;
-                                                }
-                                            </style>
-
-                                            <label for="files">Добавить изображение</label>
-                                            <input type="file" name="files[]" id="files" multiple="multiple" style="display: none;">
-
-                                            dropzone container:
-                                            <div class="image-upload-dropzone">
+                                                <div class="images-container"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -110,67 +100,6 @@
             "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
             // "order": [[ 3, "desc" ]]
         }).buttons().container().appendTo('#estates-table__wrapper .col-md-6:eq(0)');
-
-
-        // Dropzone
-        let dropzoneContainer = document.querySelectorAll('.image-upload-dropzone');
-
-        dropzoneContainer.forEach((el, index) => {
-            let dropzone = dropzoneContainer[index];
-            let dropzoneInput = dropzone.querySelector('.dropzoneInput');
-            const inputMultiple = false;
-
-            ['drag', 'dragstart', 'dragend', 'dragover', 'dragenter', 'dragleave', 'drop'].forEach( function(event) {
-                dropzone.addEventListener(event, function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                });
-
-                dropzone.addEventListener('dragover', (e) => {
-                    dropzone.classList.add('dropzone-dragging');
-                }, false);
-                dropzone.addEventListener('dragleave', (e) => {
-                    dropzone.classList.remove('dropzone-dragging');
-                }, false);
-                dropzone.addEventListener('click', function(e) {
-                    dropzoneInput.click();
-                });
-
-                dropzone.addEventListener('drop', (e) => {
-                    dropzone.classList.remove('dropzone-dragging');
-                    let files = e.dataTransfer.files;
-                    let dataTransfer = new DataTransfer();
-
-                    if (!inputMultiple) {
-                        let file = files[0];
-                        dataTransfer.items.add(file);
-
-                        let reader = new FileReader();
-
-                        reader.onload = function (e) {
-                            let img = dropzone.querySelector('img');
-                            if (img && img.length !== 0) {
-                                img.remove();
-                            }
-                            let loadBtn = dropzone.querySelector('.photo-galley__load-btn');
-                            if (loadBtn && loadBtn.length !== 0) {
-                                loadBtn.remove();
-                            }
-
-                            let node = document.createElement('img');
-                            node.setAttribute('src', e.target.result);
-                            dropzone.appendChild(node);
-                        };
-
-                        reader.readAsDataURL(file);
-                    }
-
-                    let filesToBeAdded = dataTransfer.files;
-                    dropzoneInput.files = filesToBeAdded;
-
-                }, false);
-            });
-
-        });
     </script>
+    <script src="{{ asset('js/admin/customize.js') }}"></script>
 @endsection

@@ -24,11 +24,7 @@ class EstatesController extends Controller
 
     public function store(Request $request)
     {
-        echo "<pre>";
-        print_r($_FILES);
-
-        dd($request->all());
-
+        $files = $request->filesInJson;
     }
 
     /**
