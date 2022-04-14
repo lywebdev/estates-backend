@@ -80,7 +80,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Категория</label>
-                                                    <select class="form-control select2" name="category" style="width: 100%; height: 100%;">
+                                                    <select class="form-control select2" name="estate_category_id" style="width: 100%; height: 100%;">
                                                         @foreach ($estatesCategories as $category)
                                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                                                         @endforeach
@@ -99,8 +99,8 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="address">Адрес</label>
-                                                <input type="text" class="form-control" id="address" name="address" placeholder="Укажите адрес">
+                                                <label for="location">Адрес</label>
+                                                <input type="text" class="form-control" id="location" name="location" placeholder="Укажите адрес">
                                             </div>
                                         </div>
                                     </div>
@@ -224,7 +224,6 @@
                                                 <div class="btns-container">
                                                     <div class="btn btn-block btn-outline-primary btn-flat btn-add-file">Добавить изображения</div>
                                                     <div class="btn btn-block btn-outline-primary btn-flat btn-remove-all">Удалить все</div>
-                                                    <div class="btn btn-block btn-outline-primary btn-flat btn-send-in-server">Отправить на сервер</div>
                                                 </div>
                                                 <input type="file" name="files[]" multiple="multiple" id="files" style="display: none;">
                                                 <input type="hidden" name="filesInJson" id="filesInJson">

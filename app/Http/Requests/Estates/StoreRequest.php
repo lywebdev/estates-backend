@@ -15,9 +15,7 @@ class StoreRequest extends FormRequest
     public function authorize(Request $request)
     {
         $this->name = $request->name;
-        $this->category = $request->category;
         $this->district = $request->district;
-        $this->address = $request->address;
         $this->area = $request->area;
         $this->living_area = $request->living_area;
         $this->room_size = $request->room_size;
@@ -26,9 +24,11 @@ class StoreRequest extends FormRequest
         $this->year = $request->year;
         $this->wall_material = $request->wall_material;
         $this->ceiling_height = $request->ceiling_height;
+        $this->parking = $request->parking;
         $this->furniture = $request->furniture;
         $this->bathroom = $request->bathroom;
         $this->sold = $request->sold;
+
 
         return true;
     }
@@ -42,9 +42,9 @@ class StoreRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string'],
-            'category' => ['nullable', 'exists:estates_categories,id'],
+            'estate_category_id' => ['nullable', 'exists:estates_categories,id'],
             'district' => ['string', 'nullable'],
-            'address'  => ['string', 'nullable'],
+            'location'  => ['string', 'nullable'],
             'area' => ['numeric', 'nullable'],
             'living_area' => ['numeric', 'nullable'],
             'room_size' => ['numeric', 'nullable'],
@@ -54,10 +54,20 @@ class StoreRequest extends FormRequest
             'year' => ['numeric', 'nullable'],
             'wall_material' => ['string', 'nullable'],
             'ceiling_height' => ['nullable'],
-            'furniture' => ['boolean', 'nullable'],
-            'parking' => ['boolean', 'nullable'],
-            'bathroom' => ['boolean', 'nullable'],
-            'sold' => ['boolean', 'nullable'],
+            'furniture' => ['boolean'],
+            'parking' => ['boolean'],
+            'bathroom' => ['boolean'],
+            'sold' => ['boolean'],
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'parking' => $this->parking ? 1 : 0,
+            'furniture' => $this->furniture ? 1 : 0,
+            'bathroom' => $this->bathroom ? 1 : 0,
+            'sold' => $this->sold ? 1 : 0
+        ]);
     }
 }

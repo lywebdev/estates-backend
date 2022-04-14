@@ -17,6 +17,19 @@ Route::middleware('auth:admin')->group(function() {
 
     Route::resource('estates', \App\Http\Controllers\Admin\EstatesController::class);
 
+
+    Route::group([
+        'prefix' =>'api',
+        'as' => 'api.'
+    ], function() {
+//        Route::resource('estates', \App\Http\Controllers\Admin\API\EstatesController::class);
+
+        Route::resource('estates-photos', \App\Http\Controllers\Admin\API\Estate\PhotoController::class);
+//        Route::delete('estates/{id}/photo/{photoId}', [\App\Http\Controllers\Admin\API\EstatesController::class, 'photoDelete'])
+//            ->name('estatesPhotoDelete');
+    });
+
+
     Route::get('logout', function() {
         \Illuminate\Support\Facades\Auth::logout();
         return redirect(route('home'));

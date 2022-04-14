@@ -53,5 +53,25 @@ $(document).ready(() => {
                 }
             }
         }
+    });
+
+    $('.images-container__remove').click((e) => {
+        let el = $(e.target);
+        let $imageItem = el.closest('.images-container__item');
+        let route = $imageItem.data('route');
+
+        function removeAction() {
+            return $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: `${route}`,
+                type: 'delete',
+            });
+        }
+
+        $.when( removeAction() ).then((removePhotoResponse) => {
+            $imageItem.remove();
+        });
     })
 });

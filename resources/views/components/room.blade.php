@@ -15,30 +15,11 @@
         </div>
         <div class="swiper room__photos-items">
             <div class="swiper-wrapper">
-                <div class="room__photo-item swiper-slide">
-                    <img src="/img/rooms/1.jpg" alt="image">
-                </div>
-                <div class="room__photo-item swiper-slide">
-                    <img src="/img/rooms/2.jpg" alt="image">
-                </div>
-                <div class="room__photo-item swiper-slide">
-                    <img src="/img/rooms/3.jpg" alt="image">
-                </div>
-                <div class="room__photo-item swiper-slide">
-                    <img src="/img/rooms/4.jpg" alt="image">
-                </div>
-                <div class="room__photo-item swiper-slide">
-                    <img src="/img/rooms/5.jpg" alt="image">
-                </div>
-                <div class="room__photo-item swiper-slide">
-                    <img src="/img/rooms/6.jpg" alt="image">
-                </div>
-                <div class="room__photo-item swiper-slide">
-                    <img src="/img/rooms/7.jpg" alt="image">
-                </div>
-                <div class="room__photo-item swiper-slide">
-                    <img src="/img/rooms/8.jpg" alt="image">
-                </div>
+                @foreach ($estate->photos as $key => $photo)
+                    <div class="room__photo-item swiper-slide">
+                        <img src="{{ \Illuminate\Support\Facades\Storage::url($photo->path) }}" alt="{{ $estate->name }}, изображение №{{ $key }}">
+                    </div>
+                @endforeach
             </div>
         </div>
 
@@ -47,9 +28,9 @@
         <div class="room__top">
             <div class="ls">
                 <div class="room__cost">{{ number_format($estate->price, 2, '', ' ') }}&nbsp;〒</div>
-                @isset($estate->area)
-                @endisset
-                <div class="room__cost-full">{{ number_format(($estate->price / $estate->area), 2, '', ' ') }} 〒/м2</div>
+                @if (isset($estate->price) && isset($estate->area))
+                    <div class="room__cost-full">{{ number_format(($estate->price / $estate->area), 2, '', ' ') }} 〒/м2</div>
+                @endif
             </div>
             <div class="rs">
                 <div class="room__actions">

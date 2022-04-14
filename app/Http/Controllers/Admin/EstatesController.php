@@ -30,9 +30,25 @@ class EstatesController extends Controller
 
     public function store(StoreRequest $request)
     {
-        $files = $request->filesInJson;
-        $data = $request->validated();
-        dd($data);
+        $files = json_decode($request->filesInJson);
+        $data  = $request->validated();
+
+        $estate = Estate::create($data);
+        if (!$estate) {
+            return redirect()->back()->with('error', 'Не удалось добавить объект недвижимости');
+        }
+
+        foreach ($files as $key => $file) {
+            $fileCopy  = $file;
+            $imageData = substr($fileCopy, 1+strrpos($fileCopy, ','));
+            $file = [
+                'format' => explode('/', explode(';', $fileCopy)[0])[1],
+                'body'   => base64_decode($imageData)
+            ];
+            $estate->addPhoto($file, $key);
+        }
+
+        return redirect()->route('admin.estates.index')->with('success', 'Объект недвижимости успешно добавлен');
     }
 
     /**
@@ -48,12 +64,16 @@ class EstatesController extends Controller
 
     public function edit($id)
     {
-        $estate = Estate::find($id);
+        $estate = Estate::with(['category'])->find($id);
         if (!$estate) {
             return redirect()->back()->with('error', 'Не удалось найти объект недвижимости с указанным ID');
         }
 
-        return view('admin.estates.edit', compact('estate'));
+        $estatesCategories = Category::select('id', 'name')
+            ->orderBy('id', 'desc')
+            ->get();
+
+        return view('admin.estates.edit', compact('estate', 'estatesCategories'));
     }
 
     /**
