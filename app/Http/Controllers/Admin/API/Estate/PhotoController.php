@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Estate\Estate;
 use App\Models\Estate\Photo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PhotoController extends BaseController
 {
@@ -47,6 +48,22 @@ class PhotoController extends BaseController
             return $this->sendError('Photo not found.');
         }
 
+        return $this->sendResponse([], 'Successful.');
+    }
+
+
+    public function changeSort(Request $request)
+    {
+        $itemsArray = $request->items;
+        DB::beginTransaction();
+        foreach ($itemsArray as $item) {
+            try {
+                Photo::where('id', $item['photoId'])->update(['sort' => $item['sort']]);
+            } catch (\Exception $exception) {
+                return $this->sendError('An error occurred while updating the sort order.');
+            }
+        }
+        DB::commit();
 
         return $this->sendResponse([], 'Successful.');
     }

@@ -24,7 +24,9 @@ Route::middleware('auth:admin')->group(function() {
     ], function() {
 //        Route::resource('estates', \App\Http\Controllers\Admin\API\EstatesController::class);
 
-        Route::resource('estates-photos', \App\Http\Controllers\Admin\API\Estate\PhotoController::class);
+        Route::resource('estatesPhotos', \App\Http\Controllers\Admin\API\Estate\PhotoController::class);
+        Route::post('estates-photos/change-sort', [\App\Http\Controllers\Admin\API\Estate\PhotoController::class, 'changeSort'])
+            ->name('estatesPhotos.changeSort');
 //        Route::delete('estates/{id}/photo/{photoId}', [\App\Http\Controllers\Admin\API\EstatesController::class, 'photoDelete'])
 //            ->name('estatesPhotoDelete');
     });

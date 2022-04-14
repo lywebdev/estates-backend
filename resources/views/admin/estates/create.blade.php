@@ -70,14 +70,23 @@
 
 {{--                                    name / category--}}
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="name">Название</label>
                                                 <input type="text" class="form-control" id="name" name="name" placeholder="Введите название объекта недвижимости">
                                             </div>
                                         </div>
+                                        <div class="col-md-4">
+                                            <label for="price">Стоимость</label>
+                                            <input type="number"
+                                                   class="form-control"
+                                                   id="price"
+                                                   name="price"
+                                                   placeholder="Укажите стоимость"
+                                            >
+                                        </div>
                                         @isset($estatesCategories)
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Категория</label>
                                                     <select class="form-control select2" name="estate_category_id" style="width: 100%; height: 100%;">
@@ -268,5 +277,4 @@
             $('.select2').select2()
         });
     </script>
-    <script src="{{ asset('js/admin/customize.js') }}"></script>
 @endsection

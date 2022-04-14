@@ -29,32 +29,8 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                @if($errors->any())
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card card-default">
-                                <div class="card-header">
-                                    <h3 class="card-title">
-                                        <i class="fas fa-exclamation-triangle"></i>
-                                        Ошибки
-                                    </h3>
-                                </div>
 
-                                <div class="card-body">
-                                    @foreach ($errors->all() as $error)
-                                        <div class="alert alert-danger alert-dismissible">
-                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                            <h5><i class="icon fas fa-ban"></i> Ошибка валидации</h5>
-                                            {{ $error }}
-                                        </div>
-                                    @endforeach
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                @endif
+                @include('admin.components.alerts')
 
                 <div class="row">
                     <div class="col-md-12">
@@ -64,13 +40,14 @@
                             </div>
 
 
-                            <form action="{{ route('admin.estates.store') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('admin.estates.update', $estate->id) }}" method="post" enctype="multipart/form-data">
+                                @method('put')
                                 @csrf
                                 <div class="card-body">
 
                                     {{--                                    name / category--}}
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="name">Название</label>
                                                 <input type="text"
@@ -82,8 +59,18 @@
                                                 >
                                             </div>
                                         </div>
+                                        <div class="col-md-4">
+                                            <label for="price">Стоимость</label>
+                                            <input type="number"
+                                                   class="form-control"
+                                                   id="price"
+                                                   name="price"
+                                                   placeholder="Укажите стоимость"
+                                                   value="{{ $estate->price }}"
+                                            >
+                                        </div>
                                         @isset($estatesCategories)
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Категория</label>
                                                     <select class="form-control select2" name="estate_category_id" style="width: 100%; height: 100%;">
@@ -312,10 +299,11 @@
                                             <h3 class="card-title">Работа с изображениями</h3>
                                             <br>
                                             @if ($estate->photos && $estate->photos->count() > 0)
-                                                <div class="images-container ajaxed">
+                                                <div class="images-container ajaxed" id="estateImages">
                                                     @foreach ($estate->photos as $key => $photo)
                                                         <div class="images-container__item"
-                                                             data-route="{{ route('admin.api.estates-photos.destroy', $photo->id) }}"
+                                                             data-route="{{ route('admin.api.estatesPhotos.destroy', $photo->id) }}"
+                                                             data-link-id="{{ $photo->id }}"
                                                         >
                                                             <div class="images-container__item-img">
                                                                 <img src="{{ \Illuminate\Support\Facades\Storage::url($photo->path) }}" alt="">
@@ -354,6 +342,7 @@
     <script src="{{ asset('libs/admin/dropzone/min/dropzone.min.js') }}"></script>
     <!-- Select2 -->
     <script src="{{ asset('libs/admin/select2/js/select2.full.min.js') }}"></script>
+    <script src="{{ asset('libs/admin/sortable/sortable.min.js') }}"></script>
     <script>
         $("#estates-table").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
@@ -363,8 +352,75 @@
 
         $(document).ready(() => {
             //Initialize Select2 Elements
-            $('.select2').select2()
+            $('.select2').select2();
+
+
+            let estateImages = document.getElementById('estateImages');
+            if (estateImages) {
+                let sort = new Sortable(estateImages, {
+                    swapThreshold: 1,
+                    animation: 150,
+                    ghostClass: 'blue-background-class',
+                    onUpdate: (e) => {
+                        let dataArray = [];
+                        let items = $(estateImages).find('.images-container__item');
+
+                        items.each((index, el) => {
+                            let $el = $(el);
+                            let linkId = $el.data('link-id');
+
+                            let elDataObj = {
+                                photoId: linkId,
+                                sort: index + 1
+                            };
+
+                            dataArray.push(elDataObj);
+                        });
+
+                        $.ajax({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            url: `{{ route('admin.api.estatesPhotos.changeSort') }}`,
+                            type: 'post',
+                            data: {
+                                items: dataArray
+                            },
+                            success: (response) => {
+
+                            },
+                            error: (e) => {
+                                alert('Произошла непредвиденная ошибка!');
+                                location.reload();
+                            }
+                        });
+
+                        {{--$.ajax({--}}
+                        {{--    headers: {--}}
+                        {{--        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
+                        {{--    },--}}
+                        {{--    url: "{{ route('admin.product_photos.update', $product->id) }}",--}}
+                        {{--    type: 'PUT',--}}
+                        {{--    data: JSON.stringify({data: dataArray}),--}}
+                        {{--    contentType: "application/json",--}}
+                        {{--    dataType: "json",--}}
+                        {{--    success: (response) => {--}}
+                        {{--        // console.log(response)--}}
+                        {{--        let successAlert = new Alert({--}}
+                        {{--            type: 'success',--}}
+                        {{--            text: 'Порядок фотографий успешно изменён',--}}
+                        {{--            duration: 2000,--}}
+                        {{--            selector: 'body',--}}
+                        {{--            hZindex: 1--}}
+                        {{--        });--}}
+                        {{--    },--}}
+                        {{--    error: (e) => {--}}
+                        {{--        console.log(e);--}}
+                        {{--    }--}}
+                        {{--});--}}
+                    }
+                });
+            }
         });
     </script>
-    <script src="{{ asset('js/admin/customize.js') }}"></script>
 @endsection

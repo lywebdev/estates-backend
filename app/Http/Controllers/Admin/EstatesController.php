@@ -64,7 +64,9 @@ class EstatesController extends Controller
 
     public function edit($id)
     {
-        $estate = Estate::with(['category'])->find($id);
+        $estate = Estate::with(['category', 'photos' => function($q) {
+            $q->orderBy('sort', 'asc');
+        }])->find($id);
         if (!$estate) {
             return redirect()->back()->with('error', 'Не удалось найти объект недвижимости с указанным ID');
         }
@@ -76,16 +78,13 @@ class EstatesController extends Controller
         return view('admin.estates.edit', compact('estate', 'estatesCategories'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(StoreRequest $request, $id)
     {
-        //
+        $estate = Estate::find($id);
+        $estate->update($request->validated());
+
+
+        return redirect()->back()->with('success', 'Изменения внесены');
     }
 
     /**

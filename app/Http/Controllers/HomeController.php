@@ -11,7 +11,7 @@ class HomeController extends Controller
     {
         $newEstates = Estate::select('id', 'price', 'room_size', 'area', 'floor', 'location')
             ->with(['photos' => function($q) {
-                $q->orderBy('sort', 'desc');
+                $q->orderBy('sort', 'asc');
             }])
             ->orderBy('id', 'desc')
             ->limit(8)

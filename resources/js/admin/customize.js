@@ -32,7 +32,6 @@ $(document).ready(() => {
         $('#files').trigger('click');
     });
 
-
     $('.btn-remove-all').click(() => {
         files = [];
         rerenderFilesContainer();
@@ -73,5 +72,21 @@ $(document).ready(() => {
         $.when( removeAction() ).then((removePhotoResponse) => {
             $imageItem.remove();
         });
-    })
+    });
+
+    let pathname = `${document.location.protocol}//${document.location.host}${document.location.pathname}`;
+    $('.nav-link').each((index, el) => {
+        let $el  = $(el);
+        let href = $el.attr('href');
+        if (href === pathname) {
+            $el.addClass('active');
+            let $parentNav = $el.closest('.nav-item').parents().eq(0).closest('.nav-item');
+            if ($parentNav.length !== 0) {
+                $parentNav.each((index, el) => {
+                    $(el).addClass('menu-is-opening');
+                    $(el).addClass('menu-open');
+                });
+            }
+        }
+    });
 });

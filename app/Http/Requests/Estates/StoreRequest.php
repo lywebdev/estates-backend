@@ -42,6 +42,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string'],
+            'price' => ['required', 'numeric'],
             'estate_category_id' => ['nullable', 'exists:estates_categories,id'],
             'district' => ['string', 'nullable'],
             'location'  => ['string', 'nullable'],

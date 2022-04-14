@@ -55,6 +55,7 @@
 <script src="{{ asset('js/admin/adminlte.min.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 {{--<script src="dist/js/demo.js"></script>--}}
+<script src="{{ asset('js/admin/customize.js') }}"></script>
 
 @yield('footer_scripts')
 </body>
