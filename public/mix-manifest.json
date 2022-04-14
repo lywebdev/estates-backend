@@ -1,5 +1,6 @@
 {
     "/css/style.css": "/css/style.css",
+    "/css/admin/customize.css": "/css/admin/customize.css",
     "/js/main.js": "/js/main.js",
     "/js/components/accordion.min.js": "/js/components/accordion.min.js",
     "/js/components/select.js": "/js/components/select.js",
@@ -36,6 +37,5 @@
     "/js/admin/customize.js": "/js/admin/customize.js",
     "/js/admin/dashboard.js": "/js/admin/dashboard.js",
     "/css/admin/adminlte.min.css": "/css/admin/adminlte.min.css",
-    "/css/admin/customize.scss": "/css/admin/customize.scss",
-    "/css/admin/customize.css": "/css/admin/customize.css"
+    "/css/admin/customize.scss": "/css/admin/customize.scss"
 }

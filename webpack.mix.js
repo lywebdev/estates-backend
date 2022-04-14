@@ -37,7 +37,9 @@ mix.copy('resources/img', 'public/img');
 
 mix.copy('resources/js/admin', 'public/js/admin');
 mix.copy('resources/css/admin', 'public/css/admin');
-mix.minify('resources/css/admin/customize.scss', 'public/css/admin/customize.css');
+mix.sass('resources/css/admin/customize.scss', 'public/css/admin/customize.css').options({
+    processCssUrls: true
+});
 
 mix.sass('resources/css/style.scss', 'public/css/style.css').options({
     processCssUrls: true

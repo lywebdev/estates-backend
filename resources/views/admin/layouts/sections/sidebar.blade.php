@@ -88,6 +88,10 @@
                     </p>
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a href="{{ route('admin.logout') }}" class="nav-link">Выйти</a>
+            </li>
         </ul>
     </nav>
     <!-- /.sidebar-menu -->

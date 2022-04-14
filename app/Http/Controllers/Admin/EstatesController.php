@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Estates\StoreRequest;
+use App\Models\Estate\Category;
 use App\Models\Estate\Estate;
 use Illuminate\Http\Request;
 
@@ -19,13 +21,18 @@ class EstatesController extends Controller
 
     public function create()
     {
-        return view('admin.estates.create');
+        $estatesCategories = Category::select('id', 'name')
+            ->orderBy('id', 'desc')
+            ->get();
+
+        return view('admin.estates.create', compact('estatesCategories'));
     }
 
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
         $files = $request->filesInJson;
-
+        $data = $request->validated();
+        dd($data);
     }
 
     /**

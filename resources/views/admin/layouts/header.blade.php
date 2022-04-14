@@ -30,6 +30,11 @@
     <!-- summernote -->
     <link rel="stylesheet" href="{{ asset('libs/admin/summernote/summernote-bs4.min.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
+
+    @yield('ext_styles')
+
+
+    <link rel="stylesheet" href="{{ asset('css/admin/customize.css') }}">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">

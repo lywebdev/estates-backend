@@ -19,6 +19,6 @@ Route::middleware('auth:admin')->group(function() {
 
     Route::get('logout', function() {
         \Illuminate\Support\Facades\Auth::logout();
-        return redirect('/');
-    });
+        return redirect(route('home'));
+    })->name('logout');
 });

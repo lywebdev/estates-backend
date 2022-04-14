@@ -1,10 +1,139 @@
+.auth-form {
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    form {
+        box-shadow: 0 0 15px 3px rgba(0,0,0,0.1);
+        border-radius: 15px;
+        width: 425px;
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+        padding: 25px;
+
+        .input {
+            font-size: 14px;
+        }
+
+        .form-input {
+
+            &:not(:last-child) {
+                margin-bottom: 15px;
+            }
+        }
+
+        .submit {
+            //margin-top: 25px;
+            margin-top: 10px;
+            width: 100%;
+            font-size: 16px;
+        }
+    }
+
+
+    .btn {
+        font-weight: bold;
+        font-size: 14px;
+        cursor: pointer;
+        background: #AA0001;
+        text-align: center;
+        border: 1px solid #AA0001;
+        box-sizing: border-box;
+        padding: 8px 10px;
+        border-radius: 10px;
+        color: #fff;
+        transition: all 0.3s;
+
+        &:hover {
+            color: #AA0001;
+            background: #fff;
+            box-shadow: 2px 2px 15px 3px rgba(0,0,0,0.1);
+        }
+    }
+
+    .input {
+        font-size: 16px;
+        border-radius: 10px;
+        border: 1px solid #F0F0F2;
+        padding: 12px 20px;
+        box-sizing: border-box;
+        width: 100%;
+        background: #fff;
+        color: #212137;
+        outline: none;
+    }
+}
+
+.auth-form__error {
+    color: #AA0001;
+    margin-top: 6px;
+    font-family: Calibri, sans-serif;
+    font-size: 14px;
+    display: inline-block;
+}
+
+.auth-form__title {
+    margin-bottom: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    font-family: Calibri, sans-serif;
+}
+
+
 .images-upload-zone {
 
 }
 
 .images-container__item {
+    width: 250px;
+    height: 190px;
+    display: flex;
+    align-items: center;
 
+    &:first-child {
+        margin-top: 15px;
+    }
 
+    &:not(:last-child) {
+        margin-bottom: 15px;
+    }
+
+    img {
+        height: 100%;
+        width: 100%;
+        border-radius: 10px;
+        object-fit: cover;
+    }
 }
 
-.images-container__item__remove {}
+.images-container__item__remove {
+    cursor: pointer;
+    display: inline-block;
+    margin-left: 20px;
+}
+
+
+.select2-selection {
+    height: 38px !important;
+}
+
+
+.btns-container {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+
+    .btn {
+        display: inline-block !important;
+        width: auto;
+        margin-top: 0;
+
+        &:not(:last-child) {
+            margin-right: 15px;
+        }
+    }
+}

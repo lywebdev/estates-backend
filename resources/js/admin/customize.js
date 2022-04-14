@@ -8,7 +8,7 @@ $(document).ready(() => {
         for (let i = 0; i < files.length; i++) {
             let template = `<div class="images-container__item" data-img-id="${i}">
                     <img src="${files[i]}">
-                    <div class="images-container__item__remove">Удалить</div>
+                    <div class="images-container__item__remove btn btn-block btn-secondary btn-flat">Удалить</div>
                 </div>`;
 
             $imagesContainer.append(template);
