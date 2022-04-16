@@ -17,8 +17,7 @@
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Dashboard v1</li>
+                            {{ Breadcrumbs::render('admin.estates.edit', $estate) }}
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -60,14 +59,16 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="price">Стоимость</label>
-                                            <input type="number"
-                                                   class="form-control"
-                                                   id="price"
-                                                   name="price"
-                                                   placeholder="Укажите стоимость"
-                                                   value="{{ $estate->price }}"
-                                            >
+                                            <div class="form-group">
+                                                <label for="price">Стоимость</label>
+                                                <input type="number"
+                                                       class="form-control"
+                                                       id="price"
+                                                       name="price"
+                                                       placeholder="Укажите стоимость"
+                                                       value="{{ $estate->price }}"
+                                                >
+                                            </div>
                                         </div>
                                         @isset($estatesCategories)
                                             <div class="col-md-4">
@@ -296,13 +297,18 @@
                                     {{--                                    галерея --}}
                                     <div class="row">
                                         <div class="col-md-12">
+
                                             <h3 class="card-title">Работа с изображениями</h3>
                                             <br>
+{{--                                            <div class="btns-container">--}}
+{{--                                                <div class="btn btn-block btn-outline-primary btn-flat btn-add-file">Добавить изображения</div>--}}
+{{--                                                <div class="btn btn-block btn-outline-primary btn-flat btn-remove-all">Удалить все</div>--}}
+{{--                                            </div>--}}
                                             @if ($estate->photos && $estate->photos->count() > 0)
                                                 <div class="images-container ajaxed" id="estateImages">
                                                     @foreach ($estate->photos as $key => $photo)
                                                         <div class="images-container__item"
-                                                             data-route="{{ route('admin.api.estatesPhotos.destroy', $photo->id) }}"
+                                                             data-route="{{ route('admin.api.estates-photos.destroy', $photo->id) }}"
                                                              data-link-id="{{ $photo->id }}"
                                                         >
                                                             <div class="images-container__item-img">
@@ -394,30 +400,6 @@
                                 location.reload();
                             }
                         });
-
-                        {{--$.ajax({--}}
-                        {{--    headers: {--}}
-                        {{--        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
-                        {{--    },--}}
-                        {{--    url: "{{ route('admin.product_photos.update', $product->id) }}",--}}
-                        {{--    type: 'PUT',--}}
-                        {{--    data: JSON.stringify({data: dataArray}),--}}
-                        {{--    contentType: "application/json",--}}
-                        {{--    dataType: "json",--}}
-                        {{--    success: (response) => {--}}
-                        {{--        // console.log(response)--}}
-                        {{--        let successAlert = new Alert({--}}
-                        {{--            type: 'success',--}}
-                        {{--            text: 'Порядок фотографий успешно изменён',--}}
-                        {{--            duration: 2000,--}}
-                        {{--            selector: 'body',--}}
-                        {{--            hZindex: 1--}}
-                        {{--        });--}}
-                        {{--    },--}}
-                        {{--    error: (e) => {--}}
-                        {{--        console.log(e);--}}
-                        {{--    }--}}
-                        {{--});--}}
                     }
                 });
             }

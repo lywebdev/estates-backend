@@ -10,6 +10,7 @@
     {{-- Ext Meta --}}
     <title>@yield('page_title')</title>
     @yield('meta')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     {{-- Common styles --}}
     <link rel="stylesheet" href="{{ mix('css/style.css') }}">

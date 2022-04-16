@@ -78,6 +78,28 @@
                     </li>
                 </ul>
             </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fa-solid fa-house"></i>
+                    <p>
+                        Категории недвижимости
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('admin.estates-categories.index') }}" class="nav-link">
+                            <p>Все категории</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.estates-categories.create') }}" class="nav-link">
+                            <p>Добавить категорию</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
 
             <li class="nav-item">
                 <a href="pages/widgets.html" class="nav-link">

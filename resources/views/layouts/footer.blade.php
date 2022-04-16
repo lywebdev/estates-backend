@@ -312,6 +312,7 @@
 {{-- Common scripts --}}
 <script src="{{ asset('libs/bootstrap/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/components/accordion.min.js') }}"></script>
+<script src="{{ asset('libs/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('js/main.js') }}"></script>
 {{-- Ext Footer Scripts --}}
 @yield('footer_scripts')

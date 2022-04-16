@@ -154,3 +154,8 @@
 .images-container__btn {
   margin-left: 15px;
 }
+
+.table__btns {
+  display: flex;
+  align-items: center;
+}

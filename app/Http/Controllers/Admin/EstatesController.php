@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Estates\StoreRequest;
 use App\Models\Estate\Category;
 use App\Models\Estate\Estate;
+use App\Services\MediaService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class EstatesController extends Controller
 {
@@ -38,14 +40,19 @@ class EstatesController extends Controller
             return redirect()->back()->with('error', 'Не удалось добавить объект недвижимости');
         }
 
-        foreach ($files as $key => $file) {
-            $fileCopy  = $file;
-            $imageData = substr($fileCopy, 1+strrpos($fileCopy, ','));
-            $file = [
-                'format' => explode('/', explode(';', $fileCopy)[0])[1],
-                'body'   => base64_decode($imageData)
-            ];
-            $estate->addPhoto($file, $key);
+        if ($files) {
+            foreach ($files as $key => $file) {
+                $fileCopy  = $file;
+                $imageData = substr($fileCopy, 1+strrpos($fileCopy, ','));
+
+                $path = 'uploads/estates/' . $estate->id . '/' . uniqid() . '.';
+                $format = explode('/', explode(';', $fileCopy)[0])[1];
+                $filepath = "$path.$format";
+                $file = base64_decode($imageData);
+
+                MediaService::imageSave($filepath, $file);
+                $estate->addPhoto($filepath, $key);
+            }
         }
 
         return redirect()->route('admin.estates.index')->with('success', 'Объект недвижимости успешно добавлен');
@@ -81,20 +88,22 @@ class EstatesController extends Controller
     public function update(StoreRequest $request, $id)
     {
         $estate = Estate::find($id);
+        if (!$estate) {
+            return redirect()->back()->with('Не удалось найти объект недвижимости по указанному id');
+        }
         $estate->update($request->validated());
-
 
         return redirect()->back()->with('success', 'Изменения внесены');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $estate = Estate::find($id);
+        if (!$estate) {
+            return redirect()->back()->with('error', 'Не удалось найти запись по переданному id');
+        }
+        $estate->delete();
+
+        return redirect()->route('admin.estates.index')->with('success', 'Объект недвижимости удалён');
     }
 }

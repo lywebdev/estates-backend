@@ -9,12 +9,14 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Dashboard</h1>
+                        <h1 class="m-0">Объекты недвижимости</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
+
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Dashboard v1</li>
+                            {{ Breadcrumbs::render('admin.estates.index') }}
+{{--                            <li class="breadcrumb-item"><a href="#">Home</a></li>--}}
+{{--                            <li class="breadcrumb-item active">Dashboard v1</li>--}}
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -25,6 +27,9 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
+
+                @include('admin.components.alerts')
+
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
@@ -47,10 +52,17 @@
                                         <tr>
                                             <th>{{ $estate->id }}</th>
                                             <th>{{ $estate->name }}</th>
-                                            <th>
-                                                <a href="{{ route('admin.estates.edit', $estate->id) }}" class="btn btn-outline-dark btn-flat">
+                                            <th class="table__btns">
+                                                <a href="{{ route('admin.estates.edit', $estate->id) }}" class="btn btn-outline-dark btn-flat mr-2">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
+                                                <form action="{{ route('admin.estates.destroy', $estate->id) }}" method="post">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button class="btn btn-outline-danger btn-flat">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </form>
                                             </th>
                                         </tr>
                                     @endforeach

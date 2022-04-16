@@ -16,19 +16,17 @@ Route::middleware('auth:admin')->group(function() {
     })->name('home');
 
     Route::resource('estates', \App\Http\Controllers\Admin\EstatesController::class);
+    Route::resource('estates-categories', \App\Http\Controllers\Admin\EstatesCategoriesController::class);
+    Route::resource('services', \App\Http\Controllers\Admin\ServicesController::class);
 
 
     Route::group([
         'prefix' =>'api',
         'as' => 'api.'
     ], function() {
-//        Route::resource('estates', \App\Http\Controllers\Admin\API\EstatesController::class);
-
-        Route::resource('estatesPhotos', \App\Http\Controllers\Admin\API\Estate\PhotoController::class);
+        Route::resource('estates-photos', \App\Http\Controllers\Admin\API\Estate\PhotoController::class);
         Route::post('estates-photos/change-sort', [\App\Http\Controllers\Admin\API\Estate\PhotoController::class, 'changeSort'])
             ->name('estatesPhotos.changeSort');
-//        Route::delete('estates/{id}/photo/{photoId}', [\App\Http\Controllers\Admin\API\EstatesController::class, 'photoDelete'])
-//            ->name('estatesPhotoDelete');
     });
 
 

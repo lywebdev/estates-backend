@@ -66,4 +66,16 @@
       box-shadow: 0 4px 12px 3px rgba(0,0,0,0.1);
     }
   }
+
+  .room__btns {
+      .btn {
+          margin-top: 0;
+      }
+  }
+
+    .preloader {
+        margin-top: 100px;
+        display: flex;
+        justify-content: center;
+    }
 }

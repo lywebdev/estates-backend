@@ -17,8 +17,7 @@
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Dashboard v1</li>
+                            {{ Breadcrumbs::render('admin.estates.create') }}
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -29,32 +28,8 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                @if($errors->any())
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card card-default">
-                                <div class="card-header">
-                                    <h3 class="card-title">
-                                        <i class="fas fa-exclamation-triangle"></i>
-                                        Ошибки
-                                    </h3>
-                                </div>
 
-                                <div class="card-body">
-                                    @foreach ($errors->all() as $error)
-                                        <div class="alert alert-danger alert-dismissible">
-                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                            <h5><i class="icon fas fa-ban"></i> Ошибка валидации</h5>
-                                            {{ $error }}
-                                        </div>
-                                    @endforeach
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                @endif
+                @include('admin.components.alerts')
 
                 <div class="row">
                     <div class="col-md-12">
@@ -77,13 +52,15 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="price">Стоимость</label>
-                                            <input type="number"
-                                                   class="form-control"
-                                                   id="price"
-                                                   name="price"
-                                                   placeholder="Укажите стоимость"
-                                            >
+                                            <div class="form-group">
+                                                <label for="price">Стоимость</label>
+                                                <input type="number"
+                                                       class="form-control"
+                                                       id="price"
+                                                       name="price"
+                                                       placeholder="Укажите стоимость"
+                                                >
+                                            </div>
                                         </div>
                                         @isset($estatesCategories)
                                             <div class="col-md-4">

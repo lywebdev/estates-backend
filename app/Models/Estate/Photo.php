@@ -2,8 +2,10 @@
 
 namespace App\Models\Estate;
 
+use App\Services\MediaService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class Photo extends Model
 {
@@ -18,5 +20,14 @@ class Photo extends Model
     public function estate()
     {
         return $this->belongsTo(Estate::class);
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleted(function ($photo) {
+            MediaService::imageRemove($photo->path);
+        });
     }
 }

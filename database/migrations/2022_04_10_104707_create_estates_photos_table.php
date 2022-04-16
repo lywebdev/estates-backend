@@ -15,7 +15,7 @@ class CreateEstatesPhotosTable extends Migration
     {
         Schema::create('estates_photos', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('estate_id')->unsigned()->references('id')->on('estates');
+            $table->bigInteger('estate_id')->unsigned();
             $table->string('path');
             $table->integer('sort')->default(0);
         });

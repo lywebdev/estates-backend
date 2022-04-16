@@ -4167,6 +4167,14 @@ body {
   align-items: center;
   box-shadow: 0 4px 12px 3px rgba(0, 0, 0, 0.1);
 }
+.page__buildings .room__btns .btn {
+  margin-top: 0;
+}
+.page__buildings .preloader {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+}
 
 .page__home .section-benefits .section-slider-pagination {
   display: none;
@@ -4875,6 +4883,10 @@ body {
   }
   .page__app-submission .app-submission__row {
     margin-bottom: 0;
+  }
+
+  .page__buildings .room__btns .btn {
+    margin-top: 10px;
   }
 }
 @media screen and (max-width: 767px) {

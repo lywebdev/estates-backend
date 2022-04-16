@@ -23,8 +23,7 @@ class CreateEstatesTable extends Migration
 
             $table->bigInteger('estate_category_id')
                 ->unsigned()
-                ->nullable()
-                ->references('id')->on('estates_categories');
+                ->nullable();
 
             $table->string('city', 255)->indeX()->nullable();
             $table->string('district', 255)->index()->nullable();

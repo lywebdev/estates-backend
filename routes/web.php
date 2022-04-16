@@ -15,4 +15,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('buildings', [\App\Http\Controllers\EstatesController::class, 'buildings'])->name('buildings');
+//Route::get('buildings', [\App\Http\Controllers\EstatesController::class, 'buildings'])->name('buildings');
+Route::get('buildings/{slug}', [\App\Http\Controllers\EstatesController::class, 'category'])
+    ->name('buildingsCategory');
+
+
+Route::group([
+    'prefix' => 'api',
+    'as' => 'api.'
+], function() {
+    Route::get('buildings-category', [\App\Http\Controllers\API\EstatesController::class, 'renderBuildingsCategory'])
+        ->name('buildingsCategory');
+    Route::post('buildings-category/count-offers', [\App\Http\Controllers\API\EstatesController::class, 'countOffers'])
+        ->name('buildingsCountOffers');
+});

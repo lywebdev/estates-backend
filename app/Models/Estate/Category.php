@@ -22,4 +22,19 @@ class Category extends Model
             ]
         ];
     }
+
+    public function estates()
+    {
+        return $this->hasMany(Estate::class, 'estate_category_id', 'id');
+    }
+
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleted(function ($category) {
+            $category->estates()->update(['estate_category_id' => null]);
+        });
+    }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\API\BaseController;
 use App\Http\Controllers\Controller;
 use App\Models\Estate\Estate;
 use App\Models\Estate\Photo;
+use App\Services\MediaService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -47,6 +48,8 @@ class PhotoController extends BaseController
         if (!$photo) {
             return $this->sendError('Photo not found.');
         }
+        $photo->delete();
+        MediaService::imageRemove($photo->path);
 
         return $this->sendResponse([], 'Successful.');
     }

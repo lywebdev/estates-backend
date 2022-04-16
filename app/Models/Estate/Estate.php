@@ -4,6 +4,7 @@ namespace App\Models\Estate;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class Estate extends Model
@@ -21,20 +22,26 @@ class Estate extends Model
 
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, 'estate_category_id', 'id');
     }
 
 
 
-    public function addPhoto($file, $sort = 0)
+    public function addPhoto(string $path, $sort = 0)
     {
-        $savedFilePath = 'uploads/estates/' . $this->id . '/' . uniqid() . '.' . $file['format'];
-        Storage::disk('public')->put($savedFilePath, $file['body']);
-        Storage::put($savedFilePath, $file['body']);
         return Photo::create([
             'estate_id' => $this->id,
-            'path' => $savedFilePath,
+            'path' => $path,
             'sort' => $sort
         ]);
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleted(function ($estate) {
+            $estate->photos()->delete();
+        });
     }
 }
