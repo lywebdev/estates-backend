@@ -20,6 +20,7 @@ class EstatesController extends Controller
             abort(404);
         }
         $estates = Estate::where('estate_category_id', $esCategory->id)
+            ->where('type', Estate::TYPES['flat'])
             ->with([
                 'photos' => function($q) {
                     $q->orderBy('sort', 'asc');

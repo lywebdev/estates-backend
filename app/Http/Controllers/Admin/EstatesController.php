@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Estates\StoreRequest;
 use App\Models\Estate\Category;
 use App\Models\Estate\Estate;
+use App\Rules\Auth\ValidateDataFilter;
 use App\Services\MediaService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -23,17 +24,18 @@ class EstatesController extends Controller
 
     public function create()
     {
-        $estatesCategories = Category::select('id', 'name')
-            ->orderBy('id', 'desc')
-            ->get();
+        $estatesCategories = Estate::CATEGORIES;
 
         return view('admin.estates.create', compact('estatesCategories'));
     }
 
     public function store(StoreRequest $request)
     {
+        $validated = $request->validated();
+        $data = array_merge($validated, ValidateDataFilter::removeDataNamespace($request->input($request->type)));
+        unset($data[$request->type]);
+
         $files = json_decode($request->filesInJson);
-        $data  = $request->validated();
 
         $estate = Estate::create($data);
         if (!$estate) {
@@ -45,7 +47,14 @@ class EstatesController extends Controller
                 $fileCopy  = $file;
                 $imageData = substr($fileCopy, 1+strrpos($fileCopy, ','));
 
-                $path = 'uploads/estates/' . $estate->id . '/' . uniqid() . '.';
+                $estateType = "";
+                switch ($request->type) {
+                    case Estate::TYPES['flat']: {
+                        $estateType = 'flats';
+                    }
+                }
+
+                $path = 'uploads/estates/' . "$estateType/" . $estate->id . '/' . uniqid() . '.';
                 $format = explode('/', explode(';', $fileCopy)[0])[1];
                 $filepath = "$path.$format";
                 $file = base64_decode($imageData);

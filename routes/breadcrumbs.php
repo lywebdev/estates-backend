@@ -9,8 +9,12 @@ use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 Breadcrumbs::for('home', function($trail) {
     $trail->push('Главная', route('home'));
 });
-Breadcrumbs::for('buildings.category', function($trail, $category) {
+Breadcrumbs::for('buildings.index', function($trail) {
     $trail->parent('home');
+    $trail->push('Объекты недвижимости', url()->current());
+});
+Breadcrumbs::for('buildings.category', function($trail, $category) {
+    $trail->parent('buildings.index');
     $trail->push($category->name);
 });
 

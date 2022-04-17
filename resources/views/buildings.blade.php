@@ -85,7 +85,7 @@
 
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="btn first-screen__filters__btn">Показать 5 483 предложения</div>
+                                            <div class="btn first-screen__filters__btn">Показать предложения</div>
                                         </div>
                                     </div>
                                 </form>

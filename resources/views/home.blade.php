@@ -42,6 +42,9 @@
                         <ul class="col-md-12 f ai-c nav-menu nav-menu--white">
                             <li class="header__nav-item nav-menu__item"><a href="#">Купить</a></li>
                             <li class="header__nav-item nav-menu__item"><a href="#">Продать</a></li>
+
+                            @include('components.nav.categories')
+
                             <li class="header__nav-item nav-menu__item"><a href="#">Квартиры</a></li>
                             <li class="header__nav-item nav-menu__item"><a href="#">Дома \ Участки</a></li>
                             <li class="header__nav-item nav-menu__item"><a href="#">Коммерция</a></li>
@@ -1392,33 +1395,33 @@
         </section>
 
         <!-- Новые предложения -->
-        <section class="section collections-section section-slider roomsSlider">
-            <div class="container-fluid">
-                <div class="ac-grid">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="section__title">Новые предложения</div>
+        @if ($flatEstates && $flatEstates->count() > 0)
+            <section class="section collections-section section-slider roomsSlider">
+                <div class="container-fluid">
+                    <div class="ac-grid">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="section__title">Новые предложения</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="collections-section__container">
+                <div class="collections-section__container">
+                    <div class="row g-sm-4">
+                        @foreach ($flatEstates as $estate)
+                            <div class="col-xl-3 col-md-6 col-lg-6 col-sm-12">
+                                @include('components.room.room-card', ['estate' => $estate])
+                            </div>
+                        @endforeach
+                    </div>
 
-                <div class="row g-sm-4">
-                    @foreach ($newEstates as $estate)
-                        <div class="col-xl-3 col-md-6 col-lg-6 col-sm-12">
-                            @include('components/room', ['estate' => $estate])
-                        </div>
-                    @endforeach
+                    <div class="collections-section__more">
+                        <div class="btn btn--no-bg">Показать ещё</div>
+                    </div>
                 </div>
-
-                <div class="collections-section__more">
-                    <div class="btn btn--no-bg">Показать ещё</div>
-                </div>
-
-            </div>
-        </section>
+            </section>
+        @endif
 
         <!-- Вас могут заинтересовать -->
         <section class="section collections-section section-slider roomsSlider">

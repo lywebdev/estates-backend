@@ -39,11 +39,11 @@
                             </div>
 
 
-                            <form action="{{ route('admin.estates.store') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('admin.estates.store') }}" method="post" enctype="multipart/form-data" id="form" name="form">
                                 @csrf
                                 <div class="card-body">
+                                    <input type="hidden" name="type" id="estate_type">
 
-{{--                                    name / category--}}
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
@@ -66,109 +66,37 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Категория</label>
-                                                    <select class="form-control select2" name="estate_category_id" style="width: 100%; height: 100%;">
-                                                        @foreach ($estatesCategories as $category)
-                                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                    <select class="form-control select2" name="estate_category" style="width: 100%; height: 100%;">
+                                                        @foreach ($estatesCategories as $categoryName => $category)
+                                                            <option value="{{ $categoryName }}">{{ $category['name'] }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
                                         @endisset
                                     </div>
-{{--                                    район / адрес--}}
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="district">Район</label>
-                                                <input type="text" class="form-control" id="district" name="district" placeholder="Укажите район">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="location">Адрес</label>
                                                 <input type="text" class="form-control" id="location" name="location" placeholder="Укажите адрес">
                                             </div>
                                         </div>
-                                    </div>
-{{--                                    площадь, жилая площадь, комнатность, облицовка, этаж, состояние --}}
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label for="area">Площадь помещения</label>
-                                                        <input type="text" class="form-control" id="area" name="area" placeholder="Укажите площадь">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label for="living_area">Жилая площадь</label>
-                                                        <input type="text" class="form-control" id="living_area" name="living_area" placeholder="Укажите жилую площадь">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label for="room_size">Комнатность</label>
-                                                        <input type="text" class="form-control" id="room_size" name="room_size" placeholder="Укажите комнатность">
-                                                    </div>
-                                                </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="area">Площадь</label>
+                                                <input type="text" class="form-control" id="area" name="area" placeholder="Укажите площадь">
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label for="facing">Облицовка</label>
-                                                        <input type="text" class="form-control" id="facing" name="facing" placeholder="Какая облицовка?">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label for="floor">Этаж</label>
-                                                        <input type="text" class="form-control" id="floor" name="floor" placeholder="Укажите этаж">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label for="condition">Состояние</label>
-                                                        <input type="text" class="form-control" id="condition" name="condition" placeholder="Каково состояние?">
-                                                    </div>
-                                                </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="condition">Состояние</label>
+                                                <input type="text" class="form-control" id="condition" name="condition" placeholder="Каково состояние?">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label for="year">Год постройки</label>
-                                                <input type="text" class="form-control" id="year" name="year" placeholder="Год постройки?">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label for="wall_material">Материал стен</label>
-                                                <input type="text" class="form-control" id="wall_material" name="wall_material" placeholder="Материал стен?">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label for="ceiling_height">Высота потолков</label>
-                                                <input type="text" class="form-control" id="ceiling_height" name="ceiling_height" placeholder="Высота потолков?">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <div class="icheck-success d-inline">
-                                                            <input type="checkbox" name="furniture" id="furniture">
-                                                            <label for="furniture">Мебель</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div class="col-md-12">
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
@@ -178,18 +106,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <div class="icheck-success d-inline">
-                                                            <input type="checkbox" name="bathroom" id="bathroom">
-                                                            <label for="bathroom">Ванная</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <div class="icheck-success d-inline">
@@ -201,7 +117,171 @@
                                             </div>
                                         </div>
                                     </div>
-{{--                                    галерея --}}
+
+                                    <h4 class="">Выберите тип недвижимости</h4>
+                                    <ul class="nav nav-tabs" id="custom-content-above-tab" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active"
+                                               id="custom-content-above-home-tab"
+                                               data-toggle="pill"
+                                               href="#estate_{{ \App\Models\Estate\Estate::TYPES['flat'] }}"
+                                               role="tab"
+                                               aria-controls="custom-content-above-home"
+                                               aria-selected="true">Квартира</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link"
+                                               id="custom-content-above-home-tab"
+                                               data-toggle="pill"
+                                               href="#estate_{{ \App\Models\Estate\Estate::TYPES['house'] }}"
+                                               role="tab"
+                                               aria-controls="custom-content-above-home"
+                                               aria-selected="true">Дом</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content" id="custom-content-above-tabContent">
+                                        <div class="tab-pane fade show active pt-2"
+                                             id="estate_{{ \App\Models\Estate\Estate::TYPES['flat'] }}"
+                                             data-estate-type="{{ \App\Models\Estate\Estate::TYPES['flat'] }}"
+                                             role="tabpanel"
+                                             aria-labelledby="custom-content-above-home-tab">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="flat[district]">Район</label>
+                                                        <input type="text" class="form-control" id="flat[district]" name="flat[district]" placeholder="Укажите район">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label for="flat[living_area]">Жилая площадь</label>
+                                                                <input type="text" class="form-control" id="flat[living_area]" name="flat[living_area]" placeholder="Укажите жилую площадь">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label for="flat[room_size]">Комнатность</label>
+                                                                <input type="text" class="form-control" id="flat[room_size]" name="flat[room_size]" placeholder="Укажите комнатность">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label for="flat[facing]">Облицовка</label>
+                                                                <input type="text" class="form-control" id="flat[facing]" name="flat[facing]" placeholder="Какая облицовка?">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label for="flat[floor]">Этаж</label>
+                                                                <input type="text" class="form-control" id="flat[floor]" name="flat[floor]" placeholder="Укажите этаж">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="flat[year]">Год постройки</label>
+                                                        <input type="text" class="form-control" id="flat[year]" name="flat[year]" placeholder="Год постройки?">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="flat[wall_material]">Материал стен</label>
+                                                        <input type="text" class="form-control" id="flat[wall_material]" name="flat[wall_material]" placeholder="Материал стен?">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="flat[ceiling_height]">Высота потолков</label>
+                                                        <input type="text" class="form-control" id="flat[ceiling_height]" name="flat[ceiling_height]" placeholder="Высота потолков?">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="flat[floors]">Этажность</label>
+                                                        <input type="text" class="form-control" id="flat[floors]" name="flat[floors]" placeholder="Укажите этаж">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <div class="icheck-success d-inline">
+                                                                    <input type="checkbox" name="furniture" id="furniture">
+                                                                    <label for="furniture">Мебель</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <div class="icheck-success d-inline">
+                                                                    <input type="checkbox" name="bathroom" id="bathroom">
+                                                                    <label for="bathroom">Ванная</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade show pt-2"
+                                             id="estate_{{ \App\Models\Estate\Estate::TYPES['house'] }}"
+                                             data-estate-type="{{ \App\Models\Estate\Estate::TYPES['house'] }}"
+                                             role="tabpanel"
+                                             aria-labelledby="custom-content-above-home-tab">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="house[district]">Район</label>
+                                                        <input type="text" class="form-control" id="house[district]" name="house[district]" placeholder="Укажите район">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="house[facing]">Облицовка</label>
+                                                        <input type="text" class="form-control" id="house[facing]" name="house[facing]" placeholder="Какая облицовка?">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="house[floors]">Этажность</label>
+                                                        <input type="text" class="form-control" id="house[floors]" name="house[floors]" placeholder="Укажите этаж">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="house[year]">Год постройки</label>
+                                                        <input type="text" class="form-control" id="house[year]" name="house[year]" placeholder="Год постройки?">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="house[wall_material]">Материал стен</label>
+                                                        <input type="text" class="form-control" id="house[wall_material]" name="house[wall_material]" placeholder="Материал стен?">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="house[ceiling_height]">Высота потолков</label>
+                                                        <input type="text" class="form-control" id="house[ceiling_height]" name="house[ceiling_height]" placeholder="Высота потолков?">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="row">
                                         <div class="col-md-12">
                                             <h3 class="card-title">Прикрепление изображений</h3>
@@ -223,7 +303,7 @@
                                 </div>
 
                                 <div class="card-footer">
-                                    <button type="submit" id="submit" class="btn btn-primary">Добавить</button>
+                                    <button type="button" id="submitBtn" name="submitBtn" class="btn btn-primary">Добавить</button>
                                 </div>
                             </form>
                         </div>
@@ -254,4 +334,6 @@
             $('.select2').select2()
         });
     </script>
+
+    <script src="{{ asset('js/admin/pages/estates.js') }}"></script>
 @endsection

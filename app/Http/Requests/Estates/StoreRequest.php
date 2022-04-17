@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Estates;
 
+use App\Models\Estate\Estate;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,7 @@ class StoreRequest extends FormRequest
     public function authorize(Request $request)
     {
         $this->name = $request->name;
+        $this->type = $request->type;
         $this->district = $request->district;
         $this->area = $request->area;
         $this->living_area = $request->living_area;
@@ -40,26 +42,38 @@ class StoreRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'name' => ['required', 'string'],
-            'price' => ['required', 'numeric'],
-            'estate_category_id' => ['nullable', 'exists:estates_categories,id'],
-            'district' => ['string', 'nullable'],
+            'category' => ['required', 'string'],
+            'price' => ['numeric', 'nullable'],
+//            'estate_category_id' => ['nullable', 'exists:estates_categories,id'],
             'location'  => ['string', 'nullable'],
             'area' => ['numeric', 'nullable'],
-            'living_area' => ['numeric', 'nullable'],
-            'room_size' => ['numeric', 'nullable'],
-            'facing' => ['string', 'nullable'],
-            'floor' => ['numeric', 'nullable'],
             'condition' => ['string', 'nullable'],
-            'year' => ['numeric', 'nullable'],
-            'wall_material' => ['string', 'nullable'],
-            'ceiling_height' => ['nullable'],
-            'furniture' => ['boolean'],
             'parking' => ['boolean'],
-            'bathroom' => ['boolean'],
             'sold' => ['boolean'],
         ];
+
+        switch ($this->type) {
+            case Estate::TYPES['flat']: {
+                $rules = array_merge($rules, [
+                    'flat.district' => ['string', 'nullable'],
+                    'flat.living_area' => ['numeric', 'nullable'],
+                    'flat.room_size' => ['numeric', 'nullable'],
+                    'flat.facing' => ['string', 'nullable'],
+                    'flat.floor' => ['numeric', 'nullable'],
+                    'flat.floors' => ['numeric', 'nullable'],
+                    'flat.year' => ['numeric', 'nullable'],
+                    'flat.wall_material' => ['string', 'nullable'],
+                    'flat.ceiling_height' => ['nullable'],
+                    'flat.furniture' => ['boolean'],
+                    'flat.bathroom' => ['boolean'],
+                ]);
+                break;
+            }
+        }
+
+        return $rules;
     }
 
     protected function prepareForValidation()

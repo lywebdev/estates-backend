@@ -21,12 +21,22 @@ DOMLoadedFunctions.push({
                     slug: `${slug}`,
                     options
                 },
+                beforeSend: () => {
+                    $('.first-screen__filters__btn').html(`
+                        <div class="content-preloader">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: none; display: block; shape-rendering: auto;" width="200px" height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+                            <circle cx="50" cy="50" r="32" stroke-width="8" stroke="#ffffff" stroke-dasharray="50.26548245743669 50.26548245743669" fill="none" stroke-linecap="round">
+                              <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" keyTimes="0;1" values="0 50 50;360 50 50"></animateTransform>
+                            </circle>
+                            </svg>
+                        </div>
+                    `);
+                },
                 success: (response) => {
-                    console.log(response);
                     $('.first-screen__filters__btn').html(response.data.template);
                 },
                 error: (e) => {
-                    console.log(e);
+                    // console.log(e);
                 }
             });
         }
@@ -106,7 +116,7 @@ DOMLoadedFunctions.push({
                     window.history.pushState({}, '', url.toString());
                 },
                 error: (e) => {
-                    console.log(e);
+                    // console.log(e);
                 }
             });
         });

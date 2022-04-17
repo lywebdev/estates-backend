@@ -89,6 +89,19 @@ body {
   display: none;
 }
 
+.content-preloader {
+    height: 25px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+
+    svg {
+        height: 100%;
+    }
+}
+
 
 // Components:
 @import 'components/common';

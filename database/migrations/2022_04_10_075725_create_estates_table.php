@@ -17,13 +17,12 @@ class CreateEstatesTable extends Migration
             $table->id();
 
             $table->string('name', 255)->index();
-            $table->bigInteger('price')->index()->default(0);
+            $table->bigInteger('price')->index()->nullable();
             $table->text('description')->nullable();
             $table->string('preview')->nullable();
 
-            $table->bigInteger('estate_category_id')
-                ->unsigned()
-                ->nullable();
+            $table->string('category', 25)->index()->nullable();
+            $table->string('type', 50)->index();
 
             $table->string('city', 255)->indeX()->nullable();
             $table->string('district', 255)->index()->nullable();
@@ -33,6 +32,7 @@ class CreateEstatesTable extends Migration
             $table->tinyInteger('room_size')->index()->default(0)->nullable();
             $table->string('facing', 255)->index()->nullable();
             $table->tinyInteger('floor')->index()->nullable();
+            $table->tinyInteger('floors')->index()->nullable();
             $table->string('condition', 255)->index()->nullable();
             $table->integer('year')->index()->nullable(); // Год постройки
             $table->string('wall_material', 255)->index()->nullable();

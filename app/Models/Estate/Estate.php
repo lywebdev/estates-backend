@@ -14,6 +14,36 @@ class Estate extends Model
     protected $table = 'estates';
     protected $guarded = [];
 
+    public const TYPES = [
+        'house' => 'house',
+        'building' => 'building',
+        'flat' => 'flat',
+        'region' => 'region'
+    ];
+
+    public const CATEGORIES = [
+        'flat' => [
+            'name' => 'Квартиры',
+            'slug' => 'flats'
+        ],
+        'building' => [
+            'name' => 'Жилые комплексы',
+            'slug' => 'buildings'
+        ],
+        'house' => [
+            'name' => 'Дома',
+            'slug' => 'houses'
+        ],
+        'commerce' => [
+            'name' => 'Коммерция',
+            'slug' => 'commercial'
+        ],
+        'region' => [
+            'name' => 'Участки',
+            'slug' => 'regions'
+        ]
+    ];
+
 
     public function photos()
     {

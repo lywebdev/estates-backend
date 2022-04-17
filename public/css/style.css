@@ -106,6 +106,18 @@ body {
   display: none;
 }
 
+.content-preloader {
+  height: 25px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+}
+.content-preloader svg {
+  height: 100%;
+}
+
 .page-title {
   font-size: 65px;
   font-weight: bold;
@@ -637,6 +649,9 @@ body {
   justify-content: center;
   text-align: center;
   align-items: center;
+}
+.first-screen__filters__btn:hover circle {
+  stroke: #AA0001;
 }
 
 .service-card {

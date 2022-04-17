@@ -10,7 +10,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $newEstates = Estate::select('id', 'price', 'room_size', 'area', 'floor', 'location', 'estate_category_id')
+        $flatEstates = Estate::select('id', 'type', 'price', 'room_size', 'area', 'floor', 'location', 'estate_category_id')
+            ->where('type', Estate::TYPES['flat'])
             ->with([
                 'photos' => function($q) {
                     $q->orderBy('sort', 'asc');
@@ -22,6 +23,6 @@ class HomeController extends Controller
             ->limit(8)
             ->get();
 
-        return view('home', compact('newEstates'));
+        return view('home', compact('flatEstates'));
     }
 }
