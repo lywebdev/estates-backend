@@ -80,7 +80,7 @@
         <div class="room__btns">
             <div class="row">
                 <div class="col-md-6">
-                    <a href="{{ route('buildingsCategory', $estate->category->slug) }}" class="btn">Детальнее</a>
+                    <a href="{{ route('buildingsCategory', $estate->category) }}" class="btn">Детальнее</a>
                 </div>
                 <div class="col-md-6">
                     <a href="#" class="btn btn--no-bg">Показать телефон</a>

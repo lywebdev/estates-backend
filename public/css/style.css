@@ -2057,6 +2057,9 @@ body {
   border-radius: 25px;
   box-shadow: 0 4px 12px 3px rgba(0, 0, 0, 0.1);
   position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 .room:hover .room__overlay {
   display: block;
@@ -2167,6 +2170,9 @@ body {
 
 .room__main {
   padding: 0 18px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .room__top {
@@ -2256,7 +2262,10 @@ body {
 }
 
 .room__btns {
-  margin: 15px 0;
+  margin: auto 0 15px 0;
+}
+.room__btns .row {
+  margin-top: 15px;
 }
 .room__btns .btn {
   width: 100%;

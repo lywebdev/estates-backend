@@ -38,23 +38,23 @@
                                 <h3 class="card-title">Добавление объекта недвижимости</h3>
                             </div>
 
-
-                            <form action="{{ route('admin.estates.update', $estate->id) }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('admin.estates.update', $estate->id) }}" method="post" enctype="multipart/form-data" id="form" name="form">
                                 @method('put')
                                 @csrf
                                 <div class="card-body">
+                                    <input type="hidden" name="category" id="estate_category">
 
-                                    {{--                                    name / category--}}
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="name">Название</label>
-                                                <input type="text"
-                                                       class="form-control"
-                                                       id="name"
-                                                       name="name"
-                                                       placeholder="Введите название объекта недвижимости"
-                                                       value="{{ $estate->name }}"
+                                                <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="name"
+                                                    name="name"
+                                                    placeholder="Введите название объекта недвижимости"
+                                                    value="{{ $estate->name }}"
                                                 >
                                             </div>
                                         </div>
@@ -70,39 +70,9 @@
                                                 >
                                             </div>
                                         </div>
-                                        @isset($estatesCategories)
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Категория</label>
-                                                    <select class="form-control select2" name="estate_category_id" style="width: 100%; height: 100%;">
-                                                        @foreach ($estatesCategories as $category)
-                                                            <option
-                                                                value="{{ $category->id }}"
-                                                                @if (isset($estate->category) && ($category->id == $estate->category->id))
-                                                                    selected
-                                                                @endif
-                                                            >{{ $category->name }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        @endisset
                                     </div>
-                                    {{--                                    район / адрес--}}
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="district">Район</label>
-                                                <input type="text"
-                                                       class="form-control"
-                                                       id="district"
-                                                       name="district"
-                                                       placeholder="Укажите район"
-                                                       value="{{ $estate->district }}"
-                                                >
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="location">Адрес</label>
                                                 <input type="text"
@@ -114,179 +84,48 @@
                                                 >
                                             </div>
                                         </div>
-                                    </div>
-                                    {{--                                    площадь, жилая площадь, комнатность, облицовка, этаж, состояние --}}
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label for="area">Площадь помещения</label>
-                                                        <input type="text"
-                                                               class="form-control"
-                                                               id="area"
-                                                               name="area"
-                                                               placeholder="Укажите площадь"
-                                                        >
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label for="living_area">Жилая площадь</label>
-                                                        <input type="text"
-                                                               class="form-control"
-                                                               id="living_area"
-                                                               name="living_area"
-                                                               placeholder="Укажите жилую площадь">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label for="room_size">Комнатность</label>
-                                                        <input type="text"
-                                                               class="form-control"
-                                                               id="room_size"
-                                                               name="room_size"
-                                                               placeholder="Укажите комнатность"
-                                                               value="{{ $estate->room_size }}"
-                                                        >
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label for="facing">Облицовка</label>
-                                                        <input type="text"
-                                                               class="form-control"
-                                                               id="facing"
-                                                               name="facing"
-                                                               placeholder="Какая облицовка?"
-                                                               value="{{ $estate->facing }}"
-                                                        >
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label for="floor">Этаж</label>
-                                                        <input type="text"
-                                                               class="form-control"
-                                                               id="floor"
-                                                               name="floor"
-                                                               placeholder="Укажите этаж"
-                                                               value="{{ $estate->floor }}"
-                                                        >
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label for="condition">Состояние</label>
-                                                        <input type="text"
-                                                               class="form-control"
-                                                               id="condition"
-                                                               name="condition"
-                                                               placeholder="Каково состояние?"
-                                                               value="{{ $estate->condition
- }}"
-                                                        >
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-3">
+                                        <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="year">Год постройки</label>
+                                                <label for="area">Площадь</label>
                                                 <input type="text"
                                                        class="form-control"
-                                                       id="year"
-                                                       name="year"
-                                                       placeholder="Год постройки?"
-                                                       value="{{ $estate->year }}"
+                                                       id="area"
+                                                       name="area"
+                                                       placeholder="Укажите площадь"
+                                                       value="{{ $estate->area }}"
                                                 >
                                             </div>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="wall_material">Материал стен</label>
+                                                <label for="condition">Состояние</label>
                                                 <input type="text"
                                                        class="form-control"
-                                                       id="wall_material"
-                                                       name="wall_material"
-                                                       placeholder="Материал стен?"
-                                                       value="{{ $estate->wall_material }}"
-                                                >
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label for="ceiling_height">Высота потолков</label>
-                                                <input type="text"
-                                                       class="form-control"
-                                                       id="ceiling_height"
-                                                       name="ceiling_height"
-                                                       placeholder="Высота потолков?"
-                                                       value="{{ $estate->ceiling_height }}"
+                                                       id="condition"
+                                                       name="condition"
+                                                       placeholder="Каково состояние?"
+                                                       value="{{ $estate->condition }}"
                                                 >
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-3">
+                                        <div class="col-md-12">
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <div class="icheck-success d-inline">
-                                                            <input type="checkbox"
-                                                                   name="furniture"
-                                                                   id="furniture"
-                                                                   @if ($estate->furniture) checked @endif
-                                                            >
-                                                            <label for="furniture">Мебель</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <div class="icheck-success d-inline">
-                                                            <input type="checkbox"
-                                                                   name="parking"
-                                                                   id="parking"
+                                                            <input type="checkbox" name="parking" id="parking"
                                                                    @if ($estate->parking) checked @endif
                                                             >
                                                             <label for="parking">Парковка</label>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <div class="icheck-success d-inline">
-                                                            <input type="checkbox"
-                                                                   name="bathroom"
-                                                                   id="bathroom"
-                                                                   @if ($estate->bathroom) checked @endif
-                                                            >
-                                                            <label for="bathroom">Ванная</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <div class="icheck-success d-inline">
-                                                            <input type="checkbox"
-                                                                   name="sold"
-                                                                   id="sold"
-                                                                   @if ($estate->sold) checked @endif
-                                                            >
+                                                            <input type="checkbox" name="sold" id="sold" @if ($estate->sold) checked @endif>
                                                             <label for="sold">Продано</label>
                                                         </div>
                                                     </div>
@@ -294,16 +133,315 @@
                                             </div>
                                         </div>
                                     </div>
-                                    {{--                                    галерея --}}
+
+                                    <h4 class="">Выберите тип недвижимости</h4>
+                                    <ul class="nav nav-tabs" id="custom-content-above-tab" role="tablist">
+                                        <li class="nav-item">
+                                            <a @class([
+                                                'nav-link',
+                                                'active' => $estate->category == \App\Models\Estate\Estate::CATEGORIES['flats']['slug']
+                                               ])
+                                               id="custom-content-above-home-tab"
+                                               data-toggle="pill"
+                                               href="#estate_{{ \App\Models\Estate\Estate::CATEGORIES['flats']['slug'] }}"
+                                               role="tab"
+                                               aria-controls="custom-content-above-home"
+                                               aria-selected="true">Квартира</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a @class([
+                                                'nav-link',
+                                                'active' => $estate->category == \App\Models\Estate\Estate::CATEGORIES['houses']['slug']
+                                               ])
+                                               id="custom-content-above-home-tab"
+                                               data-toggle="pill"
+                                               href="#estate_{{ \App\Models\Estate\Estate::CATEGORIES['houses']['slug'] }}"
+                                               role="tab"
+                                               aria-controls="custom-content-above-home"
+                                               aria-selected="true">Дом</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content" id="custom-content-above-tabContent">
+                                        <div
+                                            @class([
+                                                'tab-pane',
+                                                'fade',
+                                                'show',
+                                                'pt-2',
+                                                'active' => $estate->category == \App\Models\Estate\Estate::CATEGORIES['flats']['slug']
+                                             ])
+                                             id="estate_{{ \App\Models\Estate\Estate::CATEGORIES['flats']['slug'] }}"
+                                             data-estate-category="{{ \App\Models\Estate\Estate::CATEGORIES['flats']['slug'] }}"
+                                             role="tabpanel"
+                                             aria-labelledby="custom-content-above-home-tab">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="flats[district]">Район</label>
+                                                        <input
+                                                            type="text"
+                                                            class="form-control"
+                                                            id="flats[district]"
+                                                            name="flats[district]"
+                                                            placeholder="Укажите район"
+                                                            value="{{ $estate->district }}"
+                                                        >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label for="flats[living_area]">Жилая площадь</label>
+                                                                <input
+                                                                    type="text"
+                                                                    class="form-control"
+                                                                    id="flats[living_area]"
+                                                                    name="flats[living_area]"
+                                                                    placeholder="Укажите жилую площадь"
+                                                                    value="{{ $estate->living_area }}"
+                                                                >
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label for="flats[room_size]">Комнатность</label>
+                                                                <input
+                                                                    type="text"
+                                                                    class="form-control"
+                                                                    id="flats[room_size]"
+                                                                    name="flats[room_size]"
+                                                                    placeholder="Укажите комнатность"
+                                                                    value="{{ $estate->room_size }}"
+                                                                >
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label for="flats[facing]">Облицовка</label>
+                                                                <input
+                                                                    type="text"
+                                                                    class="form-control"
+                                                                    id="flats[facing]"
+                                                                    name="flats[facing]"
+                                                                    placeholder="Какая облицовка?"
+                                                                    value="{{ $estate->facing }}"
+                                                                >
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label for="flats[floor]">Этаж</label>
+                                                                <input
+                                                                    type="text"
+                                                                    class="form-control"
+                                                                    id="flats[floor]"
+                                                                    name="flats[floor]"
+                                                                    placeholder="Укажите этаж"
+                                                                    value="{{ $estate->floor }}"
+                                                                >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="flats[year]">Год постройки</label>
+                                                        <input
+                                                            type="text"
+                                                            class="form-control"
+                                                            id="flats[year]"
+                                                            name="flats[year]"
+                                                            placeholder="Год постройки?"
+                                                            value="{{ $estate->year }}"
+                                                        >
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="flats[wall_material]">Материал стен</label>
+                                                        <input
+                                                            type="text"
+                                                            class="form-control"
+                                                            id="flats[wall_material]"
+                                                            name="flats[wall_material]"
+                                                            placeholder="Материал стен?"
+                                                            value="{{ $estate->wall_material }}"
+                                                        >
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="flats[ceiling_height]">Высота потолков</label>
+                                                        <input
+                                                            type="text"
+                                                            class="form-control"
+                                                            id="flats[ceiling_height]"
+                                                            name="flats[ceiling_height]"
+                                                            placeholder="Высота потолков?"
+                                                            value="{{ $estate->ceiling_height }}"
+                                                        >
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="flats[floors]">Этажность</label>
+                                                        <input
+                                                            type="text"
+                                                            class="form-control"
+                                                            id="flats[floors]"
+                                                            name="flats[floors]"
+                                                            placeholder="Укажите этаж"
+                                                            value="{{ $estate->floors }}"
+                                                        >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <div class="icheck-success d-inline">
+                                                                    <input
+                                                                        type="checkbox"
+                                                                        name="flats[furniture]"
+                                                                        id="flats[furniture]"
+                                                                        @if ($estate->furniture) checked @endif
+                                                                    >
+                                                                    <label for="flats[furniture]">Мебель</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <div class="icheck-success d-inline">
+                                                                    <input
+                                                                        type="checkbox"
+                                                                        name="flats[bathroom]"
+                                                                        id="flats[bathroom]"
+                                                                        @if ($estate->bathroom) checked @endif
+                                                                    >
+                                                                    <label for="flats[bathroom]">Ванная</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            @class([
+                                                'tab-pane',
+                                                'fade',
+                                                'show',
+                                                'pt-2',
+                                                'active' => $estate->category == \App\Models\Estate\Estate::CATEGORIES['flats']['slug']
+                                             ])
+                                             id="estate_{{ \App\Models\Estate\Estate::CATEGORIES['houses']['slug'] }}"
+                                             data-estate-type="{{ \App\Models\Estate\Estate::CATEGORIES['houses']['slug'] }}"
+                                             role="tabpanel"
+                                             aria-labelledby="custom-content-above-home-tab">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="house[district]">Район</label>
+                                                        <input
+                                                            type="text"
+                                                            class="form-control"
+                                                            id="house[district]"
+                                                            name="house[district]"
+                                                            placeholder="Укажите район"
+                                                            value="{{ $estate->district }}"
+                                                        >
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="house[facing]">Облицовка</label>
+                                                        <input
+                                                            type="text"
+                                                            class="form-control"
+                                                            id="house[facing]"
+                                                            name="house[facing]"
+                                                            placeholder="Какая облицовка?"
+                                                            value="{{ $estate->facing }}"
+                                                        >
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="house[floors]">Этажность</label>
+                                                        <input
+                                                            type="text"
+                                                            class="form-control"
+                                                            id="house[floors]"
+                                                            name="house[floors]"
+                                                            placeholder="Укажите этаж"
+                                                            value="{{ $estate->floors }}"
+                                                        >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="house[year]">Год постройки</label>
+                                                        <input
+                                                            type="text"
+                                                            class="form-control"
+                                                            id="house[year]"
+                                                            name="house[year]"
+                                                            placeholder="Год постройки?"
+                                                            value="{{ $estate->year }}"
+                                                        >
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="house[wall_material]">Материал стен</label>
+                                                        <input
+                                                            type="text"
+                                                            class="form-control"
+                                                            id="house[wall_material]"
+                                                            name="house[wall_material]"
+                                                            placeholder="Материал стен?"
+                                                            value="{{ $estate->wall_material }}"
+                                                        >
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="house[ceiling_height]">Высота потолков</label>
+                                                        <input
+                                                            type="text"
+                                                            class="form-control"
+                                                            id="house[ceiling_height]"
+                                                            name="house[ceiling_height]"
+                                                            placeholder="Высота потолков?"
+                                                            value="{{ $estate->ceiling_height }}"
+                                                        >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="row">
                                         <div class="col-md-12">
 
                                             <h3 class="card-title">Работа с изображениями</h3>
                                             <br>
-{{--                                            <div class="btns-container">--}}
-{{--                                                <div class="btn btn-block btn-outline-primary btn-flat btn-add-file">Добавить изображения</div>--}}
-{{--                                                <div class="btn btn-block btn-outline-primary btn-flat btn-remove-all">Удалить все</div>--}}
-{{--                                            </div>--}}
+                                            {{--                                            <div class="btns-container">--}}
+                                            {{--                                                <div class="btn btn-block btn-outline-primary btn-flat btn-add-file">Добавить изображения</div>--}}
+                                            {{--                                                <div class="btn btn-block btn-outline-primary btn-flat btn-remove-all">Удалить все</div>--}}
+                                            {{--                                            </div>--}}
                                             @if ($estate->photos && $estate->photos->count() > 0)
                                                 <div class="images-container ajaxed" id="estateImages">
                                                     @foreach ($estate->photos as $key => $photo)
@@ -329,7 +467,7 @@
                                 </div>
 
                                 <div class="card-footer">
-                                    <button type="submit" id="submit" class="btn btn-primary">Сохранить</button>
+                                    <button type="button" id="submitBtn" name="submitBtn" class="btn btn-primary">Сохранить изменения</button>
                                 </div>
                             </form>
                         </div>
@@ -405,4 +543,5 @@
             }
         });
     </script>
+    <script src="{{ asset('js/admin/pages/estates.js') }}"></script>
 @endsection

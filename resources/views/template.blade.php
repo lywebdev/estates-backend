@@ -2,6 +2,7 @@
 
 
 @section('ext_styles')
+    <link rel="stylesheet" href="{{ asset('libs/swiper/swiper.min.css') }}">
 @endsection
 
 @section('content')

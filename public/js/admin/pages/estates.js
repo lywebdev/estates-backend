@@ -3,7 +3,8 @@ $(document).ready(function() {
 
     submitBtn.click((e) => {
         e.preventDefault();
-        $('#estate_type').val($('.tab-pane.active').data('estate-type'));
+        let estateCategory = $('.tab-pane.active').data('estate-category');
+        $('#estate_category').val(estateCategory);
 
         let form = $('#form');
         form.submit();

@@ -4,7 +4,7 @@
             <div class="main__ls row gy-4">
                 @foreach ($estates as $estate)
                     <div class="col-lg-12 col-xl-6">
-                        @include('components/room', ['estate' => $estate])
+                        @include('components.room.room-card', ['estate' => $estate])
                     </div>
                 @endforeach
             </div>

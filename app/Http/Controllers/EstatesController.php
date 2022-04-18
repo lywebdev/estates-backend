@@ -15,21 +15,20 @@ class EstatesController extends Controller
 
     public function category($slug)
     {
-        $esCategory = Category::where('slug', $slug)->first();
-        if (!$esCategory) {
+        $esCategoryExists = array_key_exists($slug, Estate::CATEGORIES);
+        if (!$esCategoryExists) {
             abort(404);
         }
-        $estates = Estate::where('estate_category_id', $esCategory->id)
-            ->where('type', Estate::TYPES['flat'])
+        $esCategory = (object)Estate::CATEGORIES[$slug];
+        $estates = Estate::where('category', $esCategory->slug)
             ->with([
                 'photos' => function($q) {
                     $q->orderBy('sort', 'asc');
                     $q->limit(1);
-                },
-                'category'
+                }
             ])->orderBy('id', 'desc')
             ->paginate(6);
 
-        return view('buildings', compact('esCategory', 'estates'));
+        return view("estates." . $esCategory->slug, compact('esCategory', 'estates'));
     }
 }

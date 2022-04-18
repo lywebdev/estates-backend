@@ -15,22 +15,7 @@ class StoreRequest extends FormRequest
      */
     public function authorize(Request $request)
     {
-        $this->name = $request->name;
-        $this->type = $request->type;
-        $this->district = $request->district;
-        $this->area = $request->area;
-        $this->living_area = $request->living_area;
-        $this->room_size = $request->room_size;
-        $this->facing = $request->facing;
-        $this->floor = $request->floor;
-        $this->year = $request->year;
-        $this->wall_material = $request->wall_material;
-        $this->ceiling_height = $request->ceiling_height;
-        $this->parking = $request->parking;
-        $this->furniture = $request->furniture;
-        $this->bathroom = $request->bathroom;
-        $this->sold = $request->sold;
-
+        $this->category = $request->category;
 
         return true;
     }
@@ -43,46 +28,67 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => ['required', 'string'],
-            'category' => ['required', 'string'],
-            'price' => ['numeric', 'nullable'],
-//            'estate_category_id' => ['nullable', 'exists:estates_categories,id'],
+            'name'      => ['required', 'string'],
+            'category'  => ['required', 'string'],
+            'price'     => ['numeric', 'nullable'],
             'location'  => ['string', 'nullable'],
-            'area' => ['numeric', 'nullable'],
+            'area'      => ['numeric', 'nullable'],
             'condition' => ['string', 'nullable'],
-            'parking' => ['boolean'],
-            'sold' => ['boolean'],
+            'parking'   => ['boolean'],
+            'sold'      => ['boolean'],
         ];
 
-        switch ($this->type) {
-            case Estate::TYPES['flat']: {
+        switch ($this->category) {
+            case Estate::CATEGORIES['flats']['slug']: {
                 $rules = array_merge($rules, [
-                    'flat.district' => ['string', 'nullable'],
-                    'flat.living_area' => ['numeric', 'nullable'],
-                    'flat.room_size' => ['numeric', 'nullable'],
-                    'flat.facing' => ['string', 'nullable'],
-                    'flat.floor' => ['numeric', 'nullable'],
-                    'flat.floors' => ['numeric', 'nullable'],
-                    'flat.year' => ['numeric', 'nullable'],
-                    'flat.wall_material' => ['string', 'nullable'],
-                    'flat.ceiling_height' => ['nullable'],
-                    'flat.furniture' => ['boolean'],
-                    'flat.bathroom' => ['boolean'],
+                    'district'       => ['string', 'nullable'],
+                    'living_area'    => ['numeric', 'nullable'],
+                    'room_size'      => ['numeric', 'nullable'],
+                    'facing'         => ['string', 'nullable'],
+                    'floor'          => ['numeric', 'nullable'],
+                    'floors'         => ['numeric', 'nullable'],
+                    'year'           => ['numeric', 'nullable'],
+                    'wall_material'  => ['string', 'nullable'],
+                    'ceiling_height' => ['nullable'],
+                    'furniture'      => ['boolean'],
+                    'bathroom'       => ['boolean'],
                 ]);
                 break;
             }
         }
+
 
         return $rules;
     }
 
     protected function prepareForValidation()
     {
+        $this->parking = $this->request->get('parking') ? true : false;
+        $this->sold    = $this->request->get('sold') ? true : false;
+        $this->flat    = $this->request->get('flats');
+
+        if ($this->category == Estate::CATEGORIES['flats']['slug']) {
+            $this->flat['furniture'] = isset($this->flat['furniture']) ? true : false;
+            $this->flat['bathroom']  = isset($this->flat['bathroom']) ? true : false;
+
+            $this->merge([
+                'furniture'      => $this->flat['furniture'],
+                'bathroom'       => $this->flat['bathroom'],
+                'district'       => $this->flat['district'],
+                'living_area'    => $this->flat['living_area'],
+                'room_size'      => $this->flat['room_size'],
+                'facing'         => $this->flat['facing'],
+                'floor'          => $this->flat['floor'],
+                'floors'         => $this->flat['floors'],
+                'year'           => $this->flat['year'],
+                'wall_material'  => $this->flat['wall_material'],
+                'ceiling_height' => $this->flat['ceiling_height'],
+            ]);
+        }
+
         $this->merge([
-            'parking' => $this->parking ? 1 : 0,
-            'furniture' => $this->furniture ? 1 : 0,
-            'bathroom' => $this->bathroom ? 1 : 0,
-            'sold' => $this->sold ? 1 : 0
+            'parking' => $this->parking,
+            'sold' => $this->sold
         ]);
     }
 }

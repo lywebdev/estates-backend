@@ -22,7 +22,6 @@ class CreateEstatesTable extends Migration
             $table->string('preview')->nullable();
 
             $table->string('category', 25)->index()->nullable();
-            $table->string('type', 50)->index();
 
             $table->string('city', 255)->indeX()->nullable();
             $table->string('district', 255)->index()->nullable();

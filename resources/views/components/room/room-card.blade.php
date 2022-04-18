@@ -1,8 +1,8 @@
-@switch ($estate->type)
-    @case(\App\Models\Estate\Estate::TYPES['flat'])
+@switch ($estate->category)
+    @case(\App\Models\Estate\Estate::CATEGORIES['flats']['slug'])
         @include('components.room.flat', ['estate' => $estate])
         @break
-    @case(\App\Models\Estate\Estate::TYPES['house'])
+    @case(\App\Models\Estate\Estate::CATEGORIES['houses']['slug'])
         @include('components.room.building', ['estate' => $estate])
         @break
 @endswitch

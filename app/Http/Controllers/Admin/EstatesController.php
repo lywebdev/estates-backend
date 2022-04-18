@@ -32,12 +32,9 @@ class EstatesController extends Controller
     public function store(StoreRequest $request)
     {
         $validated = $request->validated();
-        $data = array_merge($validated, ValidateDataFilter::removeDataNamespace($request->input($request->type)));
-        unset($data[$request->type]);
-
         $files = json_decode($request->filesInJson);
 
-        $estate = Estate::create($data);
+        $estate = Estate::create($validated);
         if (!$estate) {
             return redirect()->back()->with('error', 'Не удалось добавить объект недвижимости');
         }
@@ -47,14 +44,14 @@ class EstatesController extends Controller
                 $fileCopy  = $file;
                 $imageData = substr($fileCopy, 1+strrpos($fileCopy, ','));
 
-                $estateType = "";
-                switch ($request->type) {
-                    case Estate::TYPES['flat']: {
-                        $estateType = 'flats';
+                $estateCategory = "";
+                switch ($request->category) {
+                    case Estate::CATEGORIES['flats']['slug']: {
+                        $estateCategory = 'flats';
                     }
                 }
 
-                $path = 'uploads/estates/' . "$estateType/" . $estate->id . '/' . uniqid() . '.';
+                $path = 'uploads/estates/' . "$estateCategory/" . $estate->id . '/' . uniqid() . '.';
                 $format = explode('/', explode(';', $fileCopy)[0])[1];
                 $filepath = "$path.$format";
                 $file = base64_decode($imageData);
@@ -80,16 +77,14 @@ class EstatesController extends Controller
 
     public function edit($id)
     {
-        $estate = Estate::with(['category', 'photos' => function($q) {
+        $estate = Estate::with(['photos' => function($q) {
             $q->orderBy('sort', 'asc');
         }])->find($id);
         if (!$estate) {
             return redirect()->back()->with('error', 'Не удалось найти объект недвижимости с указанным ID');
         }
 
-        $estatesCategories = Category::select('id', 'name')
-            ->orderBy('id', 'desc')
-            ->get();
+        $estatesCategories = Estate::CATEGORIES;
 
         return view('admin.estates.edit', compact('estate', 'estatesCategories'));
     }
@@ -100,7 +95,8 @@ class EstatesController extends Controller
         if (!$estate) {
             return redirect()->back()->with('Не удалось найти объект недвижимости по указанному id');
         }
-        $estate->update($request->validated());
+        $validated = $request->validated();
+        $estate->update($validated);
 
         return redirect()->back()->with('success', 'Изменения внесены');
     }

@@ -18,11 +18,11 @@ class EstatesController extends BaseController
 
     public function renderBuildingsCategory(Request $request)
     {
-        $esCategory = Category::where('slug', $request->slug)->first();
+        $esCategory = (object)Estate::CATEGORIES[$request->slug];
         if (!$esCategory) {
             return $this->sendError('Category not found.');
         }
-        $estates = Estate::where('estate_category_id', $esCategory->id);
+        $estates = Estate::where('category', $esCategory->slug);
 
         if (isset($request->options['roomSize'])) {
             $roomSize = $request->options['roomSize'];
@@ -35,8 +35,7 @@ class EstatesController extends BaseController
             'photos' => function($q) {
                 $q->orderBy('sort', 'asc');
                 $q->limit(1);
-            },
-            'category'
+            }
         ])
         ->orderBy('id', 'desc');
 
@@ -51,11 +50,11 @@ class EstatesController extends BaseController
 
     public function countOffers(Request $request)
     {
-        $esCategory = Category::where('slug', $request->slug)->first();
+        $esCategory = (object)Estate::CATEGORIES[$request->slug];
         if (!$esCategory) {
             return $this->sendError('Category not found.');
         }
-        $estates = Estate::where('estate_category_id', $esCategory->id);
+        $estates = Estate::where('category', $esCategory->slug );
 
         if (isset($request->options['roomSize'])) {
             $roomSize = $request->options['roomSize'];

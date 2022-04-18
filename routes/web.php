@@ -19,6 +19,8 @@ Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('h
 Route::get('buildings/{slug}', [\App\Http\Controllers\EstatesController::class, 'category'])
     ->name('buildingsCategory');
 
+Route::get('about', [\App\Http\Controllers\Pages\AboutController::class, 'index'])->name('about');
+
 
 Route::group([
     'prefix' => 'api',

@@ -22,25 +22,30 @@ class Estate extends Model
     ];
 
     public const CATEGORIES = [
-        'flat' => [
+        'flats' => [
             'name' => 'Квартиры',
-            'slug' => 'flats'
+            'slug' => 'flats',
+            'type' => 'flat'
         ],
-        'building' => [
+        'buildings' => [
             'name' => 'Жилые комплексы',
-            'slug' => 'buildings'
+            'slug' => 'buildings',
+            'type' => 'building'
         ],
-        'house' => [
+        'houses' => [
             'name' => 'Дома',
-            'slug' => 'houses'
+            'slug' => 'houses',
+            'type' => 'house'
         ],
-        'commerce' => [
+        'commerces' => [
             'name' => 'Коммерция',
-            'slug' => 'commercial'
+            'slug' => 'commercial',
+            'type' => 'commerce'
         ],
-        'region' => [
+        'regions' => [
             'name' => 'Участки',
-            'slug' => 'regions'
+            'slug' => 'regions',
+            'type' => 'region'
         ]
     ];
 
@@ -49,12 +54,6 @@ class Estate extends Model
     {
         return $this->hasMany(Photo::class);
     }
-
-    public function category()
-    {
-        return $this->belongsTo(Category::class, 'estate_category_id', 'id');
-    }
-
 
 
     public function addPhoto(string $path, $sort = 0)
