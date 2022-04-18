@@ -1,5 +1,8 @@
 $(document).ready(() => {
 
+    // ЕСЛИ У НАС ТИП REDIRECT - ДОБАВИТЬ СКРЫТЫЕ ПОЛЯ И ОТПРАВИТЬ ИХ ПРИ ОТПРАВКЕ ФОРМЫ
+
+
     function countOffers(category, options) {
         $.ajax({
             headers: {
@@ -33,9 +36,6 @@ $(document).ready(() => {
 
 
     function initFlatsFilters(form, category, type) {
-        let district = undefined;
-        let city = undefined;
-        let roomSize = undefined;
         let options = {};
 
         function setValues() {
@@ -43,14 +43,14 @@ $(document).ready(() => {
             form.append(`<div class="hidden" style="display: none;"></div>`);
             let $hidden = form.find('.hidden');
 
-            if (district) {
-                $hidden.append(`<input type="hidden" value="${district.value}" name="district">`);
+            if (options.district) {
+                $hidden.append(`<input type="hidden" value="${options.district}" name="district">`);
             }
-            if (city) {
-                $hidden.append(`<input type="hidden" value="${city.value}" name="city">`);
+            if (options.city) {
+                $hidden.append(`<input type="hidden" value="${options.city}" name="city">`);
             }
-            if (roomSize) {
-                $hidden.append(`<input type="hidden" value="${roomSize.size}" name="room_size">`);
+            if (options.roomSize) {
+                $hidden.append(`<input type="hidden" value="${options.roomSize}" name="room_size">`);
             }
         }
 

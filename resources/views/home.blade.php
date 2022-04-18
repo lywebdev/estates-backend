@@ -45,7 +45,7 @@
                     </div>
 
                     <div class="row">
-                        @include('components.ajax.filters.home')
+                        @include('components.ajax.filters.main')
                     </div>
                 </div>
             </div>
@@ -2219,5 +2219,6 @@
     <script src="{{ asset('js/components/select.js')}}"></script>
     <script src="{{ asset('libs/swiper/swiper.min.js') }}"></script>
     <script src="{{ asset('js/pages/home.js') }}"></script>
-    <script src="{{ asset('js/components/filters/main.js') }}"></script>
+{{--    <script src="{{ asset('js/components/filters/main.js') }}"></script>--}}
+    <script src="{{ asset('js/components/ajax/filters.js') }}"></script>
 @endsection

@@ -1,5 +1,4 @@
 <form class="first-screen__filters"
-      action=""
       method="get"
       data-category="{{ \App\Models\Estate\Estate::CATEGORIES['flats']['slug'] }}"
       data-type="redirect"
