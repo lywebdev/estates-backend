@@ -23,6 +23,9 @@ mix
     .minify('resources/js/components/accordion.min.js', 'public/js/components/accordion.min.js')
     .minify('resources/js/components/select.js', 'public/js/components/select.js')
 
+    .minify('resources/js/components/filters/main.js', 'public/js/components/filters/main.js')
+    .minify('resources/js/components/ajax/filters.js', 'public/js/components/ajax/filters.js')
+
     .minify('resources/js/pages/about.js', 'public/js/pages/about.js')
     .minify('resources/js/pages/app-submission.js', 'public/js/pages/app-submission.js')
     .minify('resources/js/pages/buildings.js', 'public/js/pages/buildings.js')

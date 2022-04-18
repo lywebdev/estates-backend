@@ -654,6 +654,16 @@ body {
   stroke: #AA0001;
 }
 
+.first-screen__filters-preloader {
+  height: 100px;
+}
+.first-screen__filters-preloader .preloader {
+  height: 100%;
+}
+.first-screen__filters-preloader .preloader svg {
+  height: 100%;
+}
+
 .service-card {
   width: 100%;
   min-height: 260px;
@@ -3539,10 +3549,18 @@ body {
   border-radius: 25px;
   background: #fff;
   color: #212137;
-  padding: 100px 50px;
+  padding: 50px 50px 75px 50px;
   box-sizing: border-box;
   z-index: 11;
   position: fixed;
+  width: 80%;
+}
+
+.modal-ui__title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 24px;
+  margin-bottom: 25px;
 }
 
 .important-modal .modal-ui__body {

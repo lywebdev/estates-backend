@@ -108,3 +108,15 @@
         }
     }
 }
+
+.first-screen__filters-preloader {
+    height: 100px;
+
+    .preloader {
+        height: 100%;
+
+        svg {
+            height: 100%;
+        }
+    }
+}

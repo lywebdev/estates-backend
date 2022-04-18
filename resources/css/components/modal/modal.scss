@@ -26,10 +26,18 @@
   border-radius: 25px;
   background: #fff;
   color: $color-black;
-  padding: 100px 50px;
+  padding: 50px 50px 75px 50px;
   box-sizing: border-box;
   z-index: 11;
   position: fixed;
+    width: 80%;
+}
+
+.modal-ui__title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 25px;
 }
 
 

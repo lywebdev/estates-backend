@@ -62,6 +62,18 @@ class EstatesController extends BaseController
                 $estates->where('room_size', $request->options['roomSize']);
             }
         }
+        if (isset($request->options['district'])) {
+            $district = $request->options['district'];
+            if ($district != -1) {
+                $estates->where('district', $request->options['district']);
+            }
+        }
+        if (isset($request->options['city'])) {
+            $city = $request->options['city'];
+            if ($city != -1) {
+                $estates->where('city', $request->options['city']);
+            }
+        }
 
         $estatesCount = $estates->count();
         $template = "";

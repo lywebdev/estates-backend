@@ -1,18 +1,13 @@
 <div class="first-screen__options col-md-12">
-
-    <div class="first-screen__options-preloader">
-        <div class="preloader">
-            <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" width="64px" height="64px" viewBox="0 0 128 128" xml:space="preserve"><rect x="0" y="0" width="100%" height="100%" fill="#FFFFFF" /><g><ellipse cx="64" cy="18.75" rx="6.25" ry="18.75" fill="#ffffff"/><ellipse cx="64" cy="18.75" rx="6.25" ry="18.75" fill="#ffffff" transform="rotate(30 64 64)"/><ellipse cx="64" cy="18.75" rx="6.25" ry="18.75" fill="#f6e5e5" transform="rotate(60 64 64)"/><ellipse cx="64" cy="18.75" rx="6.25" ry="18.75" fill="#eecccc" transform="rotate(90 64 64)"/><ellipse cx="64" cy="18.75" rx="6.25" ry="18.75" fill="#e5b2b2" transform="rotate(120 64 64)"/><ellipse cx="64" cy="18.75" rx="6.25" ry="18.75" fill="#dd9999" transform="rotate(150 64 64)"/><ellipse cx="64" cy="18.75" rx="6.25" ry="18.75" fill="#d47f80" transform="rotate(180 64 64)"/><ellipse cx="64" cy="18.75" rx="6.25" ry="18.75" fill="#cc6667" transform="rotate(210 64 64)"/><ellipse cx="64" cy="18.75" rx="6.25" ry="18.75" fill="#c34c4d" transform="rotate(240 64 64)"/><ellipse cx="64" cy="18.75" rx="6.25" ry="18.75" fill="#bb3334" transform="rotate(270 64 64)"/><ellipse cx="64" cy="18.75" rx="6.25" ry="18.75" fill="#b2191a" transform="rotate(300 64 64)"/><ellipse cx="64" cy="18.75" rx="6.25" ry="18.75" fill="#aa0001" transform="rotate(330 64 64)"/><animateTransform attributeName="transform" type="rotate" values="0 64 64;30 64 64;60 64 64;90 64 64;120 64 64;150 64 64;180 64 64;210 64 64;240 64 64;270 64 64;300 64 64;330 64 64" calcMode="discrete" dur="1080ms" repeatCount="indefinite"></animateTransform></g></svg>
-        </div>
-    </div>
-
     <div class="first-screen__sortable first-screen__sortable--4">
         <div class="sortable">
             <div class="sortable__items row">
 
                 <div class="col-lg-3 col-md-6 col-xs-12">
                     <div class="col-md-12">
-                        <div class="sortable__item sortable__item--selected">
+                        <div class="sortable__item sortable__item--selected"
+                            data-category="{{ \App\Models\Estate\Estate::CATEGORIES['flats']['slug'] }}"
+                        >
                             <div class="sortable__selected-value">Вторичная - Квартиры</div>
                             <div class="sortable__selected-icon">
                                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -24,91 +19,85 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-xs-12">
                     <div class="col-md-12">
-                        <div class="sortable__item">Дома и участки</div>
+                        <div class="sortable__item"
+                             data-category="{{ \App\Models\Estate\Estate::CATEGORIES['houses']['slug'] }}"
+                        >Дома и участки</div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-xs-12">
                     <div class="col-md-12">
-                        <div class="sortable__item">Коммерческая</div>
+                        <div class="sortable__item"
+
+                        >Коммерческая</div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-xs-12">
                     <div class="col-md-12">
-                        <div class="sortable__item">Новостройки</div>
+                        <div class="sortable__item"
+
+                        >Новостройки</div>
                     </div>
                 </div>
 
             </div>
         </div>
     </div>
-
     <form class="first-screen__filters"
-          data-route=""
-          data-slug="{{ \App\Models\Estate\Estate::CATEGORIES['flats']['slug'] }}"
+          action=""
           method="get">
-        <div class="row">
-            <div class="col-md-8">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-input">
-                            <div class="form-label">Район</div>
-                            <div class="select district-select"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-input">
-                            <div class="form-label">Город</div>
-                            <div class="select city-select"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-input">
-                            <div class="form-label">Комнатность</div>
-                            <div class="select roomSize-select"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="row">
-                    <div class="col-md-6 first-screen__filters--cost">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-label">Стоимость,</div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 col-sm-6 col">
-                                <input type="text" class="input" name="cost_to" placeholder="От">
-                            </div>
-                            <div class="col-md-6 col-sm-6 col">
-                                <input type="text" class="input" name="cost_from" placeholder="До">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 first-screen__filters--area">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-label">Площадь, м2</div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 col-sm-6 col">
-                                <input type="text" class="input" name="area_to" placeholder="От">
-                            </div>
-                            <div class="col-md-6 col-sm-6 col">
-                                <input type="text" class="input" name="area_from" placeholder="До">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="btn first-screen__filters__btn">Показать 5 483 предложения</div>
+        <div class="first-screen__filters-preloader">
+            <div class="preloader">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: none; display: block; shape-rendering: auto;" width="200px" height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+                    <g transform="rotate(0 50 50)">
+                        <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#aa0001">
+                            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.9166666666666666s" repeatCount="indefinite"></animate>
+                        </rect>
+                    </g><g transform="rotate(30 50 50)">
+                        <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#aa0001">
+                            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.8333333333333334s" repeatCount="indefinite"></animate>
+                        </rect>
+                    </g><g transform="rotate(60 50 50)">
+                        <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#aa0001">
+                            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.75s" repeatCount="indefinite"></animate>
+                        </rect>
+                    </g><g transform="rotate(90 50 50)">
+                        <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#aa0001">
+                            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.6666666666666666s" repeatCount="indefinite"></animate>
+                        </rect>
+                    </g><g transform="rotate(120 50 50)">
+                        <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#aa0001">
+                            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.5833333333333334s" repeatCount="indefinite"></animate>
+                        </rect>
+                    </g><g transform="rotate(150 50 50)">
+                        <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#aa0001">
+                            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.5s" repeatCount="indefinite"></animate>
+                        </rect>
+                    </g><g transform="rotate(180 50 50)">
+                        <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#aa0001">
+                            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.4166666666666667s" repeatCount="indefinite"></animate>
+                        </rect>
+                    </g><g transform="rotate(210 50 50)">
+                        <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#aa0001">
+                            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.3333333333333333s" repeatCount="indefinite"></animate>
+                        </rect>
+                    </g><g transform="rotate(240 50 50)">
+                        <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#aa0001">
+                            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.25s" repeatCount="indefinite"></animate>
+                        </rect>
+                    </g><g transform="rotate(270 50 50)">
+                        <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#aa0001">
+                            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.16666666666666666s" repeatCount="indefinite"></animate>
+                        </rect>
+                    </g><g transform="rotate(300 50 50)">
+                        <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#aa0001">
+                            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.08333333333333333s" repeatCount="indefinite"></animate>
+                        </rect>
+                    </g><g transform="rotate(330 50 50)">
+                        <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#aa0001">
+                            <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="0s" repeatCount="indefinite"></animate>
+                        </rect>
+                    </g>
+                </svg>
             </div>
         </div>
     </form>

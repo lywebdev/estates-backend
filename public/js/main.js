@@ -188,6 +188,21 @@ const helper = {
         setTemplates: (params) => {
             templates = params;
         }
+    },
+    getGETParams: () => {
+        return window
+            .location
+            .search
+            .replace('?','')
+            .split('&')
+            .reduce(
+                function(p,e){
+                    let a = e.split('=');
+                    p[ decodeURIComponent(a[0])] = decodeURIComponent(a[1]);
+                    return p;
+                },
+                {}
+            );
     }
 };
 const SCREEN_XS  = 575;
@@ -454,7 +469,6 @@ document.addEventListener('DOMContentLoaded', () => {
         helper.hooks.resize();
     }
     adaptive();
-
 
     /*******************************************************************************************************************
      * Document Events Listeners

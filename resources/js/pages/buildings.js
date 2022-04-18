@@ -1,14 +1,18 @@
 DOMLoadedFunctions.push({
     call: () => {
         let applyFiltersBtn = document.querySelector('.first-screen__filters__btn');
+        let options = {};
         let district = undefined;
         let city = undefined;
         let roomSize = -1;
-        let options = {};
         let $filters = $('.first-screen__filters');
         let route = $filters.data('route');
         let slug  = $filters.data('slug');
 
+        let params = helper.getGETParams();
+        if (params.room_size) {
+            roomSize = Number(params.room_size);
+        }
 
         function countOffers() {
             $.ajax({
@@ -65,7 +69,7 @@ DOMLoadedFunctions.push({
 
         const roomSizeSelect = new Select('.select.roomSize-select', {
             placeholder: 'Выбрать',
-            selectedId: '1',
+            selectedId: `${roomSize + 1}`,
             data: [
                 {id: '1', value: 'Любая', size: -1},
                 {id: '2', value: '1 комнатная', size: 1},

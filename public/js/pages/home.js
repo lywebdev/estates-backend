@@ -1,5 +1,6 @@
 DOMLoadedFunctions.push({
     call: () => {
+        /*
         const districtSelect = new Select('.select.district-select', {
             placeholder: 'Выбрать',
             // selectedId: '2',
@@ -31,6 +32,7 @@ DOMLoadedFunctions.push({
                 console.log('Выбранная комнатность: ', item)
             }
         });
+        */
 
         let sectionSliders = document.querySelectorAll('.section-slider');
         for (let i = 0; i < sectionSliders.length; i++) {

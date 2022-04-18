@@ -4,6 +4,8 @@
     "/js/main.js": "/js/main.js",
     "/js/components/accordion.min.js": "/js/components/accordion.min.js",
     "/js/components/select.js": "/js/components/select.js",
+    "/js/components/filters/main.js": "/js/components/filters/main.js",
+    "/js/components/ajax/filters.js": "/js/components/ajax/filters.js",
     "/js/pages/about.js": "/js/pages/about.js",
     "/js/pages/app-submission.js": "/js/pages/app-submission.js",
     "/js/pages/buildings.js": "/js/pages/buildings.js",

@@ -262,4 +262,6 @@
 @section('footer_scripts')
     <script src="{{ asset('js/components/select.js')}}"></script>
     <script src="{{ asset('libs/swiper/swiper.min.js') }}"></script>
+
+    <script src="{{ asset('js/pages/about.js') }}"></script>
 @endsection
