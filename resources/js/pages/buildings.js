@@ -1,5 +1,6 @@
 DOMLoadedFunctions.push({
     call: () => {
+        /*
         let applyFiltersBtn = document.querySelector('.first-screen__filters__btn');
         let options = {};
         let district = undefined;
@@ -124,5 +125,6 @@ DOMLoadedFunctions.push({
                 }
             });
         });
+        */
     }
 });

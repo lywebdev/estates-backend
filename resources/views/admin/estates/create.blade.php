@@ -13,7 +13,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Dashboard</h1>
+                        <h1 class="m-0">Добавление объекта недвижимости</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -72,7 +72,7 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="area">Площадь</label>
+                                                <label for="number">Площадь</label>
                                                 <input type="text" class="form-control" id="area" name="area" placeholder="Укажите площадь">
                                             </div>
                                         </div>
@@ -147,13 +147,13 @@
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label for="flats[living_area]">Жилая площадь</label>
-                                                                <input type="text" class="form-control" id="flats[living_area]" name="flats[living_area]" placeholder="Укажите жилую площадь">
+                                                                <input type="number" class="form-control" id="flats[living_area]" name="flats[living_area]" placeholder="Укажите жилую площадь">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label for="flats[room_size]">Комнатность</label>
-                                                                <input type="text" class="form-control" id="flats[room_size]" name="flats[room_size]" placeholder="Укажите комнатность">
+                                                                <input type="number" class="form-control" id="flats[room_size]" name="flats[room_size]" placeholder="Укажите комнатность">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3">
@@ -165,7 +165,7 @@
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label for="flats[floor]">Этаж</label>
-                                                                <input type="text" class="form-control" id="flats[floor]" name="flats[floor]" placeholder="Укажите этаж">
+                                                                <input type="number" class="form-control" id="flats[floor]" name="flats[floor]" placeholder="Укажите этаж">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -175,7 +175,7 @@
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label for="flats[year]">Год постройки</label>
-                                                        <input type="text" class="form-control" id="flats[year]" name="flats[year]" placeholder="Год постройки?">
+                                                        <input type="number" class="form-control" id="flats[year]" name="flats[year]" placeholder="Год постройки?">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
@@ -193,7 +193,7 @@
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label for="flats[floors]">Этажность</label>
-                                                        <input type="text" class="form-control" id="flats[floors]" name="flats[floors]" placeholder="Укажите этаж">
+                                                        <input type="number" class="form-control" id="flats[floors]" name="flats[floors]" placeholder="Укажите этаж">
                                                     </div>
                                                 </div>
                                             </div>
@@ -243,7 +243,7 @@
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label for="house[floors]">Этажность</label>
-                                                        <input type="text" class="form-control" id="house[floors]" name="house[floors]" placeholder="Укажите этаж">
+                                                        <input type="number" class="form-control" id="house[floors]" name="house[floors]" placeholder="Укажите этаж">
                                                     </div>
                                                 </div>
                                             </div>
@@ -251,7 +251,7 @@
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label for="house[year]">Год постройки</label>
-                                                        <input type="text" class="form-control" id="house[year]" name="house[year]" placeholder="Год постройки?">
+                                                        <input type="number" class="form-control" id="house[year]" name="house[year]" placeholder="Год постройки?">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">

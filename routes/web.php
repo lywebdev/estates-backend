@@ -24,16 +24,18 @@ Route::get('test', function() {
 Route::get('buildings/{slug}', [\App\Http\Controllers\EstatesController::class, 'category'])
     ->name('buildingsCategory');
 
+Route::get('estates/{category}/{id}', [\App\Http\Controllers\EstatesController::class, 'show'])->name('estates.show');
+
 Route::get('about', [\App\Http\Controllers\Pages\AboutController::class, 'index'])->name('about');
 Route::get('sell', [\App\Http\Controllers\Pages\SellController::class, 'index'])->name('sell');
 Route::get('estimation', [\App\Http\Controllers\Pages\EstimationController::class, 'index'])->name('estimation');
 Route::get('speed-mortgage', [\App\Http\Controllers\Pages\MortgageController::class, 'index'])->name('speedMortgage');
-Route::get('vacancy', [\App\Http\Controllers\Pages\MortgageController::class, 'index'])->name('vacancy');
+Route::get('vacancy', [\App\Http\Controllers\Pages\VacancyController::class, 'index'])->name('vacancy');
 Route::get('franchise', [\App\Http\Controllers\Pages\FranchiseController::class, 'index'])->name('franchise');
 
-
-Route::get('agreements/purchase', [\App\Http\Controllers\AgreementController::class, 'buyForm'])->name('agreements.purchase');
-
+Route::get('agreements/purchase', [\App\Http\Controllers\AgreementController::class, 'agreements'])->name('agreements.purchase');
+Route::get('agreements/{type}/{subtype?}', [\App\Http\Controllers\AgreementController::class, 'agreement'])->name('agreements.agreement');
+Route::post('agreements/sign/{type}/{subtype?}', [\App\Http\Controllers\AgreementController::class, 'sign'])->name('agreements.sign');
 //Route::
 
 

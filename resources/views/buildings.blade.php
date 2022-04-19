@@ -20,75 +20,7 @@
                     <div class="ac-grid">
                         <div class="row">
                             <div class="first-screen__options col-md-12">
-                                <form class="first-screen__filters"
-                                      data-route="{{ url()->current() }}"
-                                      data-slug="{{ $esCategory->slug }}"
-                                      method="get">
-                                    <div class="row">
-                                        <div class="col-md-8">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="form-input">
-                                                        <div class="form-label">Район</div>
-                                                        <div class="select district-select"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-input">
-                                                        <div class="form-label">Город</div>
-                                                        <div class="select city-select"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-input">
-                                                        <div class="form-label">Комнатность</div>
-                                                        <div class="select roomSize-select"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="row">
-                                                <div class="col-md-6 first-screen__filters--cost">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-label">Стоимость,</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-6 col-sm-6">
-                                                            <input type="text" class="input" name="cost_to" placeholder="От">
-                                                        </div>
-                                                        <div class="col-md-6 col-sm-6">
-                                                            <input type="text" class="input" name="cost_from" placeholder="До">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6 first-screen__filters--area">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-label">Площадь, м2</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-6 col-sm-6">
-                                                            <input type="text" class="input" name="area_to" placeholder="От">
-                                                        </div>
-                                                        <div class="col-md-6 col-sm-6">
-                                                            <input type="text" class="input" name="area_from" placeholder="До">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="btn first-screen__filters__btn">Показать предложения</div>
-                                        </div>
-                                    </div>
-                                </form>
+                                @include('components.ajax.filters.form')
                             </div>
                         </div>
                     </div>
@@ -152,4 +84,6 @@
     <script src="{{ asset('js/components/select.js')}}"></script>
     <script src="{{ asset('libs/swiper/swiper.min.js') }}"></script>
     <script src="{{ asset('js/pages/buildings.js') }}"></script>
+
+    <script src="{{ asset('js/components/ajax/filters.js') }}"></script>
 @endsection

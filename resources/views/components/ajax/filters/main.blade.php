@@ -6,8 +6,7 @@
                 <div class="col-lg-3 col-md-6 col-xs-12">
                     <div class="col-md-12">
                         <div class="sortable__item sortable__item--selected"
-                             data-category="{{ \App\Models\Estate\Estate::CATEGORIES['flats']['slug'] }}"
-                        >
+                             data-category="{{ \App\Models\Estate\Estate::CATEGORIES['flats']['slug'] }}">
                             <div class="sortable__selected-value">Вторичная - Квартиры</div>
                             <div class="sortable__selected-icon">
                                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -20,27 +19,22 @@
                 <div class="col-lg-3 col-md-6 col-xs-12">
                     <div class="col-md-12">
                         <div class="sortable__item"
-                             data-category="{{ \App\Models\Estate\Estate::CATEGORIES['houses']['slug'] }}"
-                        >Дома и участки</div>
+                             data-category="{{ \App\Models\Estate\Estate::CATEGORIES['houses']['slug'] }}">Дома и участки</div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-xs-12">
                     <div class="col-md-12">
-                        <div class="sortable__item"
-
-                        >Коммерческая</div>
+                        <div class="sortable__item">Коммерческая</div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-xs-12">
                     <div class="col-md-12">
-                        <div class="sortable__item"
-
-                        >Новостройки</div>
+                        <div class="sortable__item">Новостройки</div>
                     </div>
                 </div>
 
             </div>
         </div>
     </div>
-    @include('components.ajax.filters.form')
+    @include('components.ajax.filters.form', ['type' => $formType])
 </div>

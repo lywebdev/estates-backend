@@ -19,6 +19,10 @@ Route::middleware('auth:admin')->group(function() {
     Route::resource('estates-categories', \App\Http\Controllers\Admin\EstatesCategoriesController::class);
     Route::resource('services', \App\Http\Controllers\Admin\ServicesController::class);
 
+    Route::resource('agreements', \App\Http\Controllers\Admin\AgreementsController::class);
+
+    Route::resource('districts', \App\Http\Controllers\Admin\DistrictsController::class);
+    Route::resource('cities', \App\Http\Controllers\Admin\CitiesController::class);
 
     Route::group([
         'prefix' =>'api',

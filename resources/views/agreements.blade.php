@@ -52,7 +52,7 @@
                             <div class="col-lg-3 col-md-6">
                                 <div class="vacancy-card">
                                     <div class="vacancy-card__name">Стандартаный для Собственника</div>
-                                    <a href="#" class="vacancy-card__btn btn">Заключить</a>
+                                    <a href="{{ route('agreements.agreement', ['owner', 'standard']) }}" class="vacancy-card__btn btn">Заключить</a>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6">

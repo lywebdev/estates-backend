@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Estates\StoreRequest;
+use App\Models\City;
+use App\Models\District;
 use App\Models\Estate\Category;
 use App\Models\Estate\Estate;
 use App\Rules\Auth\ValidateDataFilter;
@@ -25,8 +27,10 @@ class EstatesController extends Controller
     public function create()
     {
         $estatesCategories = Estate::CATEGORIES;
+        $cities = City::all();
+        $districts = District::all();
 
-        return view('admin.estates.create', compact('estatesCategories'));
+        return view('admin.estates.create', compact('estatesCategories', 'cities', 'districts'));
     }
 
     public function store(StoreRequest $request)

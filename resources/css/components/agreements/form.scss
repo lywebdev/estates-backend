@@ -1,0 +1,16 @@
+.agreement-form__form {
+    width: 80%;
+    margin: 0 auto 50px auto;
+
+    .form__item {
+
+        &:not(:last-child) {
+            margin-bottom: 10px;
+        }
+
+        label {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+    }
+}

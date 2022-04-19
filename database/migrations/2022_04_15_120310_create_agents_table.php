@@ -18,6 +18,7 @@ class CreateAgentsTable extends Migration
             $table->string('name', 25)->index()->nullable();
             $table->string('surname', 25)->index()->nullable();
             $table->string('patronymic', 25)->index()->nullable();
+            $table->string('preview')->nullable();
             $table->string('phone', 15)->index()->nullable();
         });
     }

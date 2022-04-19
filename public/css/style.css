@@ -3570,6 +3570,18 @@ body {
   overflow-y: auto;
 }
 
+.agreement-form__form {
+  width: 80%;
+  margin: 0 auto 50px auto;
+}
+.agreement-form__form .form__item:not(:last-child) {
+  margin-bottom: 10px;
+}
+.agreement-form__form .form__item label {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
 .breadcrumbs {
   position: relative;
   width: 100%;
@@ -4213,7 +4225,6 @@ body {
   margin-top: 0;
 }
 .page__buildings .preloader {
-  margin-top: 100px;
   display: flex;
   justify-content: center;
 }

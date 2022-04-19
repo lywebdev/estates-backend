@@ -1,6 +1,6 @@
 {{--active class - nav-menu__item--active--}}
-<li class="header__nav-item nav-menu__item"><a href="{{ route('sell') }}">Купить</a></li>
-<li class="header__nav-item nav-menu__item"><a href="#">Продать</a></li>
+<li class="header__nav-item nav-menu__item"><a href="{{ route('agreements.purchase') }}">Купить</a></li>
+<li class="header__nav-item nav-menu__item"><a href="{{ route('sell') }}">Продать</a></li>
 
 @include('components.nav.categories')
 

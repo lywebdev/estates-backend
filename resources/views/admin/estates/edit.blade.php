@@ -13,7 +13,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Dashboard</h1>
+                        <h1 class="m-0">Редактирование объекта недвижимости</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -35,7 +35,7 @@
                     <div class="col-md-12">
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Добавление объекта недвижимости</h3>
+                                <h3 class="card-title">Редактирование объекта недвижимости</h3>
                             </div>
 
                             <form action="{{ route('admin.estates.update', $estate->id) }}" method="post" enctype="multipart/form-data" id="form" name="form">
@@ -87,7 +87,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="area">Площадь</label>
-                                                <input type="text"
+                                                <input type="number"
                                                        class="form-control"
                                                        id="area"
                                                        name="area"
@@ -196,7 +196,7 @@
                                                             <div class="form-group">
                                                                 <label for="flats[living_area]">Жилая площадь</label>
                                                                 <input
-                                                                    type="text"
+                                                                    type="number"
                                                                     class="form-control"
                                                                     id="flats[living_area]"
                                                                     name="flats[living_area]"
@@ -209,7 +209,7 @@
                                                             <div class="form-group">
                                                                 <label for="flats[room_size]">Комнатность</label>
                                                                 <input
-                                                                    type="text"
+                                                                    type="number"
                                                                     class="form-control"
                                                                     id="flats[room_size]"
                                                                     name="flats[room_size]"
@@ -235,7 +235,7 @@
                                                             <div class="form-group">
                                                                 <label for="flats[floor]">Этаж</label>
                                                                 <input
-                                                                    type="text"
+                                                                    type="number"
                                                                     class="form-control"
                                                                     id="flats[floor]"
                                                                     name="flats[floor]"
@@ -252,7 +252,7 @@
                                                     <div class="form-group">
                                                         <label for="flats[year]">Год постройки</label>
                                                         <input
-                                                            type="text"
+                                                            type="number"
                                                             class="form-control"
                                                             id="flats[year]"
                                                             name="flats[year]"
@@ -291,7 +291,7 @@
                                                     <div class="form-group">
                                                         <label for="flats[floors]">Этажность</label>
                                                         <input
-                                                            type="text"
+                                                            type="number"
                                                             class="form-control"
                                                             id="flats[floors]"
                                                             name="flats[floors]"
@@ -379,7 +379,7 @@
                                                     <div class="form-group">
                                                         <label for="house[floors]">Этажность</label>
                                                         <input
-                                                            type="text"
+                                                            type="number"
                                                             class="form-control"
                                                             id="house[floors]"
                                                             name="house[floors]"
@@ -394,7 +394,7 @@
                                                     <div class="form-group">
                                                         <label for="house[year]">Год постройки</label>
                                                         <input
-                                                            type="text"
+                                                            type="number"
                                                             class="form-control"
                                                             id="house[year]"
                                                             name="house[year]"

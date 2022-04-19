@@ -41,7 +41,8 @@ class StoreRequest extends FormRequest
         switch ($this->category) {
             case Estate::CATEGORIES['flats']['slug']: {
                 $rules = array_merge($rules, [
-                    'district'       => ['string', 'nullable'],
+                    'district'       => ['number', 'nullable'],
+                    'city'           => ['number', 'nullable'],
                     'living_area'    => ['numeric', 'nullable'],
                     'room_size'      => ['numeric', 'nullable'],
                     'facing'         => ['string', 'nullable'],
@@ -75,6 +76,7 @@ class StoreRequest extends FormRequest
                 'furniture'      => $this->flat['furniture'],
                 'bathroom'       => $this->flat['bathroom'],
                 'district'       => $this->flat['district'],
+                'city'           => $this->flat['city'],
                 'living_area'    => $this->flat['living_area'],
                 'room_size'      => $this->flat['room_size'],
                 'facing'         => $this->flat['facing'],

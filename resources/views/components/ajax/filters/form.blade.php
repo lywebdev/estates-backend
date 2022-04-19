@@ -1,7 +1,7 @@
 <form class="first-screen__filters"
       method="get"
       data-category="{{ \App\Models\Estate\Estate::CATEGORIES['flats']['slug'] }}"
-      data-type="redirect"
+      data-type="@if(isset($type)){{$type}}@else{{'redirect'}}@endif"
     >
     <div class="first-screen__filters-preloader">
         <div class="preloader">

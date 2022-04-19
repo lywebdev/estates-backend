@@ -45,7 +45,7 @@
                     </div>
 
                     <div class="row">
-                        @include('components.ajax.filters.main')
+                        @include('components.ajax.filters.main', ['formType' => 'redirect'])
                     </div>
                 </div>
             </div>
