@@ -50,4 +50,7 @@ Route::group([
 
     Route::get('filters/categories/flats', [\App\Http\Controllers\API\EstatesFiltersController::class, 'renderFiltersByCategory'])
         ->name('filters.categories.flats');
+
+
+    Route::resource('cities', \App\Http\Controllers\API\CitiesController::class);
 });

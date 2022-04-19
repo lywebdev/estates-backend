@@ -84,6 +84,30 @@
                                         </div>
                                     </div>
                                     <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Город</label>
+                                                <select class="form-control select2" style="width: 100%;" name="city_id">
+                                                    <option selected value="-1">Не указано</option>
+                                                    @foreach ($cities as $city)
+                                                        <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Район</label>
+                                                <select class="form-control select2" style="width: 100%;" name="district_id">
+                                                    <option selected value="-1">Не указано</option>
+                                                    @foreach ($districts as $district)
+                                                        <option value="{{ $district->id }}">{{ $district->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
                                         <div class="col-md-12">
                                             <div class="row">
                                                 <div class="col-md-12">
@@ -133,14 +157,6 @@
                                              data-estate-category="{{ \App\Models\Estate\Estate::CATEGORIES['flats']['slug'] }}"
                                              role="tabpanel"
                                              aria-labelledby="custom-content-above-home-tab">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="flats[district]">Район</label>
-                                                        <input type="text" class="form-control" id="flats[district]" name="flats[district]" placeholder="Укажите район">
-                                                    </div>
-                                                </div>
-                                            </div>
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="row">
@@ -228,12 +244,6 @@
                                              role="tabpanel"
                                              aria-labelledby="custom-content-above-home-tab">
                                             <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label for="house[district]">Район</label>
-                                                        <input type="text" class="form-control" id="house[district]" name="house[district]" placeholder="Укажите район">
-                                                    </div>
-                                                </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label for="house[facing]">Облицовка</label>

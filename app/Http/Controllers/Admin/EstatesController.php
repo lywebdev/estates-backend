@@ -87,10 +87,11 @@ class EstatesController extends Controller
         if (!$estate) {
             return redirect()->back()->with('error', 'Не удалось найти объект недвижимости с указанным ID');
         }
-
+        $cities = City::all();
+        $districts = District::all();
         $estatesCategories = Estate::CATEGORIES;
 
-        return view('admin.estates.edit', compact('estate', 'estatesCategories'));
+        return view('admin.estates.edit', compact('estate', 'estatesCategories', 'cities', 'districts'));
     }
 
     public function update(StoreRequest $request, $id)

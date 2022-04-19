@@ -110,6 +110,34 @@
                                         </div>
                                     </div>
                                     <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Город</label>
+                                                <select class="form-control select2" style="width: 100%;" name="city_id">
+                                                    <option selected value="-1">Не указано</option>
+                                                    @foreach ($cities as $city)
+                                                        <option value="{{ $city->id }}"
+                                                            @if ($city->id == $estate->city_id) selected @endif
+                                                        >{{ $city->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Район</label>
+                                                <select class="form-control select2" style="width: 100%;" name="district_id">
+                                                    <option selected value="-1">Не указано</option>
+                                                    @foreach ($districts as $district)
+                                                        <option value="{{ $district->id }}"
+                                                            @if ($district->id == $estate->district_id) selected @endif
+                                                        >{{ $district->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
                                         <div class="col-md-12">
                                             <div class="row">
                                                 <div class="col-md-12">

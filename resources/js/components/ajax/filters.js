@@ -80,6 +80,7 @@ DOMLoadedFunctions.push({
                     slug: `${category}`
                 },
                 success: (response) => {
+                    // $('.first-screen__filters-preloader').addClass('loading');
                     form.html(response.data.template);
                     form.attr('action', response.data.action);
 
@@ -96,21 +97,34 @@ DOMLoadedFunctions.push({
                             countOffers(category, options);
                         }
                     });
-                    const citySelect = new Select('.select.city-select', {
-                        placeholder: 'Выбрать',
-                        // selectedId: '2',
-                        data: [
-                            {id: '1', value: 'Любой', validId: -1},
-                            {id: '2', value: 'Москва', validId: 1},
-                            {id: '3', value: 'Ялта', validId: 2},
-                            {id: '4', value: 'Алматы', validId: 3},
-                        ],
-                        onSelect(item) {
-                            options.city = item.validId;
-                            countOffers(category, options);
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        url: '/api/cities',
+                        type: 'get',
+                        success: (response) => {
+                            let cityData = [
+                                {id: '1', value: 'Любой', validId: -1}
+                            ];
+                            response.data.map((el, index) => {
+                                cityData.push({
+                                    id: (index + 1),
+                                    value: el.name,
+                                    validId: el.id
+                                });
+                            });
+                            const citySelect = new Select('.select.city-select', {
+                                placeholder: 'Выбрать',
+                                // selectedId: '2',
+                                data: cityData,
+                                onSelect(item) {
+                                    options.city = item.validId;
+                                    countOffers(category, options);
+                                }
+                            });
                         }
                     });
-
                     let roomSizeData = {
                         els: [
                             {id: '1', value: 'Любая', size: -1},
