@@ -65,13 +65,13 @@ class EstatesController extends BaseController
         if (isset($request->options['district'])) {
             $district = $request->options['district'];
             if ($district != -1) {
-                $estates->where('district', $request->options['district']);
+                $estates->where('district_id', $request->options['district']);
             }
         }
         if (isset($request->options['city'])) {
             $city = $request->options['city'];
             if ($city != -1) {
-                $estates->where('city', $request->options['city']);
+                $estates->where('city_id', $request->options['city']);
             }
         }
 

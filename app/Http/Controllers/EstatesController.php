@@ -36,7 +36,7 @@ class EstatesController extends Controller
             }
             $estate->info .= " этаж";
         }
-        $estate->info = trim($estate->info, ',');
+        $estate->info = trim(trim($estate->info, ' '), ',');
         $estate->options = EstateService::getOptionsTemplate($estate);
 
 
@@ -60,7 +60,19 @@ class EstatesController extends Controller
         if ($request->input('room_size')) {
             $roomSize = $request->input('room_size');
             if ($roomSize != -1) {
-                $estates->where('room_size', $request->input('room_size'));
+                $estates->where('room_size', $roomSize);
+            }
+        }
+        if ($request->input('district')) {
+            $district = $request->input('district');
+            if ($district != -1) {
+                $estates->where('district_id', $district);
+            }
+        }
+        if ($request->input('city')) {
+            $city = $request->input('room_size');
+            if ($city != -1) {
+                $estates->where('city_id', $city);
             }
         }
 

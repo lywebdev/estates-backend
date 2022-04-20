@@ -53,4 +53,5 @@ Route::group([
 
 
     Route::resource('cities', \App\Http\Controllers\API\CitiesController::class);
+    Route::resource('districts', \App\Http\Controllers\API\DistrictsController::class);
 });
