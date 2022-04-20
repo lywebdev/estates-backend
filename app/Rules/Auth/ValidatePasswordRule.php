@@ -15,7 +15,7 @@ class ValidatePasswordRule implements Rule
      */
     public function __construct($data)
     {
-        $this->login = $data['login'];
+        $this->email    = $data['email'];
         $this->password = $data['password'];
     }
 
@@ -28,8 +28,8 @@ class ValidatePasswordRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        return auth('admin')->attempt([
-            'login' => $this->login,
+        return Auth::attempt([
+            'email'    => $this->email,
             'password' => $this->password
         ]);
     }

@@ -9,15 +9,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Пользователи</h1>
-                    </div><!-- /.col -->
-                    <div class="col-sm-6">
-
-                        <ol class="breadcrumb float-sm-right">
-{{--                            {{ Breadcrumbs::render('admin.estates.index') }}--}}
-                            {{--                            <li class="breadcrumb-item"><a href="#">Home</a></li>--}}
-                            {{--                            <li class="breadcrumb-item active">Dashboard v1</li>--}}
-                        </ol>
+                        <h1 class="m-0">Парковка</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -34,39 +26,29 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Пользователи</h3>
+                                <h3 class="card-title">Парковка</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                @if ($users)
+                                @if ($praking)
                                     <table id="estates-table" class="table table-bordered table-striped">
                                         <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Имя</th>
-                                            <th>Фамилия</th>
-                                            <th>Отчество</th>
-                                            <th>Email</th>
-                                            <th>Роль</th>
-                                            <th>Телефон</th>
+                                            <th>Наименование</th>
                                             <th>Действия</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach ($users as $user)
+                                        @foreach ($praking as $row)
                                             <tr>
-                                                <th>{{ $user->id }}</th>
-                                                <th>{{ $user->name }}</th>
-                                                <th>{{ $user->surname }}</th>
-                                                <th>{{ $user->email }}</th>
-                                                <th>{{ $user->patronymic }}</th>
-                                                <th>{{ $user->role() }}</th>
-                                                <th>{{ $user->phone }}</th>
+                                                <th>{{ $row->id }}</th>
+                                                <th>{{ $row->name }}</th>
                                                 <th class="table__btns">
-                                                    <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-outline-dark btn-flat mr-2">
+                                                    <a href="{{ route('admin.estates.parking.edit', $row->id) }}" class="btn btn-outline-dark btn-flat mr-2">
                                                         <i class="fas fa-edit"></i>
                                                     </a>
-                                                    <form action="{{ route('admin.users.destroy', $user->id) }}" method="post">
+                                                    <form action="{{ route('admin.estates.parking.destroy', $row->id) }}" method="post">
                                                         @csrf
                                                         @method('delete')
                                                         <button class="btn btn-outline-danger btn-flat">
@@ -80,18 +62,13 @@
                                         <tfoot>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Имя</th>
-                                            <th>Фамилия</th>
-                                            <th>Отчество</th>
-                                            <th>Email</th>
-                                            <th>Роль</th>
-                                            <th>Телефон</th>
+                                            <th>Наименование</th>
                                             <th>Действия</th>
                                         </tr>
                                         </tfoot>
                                     </table>
                                 @else
-                                    <p>Нет пользователей</p>
+                                    <p>Нет вариантов парковки</p>
                                 @endif
                             </div>
                             <!-- /.card-body -->

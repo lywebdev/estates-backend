@@ -21,10 +21,21 @@ class CreateEstatesTable extends Migration
             $table->text('description')->nullable();
             $table->string('preview')->nullable();
 
-            $table->string('category', 25)->index()->nullable();
+            $table->string('category', 50)->index()->nullable();
 
             $table->bigInteger('city_id')->nullable();
             $table->bigInteger('district_id')->nullable();
+
+            $table->integer('condition_id')->nullable();
+            $table->integer('parking_id')->nullable();
+            $table->integer('bathroom_id')->nullable();
+            $table->integer('wall_material_id')->nullable();
+            $table->integer('furniture_id')->nullable();
+            $table->integer('purpose_id')->nullable();
+            $table->integer('heating_id')->nullable();
+            $table->integer('sewage_id')->nullable();
+            $table->integer('status_id')->nullable();
+            $table->integer('estate_location_id')->nullable();
 
             $table->string('location', 255)->index()->nullable();
             $table->double('area')->index()->nullable();
@@ -33,13 +44,22 @@ class CreateEstatesTable extends Migration
             $table->string('facing', 255)->index()->nullable();
             $table->tinyInteger('floor')->index()->nullable();
             $table->tinyInteger('floors')->index()->nullable();
-            $table->string('condition', 255)->index()->nullable();
             $table->integer('year')->index()->nullable(); // Год постройки
-            $table->string('wall_material', 255)->index()->nullable();
             $table->double('ceiling_height')->index()->nullable();
-            $table->boolean('furniture')->index()->default(0);
-            $table->boolean('parking')->index()->default(0);
-            $table->string('bathroom', 255)->index()->nullable();
+            $table->boolean('zd_deadend')->nullable();
+
+            $table->string('house_number')->nullable();
+            $table->string('cadastral_number')->nullable();
+            $table->string('intersection_streets')->nullable();
+            $table->string('street')->nullable();
+            $table->string('estate_number')->nullable();
+
+            $table->string('owner_name')->nullable();
+            $table->string('owner_phone')->nullable();
+            $table->string('owner_phone2')->nullable();
+            $table->string('owner_phone3')->nullable();
+
+            $table->string('electricity_max')->nullable();
 
             $table->string('map_coords', 255)->nullable();
             $table->string('map_address', 255)->nullable();

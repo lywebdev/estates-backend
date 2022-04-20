@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\AdminUser;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class AdminUserSeeder extends Seeder
@@ -14,6 +15,6 @@ class AdminUserSeeder extends Seeder
      */
     public function run()
     {
-        AdminUser::factory()->count(1)->create();
+        User::factory()->count(1)->create();
     }
 }

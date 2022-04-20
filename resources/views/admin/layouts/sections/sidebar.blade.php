@@ -34,6 +34,9 @@
                     </p>
                 </a>
             </li>
+
+
+
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fa-solid fa-house"></i>
@@ -43,18 +46,54 @@
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
+
                     <li class="nav-item">
-                        <a href="{{ route('admin.estates.index') }}" class="nav-link">
-                            <p>Все объекты недвижимости</p>
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa-solid fa-house"></i>
+                            <p style="font-weight: bold;">
+                                Объекты
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
                         </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('admin.estates.index') }}" class="nav-link">
+                                    <p>Все объекты недвижимости</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.estates.create') }}" class="nav-link">
+                                    <p>Добавить объект недвижимости</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('admin.estates.create') }}" class="nav-link">
-                            <p>Добавить объект недвижимости</p>
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa-solid fa-house"></i>
+                            <p>
+                                Парковка
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
                         </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('admin.estates.index') }}" class="nav-link">
+                                    <p>Все варианты парковки</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.estates.create') }}" class="nav-link">
+                                    <p>Добавить вариант парковки</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
+
                 </ul>
             </li>
+
+
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fa-solid fa-house"></i>
@@ -97,9 +136,30 @@
                     </li>
                 </ul>
             </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fa-solid fa-house"></i>
+                    <p>
+                        Пользователи
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('admin.users.index') }}" class="nav-link">
+                            <p>Все пользователи</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.users.create') }}" class="nav-link">
+                            <p>Добавить пользователя</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
 
             <li class="nav-item">
-                <a href="{{ route('admin.logout') }}" class="nav-link">Выйти</a>
+                <a href="{{ route('logout') }}" class="nav-link">Выйти</a>
             </li>
         </ul>
     </nav>

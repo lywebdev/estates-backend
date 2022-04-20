@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Admin\Auth;
+namespace App\Http\Requests\Auth;
 
 use App\Rules\Auth\ValidatePasswordRule;
 use Illuminate\Foundation\Http\FormRequest;
@@ -8,9 +8,12 @@ use Illuminate\Http\Request;
 
 class LoginRequest extends FormRequest
 {
+    private $email;
+    private $password;
+
     public function authorize(Request $request)
     {
-        $this->login = $request->login;
+        $this->email = $request->email;
         $this->password = $request->password;
 
         return true;
@@ -19,10 +22,11 @@ class LoginRequest extends FormRequest
     public function messages()
     {
         return [
-            'login.required' => 'Введите логин',
-            'login.string' => 'Указанный логин не является строкой',
-            'login.max' => 'Длина логина недопустимая',
-            'login.exists' => 'Пользователя с таким логином не существует',
+            'email.required' => 'Введите адрес электронной почты',
+            'email.string' => 'Email не является строкой',
+//            'email.email' => 'Введён некорректный email адрес',
+            'email.max' => 'Длина email некорркетная',
+            'email.exists' => 'Пользователя с таким email\'ом не существует',
 
             'password.failed' => 'Некорректный пароль',
             'password.min' => 'Минимальная длина пароля 3 символа',
@@ -37,9 +41,9 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'login' => 'required|string|max:255|exists:admin_users',
+            'email' => 'required|string|max:255|exists:users',
             'password' => ['required', 'string', 'min:3', new ValidatePasswordRule([
-                'login' => $this->login,
+                'email' => $this->email,
                 'password' => $this->password,
             ])],
         ];

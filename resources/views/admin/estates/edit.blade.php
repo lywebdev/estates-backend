@@ -17,7 +17,7 @@
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            {{ Breadcrumbs::render('admin.estates.edit', $estate) }}
+{{--                            {{ Breadcrumbs::render('admin.estates.edit', $estate) }}--}}
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
