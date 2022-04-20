@@ -76,7 +76,7 @@ class EstatesController extends Controller
      */
     public function show($id)
     {
-        //
+        abort(404);
     }
 
     public function edit($id)

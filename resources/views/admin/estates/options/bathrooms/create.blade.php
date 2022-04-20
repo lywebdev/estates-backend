@@ -12,7 +12,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Редактирование варианта парковки</h1>
+                        <h1 class="m-0">Добавление варианта санузла</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -29,31 +29,29 @@
                     <div class="col-md-12">
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Редактирование варианта парковки</h3>
+                                <h3 class="card-title">Добавление варианта санузла</h3>
                             </div>
 
-                            <form action="{{ route('admin.estates.parking.update', $parking->id) }}" method="post" enctype="multipart/form-data" id="form" name="form">
+                            <form action="{{ route('admin.estates.bathrooms.store') }}" method="post" enctype="multipart/form-data" id="form" name="form">
                                 @csrf
-                                @method('PUT')
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="name">Название</label>
-                                                <input type="text"
-                                                       class="form-control"
-                                                       id="name"
-                                                       name="name"
-                                                       placeholder="Введите вариант парковки"
-                                                       value="{{ $parking->name }}"
-                                                >
+                                                <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="name"
+                                                    name="name"
+                                                    placeholder="Введите вариант санузла">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="card-footer">
-                                    <button type="submit" id="submitBtn" name="submitBtn" class="btn btn-primary">Сохранить</button>
+                                    <button type="submit" id="submitBtn" name="submitBtn" class="btn btn-primary">Добавить</button>
                                 </div>
                             </form>
                         </div>

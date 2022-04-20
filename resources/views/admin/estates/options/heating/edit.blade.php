@@ -12,7 +12,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Редактирование района</h1>
+                        <h1 class="m-0">Редактирование варианта отопления</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -29,10 +29,10 @@
                     <div class="col-md-12">
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Редактирование района</h3>
+                                <h3 class="card-title">Редактирование варианта отопления</h3>
                             </div>
 
-                            <form action="{{ route('admin.estates.districts.update', $district->id) }}" method="post" enctype="multipart/form-data" id="form" name="form">
+                            <form action="{{ route('admin.estates.heating.update', $heating->id) }}" method="post" enctype="multipart/form-data" id="form" name="form">
                                 @csrf
                                 @method('PUT')
                                 <div class="card-body">
@@ -44,8 +44,8 @@
                                                        class="form-control"
                                                        id="name"
                                                        name="name"
-                                                       placeholder="Введите название района"
-                                                       value="{{ $district->name }}"
+                                                       placeholder="Введите вариант отопления"
+                                                       value="{{ $heating->name }}"
                                                 >
                                             </div>
                                         </div>

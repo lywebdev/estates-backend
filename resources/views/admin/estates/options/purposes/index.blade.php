@@ -9,7 +9,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Парковка</h1>
+                        <h1 class="m-0">Цели объектов недвижимости</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -26,11 +26,11 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Парковка</h3>
+                                <h3 class="card-title">Цели объектов недвижимости</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                @if ($parkings)
+                                @if ($purposes)
                                     <table id="estates-table" class="table table-bordered table-striped">
                                         <thead>
                                         <tr>
@@ -40,15 +40,15 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach ($parkings as $row)
+                                        @foreach ($purposes as $purpose)
                                             <tr>
-                                                <th>{{ $row->id }}</th>
-                                                <th>{{ $row->name }}</th>
+                                                <th>{{ $purpose->id }}</th>
+                                                <th>{{ $purpose->name }}</th>
                                                 <th class="table__btns">
-                                                    <a href="{{ route('admin.estates.parking.edit', $row->id) }}" class="btn btn-outline-dark btn-flat mr-2">
+                                                    <a href="{{ route('admin.estates.purposes.edit', $purpose->id) }}" class="btn btn-outline-dark btn-flat mr-2">
                                                         <i class="fas fa-edit"></i>
                                                     </a>
-                                                    <form action="{{ route('admin.estates.parking.destroy', $row->id) }}" method="post">
+                                                    <form action="{{ route('admin.estates.purposes.destroy', $purpose->id) }}" method="post">
                                                         @csrf
                                                         @method('delete')
                                                         <button class="btn btn-outline-danger btn-flat">
@@ -68,7 +68,7 @@
                                         </tfoot>
                                     </table>
                                 @else
-                                    <p>Нет вариантов парковки</p>
+                                    <p>Нет целей объектов недвижимости</p>
                                 @endif
                             </div>
                             <!-- /.card-body -->

@@ -12,7 +12,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Редактирование варианта парковки</h1>
+                        <h1 class="m-0">Редактирование варианта мебели</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -29,10 +29,10 @@
                     <div class="col-md-12">
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Редактирование варианта парковки</h3>
+                                <h3 class="card-title">Редактирование варианта мебели</h3>
                             </div>
 
-                            <form action="{{ route('admin.estates.parking.update', $parking->id) }}" method="post" enctype="multipart/form-data" id="form" name="form">
+                            <form action="{{ route('admin.estates.furniture.update', $furniture->id) }}" method="post" enctype="multipart/form-data" id="form" name="form">
                                 @csrf
                                 @method('PUT')
                                 <div class="card-body">
@@ -44,8 +44,8 @@
                                                        class="form-control"
                                                        id="name"
                                                        name="name"
-                                                       placeholder="Введите вариант парковки"
-                                                       value="{{ $parking->name }}"
+                                                       placeholder="Введите вариант мебели"
+                                                       value="{{ $furniture->name }}"
                                                 >
                                             </div>
                                         </div>

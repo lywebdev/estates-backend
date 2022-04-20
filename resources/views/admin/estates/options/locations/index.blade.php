@@ -9,7 +9,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Районы</h1>
+                        <h1 class="m-0">Локации</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -26,11 +26,11 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Районы</h3>
+                                <h3 class="card-title">Локации</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                @if ($districts)
+                                @if ($locations)
                                     <table id="estates-table" class="table table-bordered table-striped">
                                         <thead>
                                         <tr>
@@ -40,15 +40,15 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach ($districts as $district)
+                                        @foreach ($locations as $location)
                                             <tr>
-                                                <th>{{ $district->id }}</th>
-                                                <th>{{ $district->name }}</th>
+                                                <th>{{ $location->id }}</th>
+                                                <th>{{ $location->name }}</th>
                                                 <th class="table__btns">
-                                                    <a href="{{ route('admin.estates.districts.edit', $district->id) }}" class="btn btn-outline-dark btn-flat mr-2">
+                                                    <a href="{{ route('admin.estates.locations.edit', $location->id) }}" class="btn btn-outline-dark btn-flat mr-2">
                                                         <i class="fas fa-edit"></i>
                                                     </a>
-                                                    <form action="{{ route('admin.estates.districts.destroy', $district->id) }}" method="post">
+                                                    <form action="{{ route('admin.estates.locations.destroy', $location->id) }}" method="post">
                                                         @csrf
                                                         @method('delete')
                                                         <button class="btn btn-outline-danger btn-flat">
@@ -68,7 +68,7 @@
                                         </tfoot>
                                     </table>
                                 @else
-                                    <p>Нет районов</p>
+                                    <p>Нет вариантов локации</p>
                                 @endif
                             </div>
                             <!-- /.card-body -->

@@ -89,6 +89,27 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa-solid fa-house"></i>
+                            <p>
+                                Варианты санузлов
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('admin.estates.bathrooms.index') }}" class="nav-link">
+                                    <p>Все варианты санузлов</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.estates.bathrooms.create') }}" class="nav-link">
+                                    <p>Добавить вариант санузла</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
 
                 </ul>
             </li>

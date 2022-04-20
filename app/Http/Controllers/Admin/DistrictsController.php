@@ -16,6 +16,7 @@ class DistrictsController extends Controller
 
         return view('admin.districts.index', compact('districts'));
     }
+
     public function create()
     {
         return view('admin.districts.create');

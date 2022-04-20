@@ -36,7 +36,6 @@ Route::get('franchise', [\App\Http\Controllers\Pages\FranchiseController::class,
 Route::get('agreements/purchase', [\App\Http\Controllers\AgreementController::class, 'agreements'])->name('agreements.purchase');
 Route::get('agreements/{type}/{subtype?}', [\App\Http\Controllers\AgreementController::class, 'agreement'])->name('agreements.agreement');
 Route::post('agreements/sign/{type}/{subtype?}', [\App\Http\Controllers\AgreementController::class, 'sign'])->name('agreements.sign');
-//Route::
 
 
 Route::group([
@@ -113,6 +112,22 @@ Route::group([
     Route::get('', function() {
         return view('admin.home');
     })->name('home');
+
+    Route::group([
+        'prefix' => 'estates',
+        'as' => 'estates.'
+    ], function() {
+        Route::resource('parking', \App\Http\Controllers\Admin\Estates\ParkingController::class);
+        Route::resource('bathrooms', \App\Http\Controllers\Admin\Estates\BathroomController::class);
+        Route::resource('conditions', \App\Http\Controllers\Admin\Estates\ConditionController::class);
+        Route::resource('locations', \App\Http\Controllers\Admin\Estates\EstateLocationsController::class);
+        Route::resource('furniture', \App\Http\Controllers\Admin\Estates\FurnitureController::class);
+        Route::resource('purposes', \App\Http\Controllers\Admin\Estates\PurposeController::class);
+        Route::resource('heating', \App\Http\Controllers\Admin\Estates\HeatingController::class);
+        Route::resource('sewage', \App\Http\Controllers\Admin\Estates\SewageController::class);
+        Route::resource('status', \App\Http\Controllers\Admin\Estates\StatusController::class);
+        Route::resource('wall-material', \App\Http\Controllers\Admin\Estates\WallMaterialsController::class);
+    });
 
     Route::resource('estates', \App\Http\Controllers\Admin\EstatesController::class);
     Route::resource('services', \App\Http\Controllers\Admin\ServicesController::class);
