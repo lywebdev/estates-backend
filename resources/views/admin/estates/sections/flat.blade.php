@@ -96,7 +96,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="form-group">
                     <label>Мебель</label>
                     <select class="form-control select2" style="width: 100%;" name="flats[furniture_id]">
@@ -113,7 +113,7 @@
                     </select>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="form-group">
                     <label>Санузел</label>
                     <select class="form-control select2" style="width: 100%;" name="flats[bathroom_id]">
@@ -130,7 +130,7 @@
                     </select>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="form-group">
                     <label>Парковка</label>
                     <select class="form-control select2" style="width: 100%;" name="flats[parking_id]">
@@ -139,6 +139,23 @@
                             <option value="{{ $row->id }}"
                                 @isset($estate)
                                     @if ($row->id == $estate->parking_id) selected @endif
+                                @endisset
+                            >
+                                {{ $row->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Состояние</label>
+                    <select class="form-control select2" style="width: 100%;" name="flats[condition_id]">
+                        <option selected value="-1">Не указано</option>
+                        @foreach ($conditions as $row)
+                            <option value="{{ $row->id }}"
+                                @isset($estate)
+                                    @if ($row->id == $estate->condition_id) selected @endif
                                 @endisset
                             >
                                 {{ $row->name }}
@@ -197,7 +214,11 @@
     <div class="col-md-12">
         <div class="form-group">
             <div class="icheck-success d-inline">
-                <input type="checkbox" name="flats[furniture]" id="flats[furniture]">
+                <input type="checkbox" name="flats[furniture]" id="flats[furniture]"
+                   @isset ($estate)
+                       @if ($estate->furniture) checked @endif
+                    @endisset
+                >
                 <label for="flats[furniture]">Мебель</label>
             </div>
         </div>
@@ -205,7 +226,11 @@
     <div class="col-md-12">
         <div class="form-group">
             <div class="icheck-success d-inline">
-                <input type="checkbox" name="flats[bathroom]" id="flats[bathroom]">
+                <input type="checkbox" name="flats[bathroom]" id="flats[bathroom]"
+                   @isset ($estate)
+                       @if ($estate->bathroom) checked @endif
+                    @endisset
+                >
                 <label for="flats[bathroom]">Санузел</label>
             </div>
         </div>
@@ -213,7 +238,11 @@
     <div class="col-md-12">
         <div class="form-group">
             <div class="icheck-success d-inline">
-                <input type="checkbox" name="flats[parking]" id="flats[parking]">
+                <input type="checkbox" name="flats[parking]" id="flats[parking]"
+                   @isset ($estate)
+                       @if ($estate->parking) checked @endif
+                    @endisset
+                >
                 <label for="flats[parking]">Паркинг</label>
             </div>
         </div>
