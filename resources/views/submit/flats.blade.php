@@ -6,7 +6,6 @@
 
 @section('content')
     <section id="content" class="page__app-submission">
-
         <div class="breadcrumbs">
             <div class="breadcrumbs__bg">
                 <img src="/img/breadcrumbs-photo.jpg" alt="">
@@ -20,56 +19,21 @@
             </div>
         </div>
 
-        <section class="section mt-30">
-
+        <form class="section mt-30" id="estate-submit-form"
+                 action="{{ route('submit.flats') }}"
+                 method="post"
+                 data-category="{{ $esCategory->slug }}"
+                 data-user-auth="{{ \Illuminate\Support\Facades\Auth::check() }}">
+            <input type="hidden" name="data" id="json-data" value="{{ $data }}">
             <div class="container-fluid">
                 <div class="ac-grid">
                     <div class="section__title">Информация</div>
 
-                    <form class="row" id="estate-submit-form"
-                          action=""
-                          method="post"
-                          data-category="{{ $esCategory->slug }}"
-                          data-user-auth="{{ \Illuminate\Support\Facades\Auth::check() }}"
-                    >
-                        @csrf
-                        <input type="hidden" name="data" id="json-data" value="{{ $data }}">
-
+                    <div class="row">
                         <div class="col-lg-12 col-xl-6">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="sortable-section first-screen__sortable">
-                                        <div class="sortable form__sortable">
-
-                                            <div class="sortable__items row">
-
-                                                <div class="col-lg-4 col-md-4 col-xs-12">
-                                                    <div class="col-md-12">
-                                                        <div class="sortable__item sortable__item--selected">
-                                                            <div class="sortable__selected-value">Квартиры</div>
-                                                            <div class="sortable__selected-icon">
-                                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path d="M5.99996 9.42017C5.7849 9.42017 5.56986 9.33805 5.4059 9.17417L0.246169 4.01439C-0.0820565 3.68616 -0.0820565 3.154 0.246169 2.8259C0.574263 2.49781 1.10632 2.49781 1.43457 2.8259L5.99996 7.39156L10.5654 2.82606C10.8936 2.49797 11.4256 2.49797 11.7537 2.82606C12.0821 3.15416 12.0821 3.68632 11.7537 4.01455L6.59403 9.17433C6.42999 9.33824 6.21495 9.42017 5.99996 9.42017Z" fill="white"/>
-                                                                </svg>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4 col-md-4 col-xs-12">
-                                                    <div class="col-md-12">
-                                                        <div class="sortable__item">Дома и участки</div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4 col-md-4 col-xs-12">
-                                                    <div class="col-md-12">
-                                                        <div class="sortable__item">Коммерческая</div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
+                                    @include('submit.sortable-section')
                                 </div>
                             </div>
                             <div class="row app-submission__row">
@@ -80,8 +44,8 @@
                                             <div class="select roomSize-select"></div>
                                         </div>
                                         <div class="col-md-4">
-                                            <label class="form-label">Стоимость, 〒</label>
-                                            <input type="text" class="input" name="cost" value="70000" placeholder="Укажите стоимость">
+                                            <label class="form-label" for="price">Стоимость, 〒</label>
+                                            <input type="text" class="input" name="price" id="price" placeholder="Укажите стоимость">
                                         </div>
                                         <div class="col-md-4 col-padding rate-free">
                                             <a href="#" class="btn btn--gray">
@@ -103,16 +67,16 @@
                                             <div class="select state-select"></div>
                                         </div>
                                         <div class="col-md-4">
-                                            <label class="form-label">Общая площадь, м2</label>
-                                            <input type="text" class="input" name="area" value="54" placeholder="Укажите площадь">
+                                            <label class="form-label" for="area">Общая площадь, м2</label>
+                                            <input type="text" class="input" name="area" id="area" placeholder="Укажите площадь">
                                         </div>
                                         <div class="col-md-2 col-sm-6">
                                             <label for="floor" class="form-label">Этаж</label>
-                                            <input type="text" class="input" value="7" name="floor" id="floor" placeholder="Укажите этаж">
+                                            <input type="text" class="input" name="floor" id="floor" placeholder="Этаж">
                                         </div>
                                         <div class="col-md-2 col-sm-6">
                                             <label class="form-label" for="floors">Этажность</label>
-                                            <input type="text" class="input" value="1" name="floors" id="floors" placeholder="Укажите этажность">
+                                            <input type="text" class="input" name="floors" id="floors" placeholder="Этажность">
                                         </div>
                                     </div>
                                 </div>
@@ -120,15 +84,6 @@
                             <!-- Room preview -->
                             <div class="row">
                                 <div class="room-preview">
-                                    <div class="room-preview__left">
-                                        <div class="room-preview__img">
-                                            <img src="/img/room-preview.jpg" alt="preview img">
-                                        </div>
-                                    </div>
-                                    <div class="room-preview__right">
-                                        <div class="room-preview__name">Евро</div>
-                                        <div class="room-preview__description">Обывательский термин, широко распространённый в России и странах СНГ для обозначения особого типа ремонта в жилых или коммерческих помещениях. </div>
-                                    </div>
                                 </div>
                             </div>
 
@@ -143,26 +98,26 @@
                                 </div>
                                 <div class="col-md-3 fs--14 col-padding">
                                     <label for="street" class="form-label">Улица или Микрорайон</label>
-                                    <input type="text" class="input" name="street" id="street" value="пр-т. Абая">
+                                    <input type="text" class="input" name="street" id="street" placeholder="Укажите улицу">
                                 </div>
                                 <div class="col-md-1 fs--14">
                                     <label for="house_number" class="form-label">Номер дома</label>
-                                    <input type="text" class="input" name="house_number" id="house_number" value="16">
+                                    <input type="text" class="input" name="house_number" id="house_number" placeholder="№">
                                 </div>
                             </div>
 
                             <div class="row app-submission__row">
                                 <div class="col-md-4">
                                     <label for="room_number" class="form-label">Номер квартиры</label>
-                                    <input type="text" class="input" name="room_number" id="room_number" value="32">
+                                    <input type="text" class="input" name="room_number" id="room_number" placeholder="№ квартиры">
                                 </div>
                                 <div class="col-md-4">
                                     <label for="owner_name" class="form-label">Имя собственника</label>
-                                    <input type="text" class="input" name="owner_name" id="owner_name" value="Иван Иванов">
+                                    <input type="text" class="input" name="owner_name" id="owner_name" placeholder="Укажите имя">
                                 </div>
                                 <div class="col-md-4">
                                     <label for="phone" class="form-label">Контактный телефон</label>
-                                    <input type="text" class="input" name="phone" id="phone" value="+7 (800) 777-30-94">
+                                    <input type="text" class="input" name="phone" id="phone" placeholder="Укажите телефон">
                                 </div>
                             </div>
                         </div>
@@ -174,7 +129,7 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </div>
 
                     <div class="app-submission__photos">
                         <div class="section__title">Фотографии объекта</div>
@@ -188,8 +143,16 @@
                         <div class="photo-gallery mt-25">
                             <div class="row">
                                 <div class="col-md-4 col-sm-12 photo-gallery__main">
-                                    <div class="photo-gallery__image">
-                                        <img src="/img/photo-gallery/1.jpg" alt="1">
+                                    <div class="photo-gallery__image dropzoneContainer">
+                                        <div class="photo-galley__load-btn">
+                                            <div class="dropzoneContainer__image">
+                                                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M31.5 9H26.745L24 6H15V9H22.68L25.425 12H31.5V30H7.5V16.5H4.5V30C4.5 31.65 5.85 33 7.5 33H31.5C33.15 33 34.5 31.65 34.5 30V12C34.5 10.35 33.15 9 31.5 9ZM12 21C12 25.14 15.36 28.5 19.5 28.5C23.64 28.5 27 25.14 27 21C27 16.86 23.64 13.5 19.5 13.5C15.36 13.5 12 16.86 12 21ZM19.5 16.5C21.975 16.5 24 18.525 24 21C24 23.475 21.975 25.5 19.5 25.5C17.025 25.5 15 23.475 15 21C15 18.525 17.025 16.5 19.5 16.5ZM7.5 9H12V6H7.5V1.5H4.5V6H0V9H4.5V13.5H7.5V9Z" fill="#7A7A87"/>
+                                                </svg>
+                                                <span>Фото объекта</span>
+                                            </div>
+                                            <input type="file" name="images[]" class="dropzoneInput">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-8 col-sm-12 photo-gallery__images">
@@ -197,82 +160,159 @@
                                         <div class="col-md-3 col-sm-6">
                                             <div class="photo-gallery__image dropzoneContainer">
                                                 <div class="photo-galley__load-btn">
-                                                    <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M31.5 9H26.745L24 6H15V9H22.68L25.425 12H31.5V30H7.5V16.5H4.5V30C4.5 31.65 5.85 33 7.5 33H31.5C33.15 33 34.5 31.65 34.5 30V12C34.5 10.35 33.15 9 31.5 9ZM12 21C12 25.14 15.36 28.5 19.5 28.5C23.64 28.5 27 25.14 27 21C27 16.86 23.64 13.5 19.5 13.5C15.36 13.5 12 16.86 12 21ZM19.5 16.5C21.975 16.5 24 18.525 24 21C24 23.475 21.975 25.5 19.5 25.5C17.025 25.5 15 23.475 15 21C15 18.525 17.025 16.5 19.5 16.5ZM7.5 9H12V6H7.5V1.5H4.5V6H0V9H4.5V13.5H7.5V9Z" fill="#7A7A87"/>
-                                                    </svg>
-                                                    <span>Фото объекта</span>
+                                                    <div class="dropzoneContainer__image">
+                                                        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M31.5 9H26.745L24 6H15V9H22.68L25.425 12H31.5V30H7.5V16.5H4.5V30C4.5 31.65 5.85 33 7.5 33H31.5C33.15 33 34.5 31.65 34.5 30V12C34.5 10.35 33.15 9 31.5 9ZM12 21C12 25.14 15.36 28.5 19.5 28.5C23.64 28.5 27 25.14 27 21C27 16.86 23.64 13.5 19.5 13.5C15.36 13.5 12 16.86 12 21ZM19.5 16.5C21.975 16.5 24 18.525 24 21C24 23.475 21.975 25.5 19.5 25.5C17.025 25.5 15 23.475 15 21C15 18.525 17.025 16.5 19.5 16.5ZM7.5 9H12V6H7.5V1.5H4.5V6H0V9H4.5V13.5H7.5V9Z" fill="#7A7A87"/>
+                                                        </svg>
+                                                        <span>Фото объекта</span>
+                                                    </div>
                                                     <input type="file" name="images[]" class="dropzoneInput">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-3 col-sm-6">
                                             <div class="photo-gallery__image dropzoneContainer">
-                                                <img src="/img/photo-gallery/1.jpg" alt="1">
-                                                <input type="file" name="images[]" class="dropzoneInput">
+                                                <div class="photo-galley__load-btn">
+                                                    <div class="dropzoneContainer__image">
+                                                        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M31.5 9H26.745L24 6H15V9H22.68L25.425 12H31.5V30H7.5V16.5H4.5V30C4.5 31.65 5.85 33 7.5 33H31.5C33.15 33 34.5 31.65 34.5 30V12C34.5 10.35 33.15 9 31.5 9ZM12 21C12 25.14 15.36 28.5 19.5 28.5C23.64 28.5 27 25.14 27 21C27 16.86 23.64 13.5 19.5 13.5C15.36 13.5 12 16.86 12 21ZM19.5 16.5C21.975 16.5 24 18.525 24 21C24 23.475 21.975 25.5 19.5 25.5C17.025 25.5 15 23.475 15 21C15 18.525 17.025 16.5 19.5 16.5ZM7.5 9H12V6H7.5V1.5H4.5V6H0V9H4.5V13.5H7.5V9Z" fill="#7A7A87"/>
+                                                        </svg>
+                                                        <span>Фото объекта</span>
+                                                    </div>
+                                                    <input type="file" name="images[]" class="dropzoneInput">
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="photo-gallery__image dropzoneContainer">
-                                                <img src="/img/photo-gallery/1.jpg" alt="1">
-                                                <input type="file" name="images[]" class="dropzoneInput">
+                                                <div class="photo-galley__load-btn">
+                                                    <div class="dropzoneContainer__image">
+                                                        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M31.5 9H26.745L24 6H15V9H22.68L25.425 12H31.5V30H7.5V16.5H4.5V30C4.5 31.65 5.85 33 7.5 33H31.5C33.15 33 34.5 31.65 34.5 30V12C34.5 10.35 33.15 9 31.5 9ZM12 21C12 25.14 15.36 28.5 19.5 28.5C23.64 28.5 27 25.14 27 21C27 16.86 23.64 13.5 19.5 13.5C15.36 13.5 12 16.86 12 21ZM19.5 16.5C21.975 16.5 24 18.525 24 21C24 23.475 21.975 25.5 19.5 25.5C17.025 25.5 15 23.475 15 21C15 18.525 17.025 16.5 19.5 16.5ZM7.5 9H12V6H7.5V1.5H4.5V6H0V9H4.5V13.5H7.5V9Z" fill="#7A7A87"/>
+                                                        </svg>
+                                                        <span>Фото объекта</span>
+                                                    </div>
+                                                    <input type="file" name="images[]" class="dropzoneInput">
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="photo-gallery__image dropzoneContainer">
-                                                <img src="/img/photo-gallery/1.jpg" alt="1">
-                                                <input type="file" name="images[]" class="dropzoneInput">
+                                                <div class="photo-galley__load-btn">
+                                                    <div class="dropzoneContainer__image">
+                                                        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M31.5 9H26.745L24 6H15V9H22.68L25.425 12H31.5V30H7.5V16.5H4.5V30C4.5 31.65 5.85 33 7.5 33H31.5C33.15 33 34.5 31.65 34.5 30V12C34.5 10.35 33.15 9 31.5 9ZM12 21C12 25.14 15.36 28.5 19.5 28.5C23.64 28.5 27 25.14 27 21C27 16.86 23.64 13.5 19.5 13.5C15.36 13.5 12 16.86 12 21ZM19.5 16.5C21.975 16.5 24 18.525 24 21C24 23.475 21.975 25.5 19.5 25.5C17.025 25.5 15 23.475 15 21C15 18.525 17.025 16.5 19.5 16.5ZM7.5 9H12V6H7.5V1.5H4.5V6H0V9H4.5V13.5H7.5V9Z" fill="#7A7A87"/>
+                                                        </svg>
+                                                        <span>Фото объекта</span>
+                                                    </div>
+                                                    <input type="file" name="images[]" class="dropzoneInput">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row sortableContainer">
+
                                         <div class="col-md-3">
                                             <div class="photo-gallery__image dropzoneContainer">
-                                                <img src="/img/photo-gallery/1.jpg" alt="1">
-                                                <input type="file" name="images[]" class="dropzoneInput">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="photo-gallery__image dropzoneContainer">
-                                                <img src="/img/photo-gallery/1.jpg" alt="1">
-                                                <input type="file" name="images[]" class="dropzoneInput">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="photo-gallery__image dropzoneContainer">
-                                                <img src="/img/photo-gallery/1.jpg" alt="1">
-                                                <input type="file" name="images[]" class="dropzoneInput">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="photo-gallery__image dropzoneContainer">
-                                                <img src="/img/photo-gallery/1.jpg" alt="1">
-                                                <input type="file" name="images[]" class="dropzoneInput">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row sortableContainer">
-                                        <div class="col-md-3">
-                                            <div class="photo-gallery__image dropzoneContainer">
-                                                <img src="/img/photo-gallery/1.jpg" alt="1">
-                                                <input type="file" name="images[]" class="dropzoneInput">
+                                                <div class="photo-galley__load-btn">
+                                                    <div class="dropzoneContainer__image">
+                                                        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M31.5 9H26.745L24 6H15V9H22.68L25.425 12H31.5V30H7.5V16.5H4.5V30C4.5 31.65 5.85 33 7.5 33H31.5C33.15 33 34.5 31.65 34.5 30V12C34.5 10.35 33.15 9 31.5 9ZM12 21C12 25.14 15.36 28.5 19.5 28.5C23.64 28.5 27 25.14 27 21C27 16.86 23.64 13.5 19.5 13.5C15.36 13.5 12 16.86 12 21ZM19.5 16.5C21.975 16.5 24 18.525 24 21C24 23.475 21.975 25.5 19.5 25.5C17.025 25.5 15 23.475 15 21C15 18.525 17.025 16.5 19.5 16.5ZM7.5 9H12V6H7.5V1.5H4.5V6H0V9H4.5V13.5H7.5V9Z" fill="#7A7A87"/>
+                                                        </svg>
+                                                        <span>Фото объекта</span>
+                                                    </div>
+                                                    <input type="file" name="images[]" class="dropzoneInput">
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="photo-gallery__image dropzoneContainer">
-                                                <img src="/img/photo-gallery/1.jpg" alt="1">
-                                                <input type="file" name="images[]" class="dropzoneInput">
+                                                <div class="photo-galley__load-btn">
+                                                    <div class="dropzoneContainer__image">
+                                                        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M31.5 9H26.745L24 6H15V9H22.68L25.425 12H31.5V30H7.5V16.5H4.5V30C4.5 31.65 5.85 33 7.5 33H31.5C33.15 33 34.5 31.65 34.5 30V12C34.5 10.35 33.15 9 31.5 9ZM12 21C12 25.14 15.36 28.5 19.5 28.5C23.64 28.5 27 25.14 27 21C27 16.86 23.64 13.5 19.5 13.5C15.36 13.5 12 16.86 12 21ZM19.5 16.5C21.975 16.5 24 18.525 24 21C24 23.475 21.975 25.5 19.5 25.5C17.025 25.5 15 23.475 15 21C15 18.525 17.025 16.5 19.5 16.5ZM7.5 9H12V6H7.5V1.5H4.5V6H0V9H4.5V13.5H7.5V9Z" fill="#7A7A87"/>
+                                                        </svg>
+                                                        <span>Фото объекта</span>
+                                                    </div>
+                                                    <input type="file" name="images[]" class="dropzoneInput">
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="photo-gallery__image dropzoneContainer">
-                                                <img src="/img/photo-gallery/1.jpg" alt="1">
-                                                <input type="file" name="images[]" class="dropzoneInput">
+                                                <div class="photo-galley__load-btn">
+                                                    <div class="dropzoneContainer__image">
+                                                        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M31.5 9H26.745L24 6H15V9H22.68L25.425 12H31.5V30H7.5V16.5H4.5V30C4.5 31.65 5.85 33 7.5 33H31.5C33.15 33 34.5 31.65 34.5 30V12C34.5 10.35 33.15 9 31.5 9ZM12 21C12 25.14 15.36 28.5 19.5 28.5C23.64 28.5 27 25.14 27 21C27 16.86 23.64 13.5 19.5 13.5C15.36 13.5 12 16.86 12 21ZM19.5 16.5C21.975 16.5 24 18.525 24 21C24 23.475 21.975 25.5 19.5 25.5C17.025 25.5 15 23.475 15 21C15 18.525 17.025 16.5 19.5 16.5ZM7.5 9H12V6H7.5V1.5H4.5V6H0V9H4.5V13.5H7.5V9Z" fill="#7A7A87"/>
+                                                        </svg>
+                                                        <span>Фото объекта</span>
+                                                    </div>
+                                                    <input type="file" name="images[]" class="dropzoneInput">
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="photo-gallery__image dropzoneContainer">
-                                                <img src="/img/photo-gallery/1.jpg" alt="1">
-                                                <input type="file" name="images[]" class="dropzoneInput">
+                                                <div class="photo-galley__load-btn">
+                                                    <div class="dropzoneContainer__image">
+                                                        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M31.5 9H26.745L24 6H15V9H22.68L25.425 12H31.5V30H7.5V16.5H4.5V30C4.5 31.65 5.85 33 7.5 33H31.5C33.15 33 34.5 31.65 34.5 30V12C34.5 10.35 33.15 9 31.5 9ZM12 21C12 25.14 15.36 28.5 19.5 28.5C23.64 28.5 27 25.14 27 21C27 16.86 23.64 13.5 19.5 13.5C15.36 13.5 12 16.86 12 21ZM19.5 16.5C21.975 16.5 24 18.525 24 21C24 23.475 21.975 25.5 19.5 25.5C17.025 25.5 15 23.475 15 21C15 18.525 17.025 16.5 19.5 16.5ZM7.5 9H12V6H7.5V1.5H4.5V6H0V9H4.5V13.5H7.5V9Z" fill="#7A7A87"/>
+                                                        </svg>
+                                                        <span>Фото объекта</span>
+                                                    </div>
+                                                    <input type="file" name="images[]" class="dropzoneInput">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <div class="photo-gallery__image dropzoneContainer">
+                                                <div class="photo-galley__load-btn">
+                                                    <div class="dropzoneContainer__image">
+                                                        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M31.5 9H26.745L24 6H15V9H22.68L25.425 12H31.5V30H7.5V16.5H4.5V30C4.5 31.65 5.85 33 7.5 33H31.5C33.15 33 34.5 31.65 34.5 30V12C34.5 10.35 33.15 9 31.5 9ZM12 21C12 25.14 15.36 28.5 19.5 28.5C23.64 28.5 27 25.14 27 21C27 16.86 23.64 13.5 19.5 13.5C15.36 13.5 12 16.86 12 21ZM19.5 16.5C21.975 16.5 24 18.525 24 21C24 23.475 21.975 25.5 19.5 25.5C17.025 25.5 15 23.475 15 21C15 18.525 17.025 16.5 19.5 16.5ZM7.5 9H12V6H7.5V1.5H4.5V6H0V9H4.5V13.5H7.5V9Z" fill="#7A7A87"/>
+                                                        </svg>
+                                                        <span>Фото объекта</span>
+                                                    </div>
+                                                    <input type="file" name="images[]" class="dropzoneInput">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="photo-gallery__image dropzoneContainer">
+                                                <div class="photo-galley__load-btn">
+                                                    <div class="dropzoneContainer__image">
+                                                        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M31.5 9H26.745L24 6H15V9H22.68L25.425 12H31.5V30H7.5V16.5H4.5V30C4.5 31.65 5.85 33 7.5 33H31.5C33.15 33 34.5 31.65 34.5 30V12C34.5 10.35 33.15 9 31.5 9ZM12 21C12 25.14 15.36 28.5 19.5 28.5C23.64 28.5 27 25.14 27 21C27 16.86 23.64 13.5 19.5 13.5C15.36 13.5 12 16.86 12 21ZM19.5 16.5C21.975 16.5 24 18.525 24 21C24 23.475 21.975 25.5 19.5 25.5C17.025 25.5 15 23.475 15 21C15 18.525 17.025 16.5 19.5 16.5ZM7.5 9H12V6H7.5V1.5H4.5V6H0V9H4.5V13.5H7.5V9Z" fill="#7A7A87"/>
+                                                        </svg>
+                                                        <span>Фото объекта</span>
+                                                    </div>
+                                                    <input type="file" name="images[]" class="dropzoneInput">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="photo-gallery__image dropzoneContainer">
+                                                <div class="photo-galley__load-btn">
+                                                    <div class="dropzoneContainer__image">
+                                                        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M31.5 9H26.745L24 6H15V9H22.68L25.425 12H31.5V30H7.5V16.5H4.5V30C4.5 31.65 5.85 33 7.5 33H31.5C33.15 33 34.5 31.65 34.5 30V12C34.5 10.35 33.15 9 31.5 9ZM12 21C12 25.14 15.36 28.5 19.5 28.5C23.64 28.5 27 25.14 27 21C27 16.86 23.64 13.5 19.5 13.5C15.36 13.5 12 16.86 12 21ZM19.5 16.5C21.975 16.5 24 18.525 24 21C24 23.475 21.975 25.5 19.5 25.5C17.025 25.5 15 23.475 15 21C15 18.525 17.025 16.5 19.5 16.5ZM7.5 9H12V6H7.5V1.5H4.5V6H0V9H4.5V13.5H7.5V9Z" fill="#7A7A87"/>
+                                                        </svg>
+                                                        <span>Фото объекта</span>
+                                                    </div>
+                                                    <input type="file" name="images[]" class="dropzoneInput">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="photo-gallery__image dropzoneContainer">
+                                                <div class="photo-galley__load-btn">
+                                                    <div class="dropzoneContainer__image">
+                                                        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M31.5 9H26.745L24 6H15V9H22.68L25.425 12H31.5V30H7.5V16.5H4.5V30C4.5 31.65 5.85 33 7.5 33H31.5C33.15 33 34.5 31.65 34.5 30V12C34.5 10.35 33.15 9 31.5 9ZM12 21C12 25.14 15.36 28.5 19.5 28.5C23.64 28.5 27 25.14 27 21C27 16.86 23.64 13.5 19.5 13.5C15.36 13.5 12 16.86 12 21ZM19.5 16.5C21.975 16.5 24 18.525 24 21C24 23.475 21.975 25.5 19.5 25.5C17.025 25.5 15 23.475 15 21C15 18.525 17.025 16.5 19.5 16.5ZM7.5 9H12V6H7.5V1.5H4.5V6H0V9H4.5V13.5H7.5V9Z" fill="#7A7A87"/>
+                                                        </svg>
+                                                        <span>Фото объекта</span>
+                                                    </div>
+                                                    <input type="file" name="images[]" class="dropzoneInput">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -297,12 +337,14 @@
                                 <div class="photo-gallery__layout">
                                     <div class="photo-gallery__image dropzoneContainer">
                                         <div class="photo-galley__load-btn">
-                                            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M31.5 9H26.745L24 6H15V9H22.68L25.425 12H31.5V30H7.5V16.5H4.5V30C4.5 31.65 5.85 33 7.5 33H31.5C33.15 33 34.5 31.65 34.5 30V12C34.5 10.35 33.15 9 31.5 9ZM12 21C12 25.14 15.36 28.5 19.5 28.5C23.64 28.5 27 25.14 27 21C27 16.86 23.64 13.5 19.5 13.5C15.36 13.5 12 16.86 12 21ZM19.5 16.5C21.975 16.5 24 18.525 24 21C24 23.475 21.975 25.5 19.5 25.5C17.025 25.5 15 23.475 15 21C15 18.525 17.025 16.5 19.5 16.5ZM7.5 9H12V6H7.5V1.5H4.5V6H0V9H4.5V13.5H7.5V9Z" fill="#7A7A87"/>
-                                            </svg>
-                                            <span>Фото объекта</span>
+                                            <div class="dropzoneContainer__image">
+                                                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M31.5 9H26.745L24 6H15V9H22.68L25.425 12H31.5V30H7.5V16.5H4.5V30C4.5 31.65 5.85 33 7.5 33H31.5C33.15 33 34.5 31.65 34.5 30V12C34.5 10.35 33.15 9 31.5 9ZM12 21C12 25.14 15.36 28.5 19.5 28.5C23.64 28.5 27 25.14 27 21C27 16.86 23.64 13.5 19.5 13.5C15.36 13.5 12 16.86 12 21ZM19.5 16.5C21.975 16.5 24 18.525 24 21C24 23.475 21.975 25.5 19.5 25.5C17.025 25.5 15 23.475 15 21C15 18.525 17.025 16.5 19.5 16.5ZM7.5 9H12V6H7.5V1.5H4.5V6H0V9H4.5V13.5H7.5V9Z" fill="#7A7A87"/>
+                                                </svg>
+                                                <span>Фото объекта</span>
+                                            </div>
+                                            <input type="file" name="images[]" class="dropzoneInput" id="layout">
                                         </div>
-                                        <input type="file" name="images[]" class="dropzoneInput">
                                     </div>
                                 </div>
                             </div>
@@ -330,8 +372,8 @@
                     <div class="row app-submission__row">
                         <div class="col-md-8">
 
-                            <label for="" class="form-label">Дополнительно</label>
-                            <textarea name="" id="" cols="30" rows="10" class="textarea">Актуально! Продажа 2-х комнатной квартиры с ремонтом! Расположение: г.Киев, Печерский район, ул. Большая Васильковская 145/1 (чешский проект 1967г), метро Лыбедская 2 минуты ходьбы. Планировка: Общая площадь=50м, 7этаж/9, Высота потолков = 2,54м. Кухня-гостиная + спальня + санузел + гардеробная Ремонт: В Квартире современный ремонт, мебель и техника, всё остается!</textarea>
+                            <label for="description" class="form-label">Дополнительно</label>
+                            <textarea name="description" id="description" cols="30" rows="10" class="textarea"></textarea>
 
                             <div class="app-submission__options">
                                 <div class="accordion-container">
@@ -351,12 +393,12 @@
                                             <div class="ac-text">
                                                 <div class="row app-submission__option-section">
                                                     <div class="col-md-4">
-                                                        <label for="" class="form-label">Жилая площадь, м2</label>
-                                                        <input type="text" class="input" value="24">
+                                                        <label for="living_area" class="form-label">Жилая площадь, м2</label>
+                                                        <input type="text" class="input" name="living_area" id="living_area" placeholder="Укажите площадь">
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <label for="" class="form-label">Площадь кухни</label>
-                                                        <input type="text" class="input" value="12">
+                                                        <label for="kitchen_area" class="form-label">Площадь кухни</label>
+                                                        <input type="text" class="input" name="kitchen_area" id="kitchen_area" placeholder="Укажите площадь">
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-label">Материал стен</div>
@@ -367,21 +409,21 @@
                                                 <div class="row app-submission__option-section">
                                                     <div class="col-md-4">
                                                         <label for="year" class="form-label">Год постройки</label>
-                                                        <input type="text" class="input" name="year" id="year" value="12">
+                                                        <input type="text" class="input" name="year" id="year" placeholder="Укажите год">
                                                     </div>
                                                     <div class="col-md-4">
                                                         <label for="ceiling_height" class="form-label">Высота потолков, м</label>
-                                                        <input type="text" class="input" name="ceiling_height" id="ceiling_height" value="12">
+                                                        <input type="text" class="input" name="ceiling_height" id="ceiling_height" placeholder="Укажите высоту">
                                                     </div>
                                                     <div class="col-md-4 col-lg-4 col-xl-2">
                                                         <div class="form-label">Мебель</div>
                                                         <div class="radio-container f ai-c">
                                                             <div class="radio-input mr-15">
-                                                                <input type="radio" name="furniture" id="furniture_yes">
+                                                                <input type="radio" name="furniture" class="furniture-input" id="furniture_yes" value="yes">
                                                                 <label for="furniture_yes"><span>Да</span></label>
                                                             </div>
                                                             <div class="radio-input">
-                                                                <input type="radio" name="furniture" id="furniture_no">
+                                                                <input type="radio" name="furniture" class="furniture-input" id="furniture_no" value="no" checked>
                                                                 <label for="furniture_no"><span>Нет</span></label>
                                                             </div>
                                                         </div>
@@ -390,11 +432,11 @@
                                                         <div class="form-label">Паркинг</div>
                                                         <div class="radio-container f ai-c">
                                                             <div class="radio-input mr-15">
-                                                                <input type="radio" name="parking" id="parking_yes">
+                                                                <input type="radio" name="parking" id="parking_yes" class="parking-input" value="yes">
                                                                 <label for="parking_yes"><span>Да</span></label>
                                                             </div>
                                                             <div class="radio-input">
-                                                                <input type="radio" name="parking" id="parking_no">
+                                                                <input type="radio" name="parking" id="parking_no" class="parking-input" value="no" checked>
                                                                 <label for="parking_no"><span>Нет</span></label>
                                                             </div>
                                                         </div>
@@ -416,11 +458,49 @@
 
                         </div>
                     </div>
+
+                    @guest ()
+                    <div class="row app-submission__row">
+                        <div class="col-md-6">
+                            <div class="row feedback">
+                                <div class="col-md-7 col-padding">
+                                    <div class="need-auth">
+                                        <div class="need-auth__avatar">
+                                            <svg width="28" height="42" viewBox="0 0 28 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M13.0413 24.5318C5.58326 25.206 -0.0987139 31.5079 0.000297804 38.9956V39.3753C0.000297804 40.8251 1.17556 42.0003 2.6253 42.0003C4.07504 42.0003 5.2503 40.8251 5.2503 39.3753V38.8906C5.17138 34.2931 8.5642 30.3726 13.1253 29.7906C17.94 29.3132 22.2301 32.8292 22.7075 37.6439C22.7358 37.9285 22.75 38.2143 22.7503 38.5004V39.3753C22.7503 40.8251 23.9255 42.0003 25.3753 42.0003C26.825 42.0003 28.0003 40.8251 28.0003 39.3753V38.5003C27.9917 30.7596 21.7097 24.4915 13.9691 24.5C13.6596 24.5004 13.3501 24.511 13.0413 24.5318Z" fill="#AA0001"/>
+                                                <path d="M14 21C19.7989 21 24.5 16.299 24.5 10.5C24.5 4.70105 19.7989 0 14 0C8.20105 0 3.5 4.70105 3.5 10.5C3.50574 16.2966 8.20342 20.9942 14 21ZM14 5.25C16.8995 5.25 19.25 7.60052 19.25 10.5C19.25 13.3995 16.8995 15.75 14 15.75C11.1005 15.75 8.75 13.3995 8.75 10.5C8.75 7.60052 11.1005 5.25 14 5.25Z" fill="#AA0001"/>
+                                            </svg>
+                                        </div>
+                                        <div class="need-auth__text">
+                                            <span><a href="{{ route('loginForm') }}">Войдите в личный кабинет</a>, чтобы опубликовать.</span>
+                                            <span>Внесённые данные сохранятся.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div>
+                                        <label for="contact_phone" class="form-label">Контактный телефон</label>
+                                        <input type="text" class="input" placeholder="Укажите номер телефона" name="contact_phone" id="contact_phone">
+                                    </div>
+                                    <div class="f jc-sb app-submission__choice">
+                                        <div class="app-submission__choice-item">
+                                            <div class="btn">Я - Собственник</div>
+                                        </div>
+                                        <div class="app-submission__choice-item">
+                                            <div class="btn">Я - Риэлтор</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endguest
+
                     <button type="submit" class="btn form__submit">Опубликовать</button>
                 </div>
             </div>
 
-        </section>
+        </form>
 
         <!-- Баннер -->
         <div class="feedback-banner mt">
@@ -469,6 +549,8 @@
 @section('footer_scripts')
     <script src="{{ asset('js/components/select.js')}}"></script>
     <script src="{{ asset('libs/sortable/sortable.min.js') }}"></script>
+    <script src="{{ asset('js/components/alert.js') }}"></script>
+
     <script src="{{ asset('js/pages/app-submission.js') }}"></script>
     <script src="{{ asset("js/components/submit/main.js") }}"></script>
 @endsection

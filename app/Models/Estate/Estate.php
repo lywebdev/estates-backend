@@ -65,6 +65,11 @@ class Estate extends Model
         ]);
     }
 
+    public function setLayout(string $path)
+    {
+        $this->update(['layout_path' => $path]);
+    }
+
     public static function boot()
     {
         parent::boot();

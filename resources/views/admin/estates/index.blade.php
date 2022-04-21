@@ -44,6 +44,8 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Наименование</th>
+                                        <th>Имя собственника</th>
+                                        <th>Телефон собственника</th>
                                         <th>Действия</th>
                                     </tr>
                                     </thead>
@@ -51,7 +53,9 @@
                                     @foreach ($estates as $estate)
                                         <tr>
                                             <th>{{ $estate->id }}</th>
-                                            <th>{{ $estate->name }}</th>
+                                            <th>{{ $estate->name ? $estate->name : 'Не указано' }}</th>
+                                            <th>{{ $estate->owner_name ? $estate->owner_name : 'Не указано' }}</th>
+                                            <th>{{ $estate->owner_phone ? $estate->owner_phone : 'Не указан' }}</th>
                                             <th class="table__btns">
                                                 <a href="{{ route('admin.estates.edit', $estate->id) }}" class="btn btn-outline-dark btn-flat mr-2">
                                                     <i class="fas fa-edit"></i>
@@ -71,6 +75,8 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Наименование</th>
+                                        <th>Имя собственника</th>
+                                        <th>Телефон собственника</th>
                                         <th>Действия</th>
                                     </tr>
                                     </tfoot>

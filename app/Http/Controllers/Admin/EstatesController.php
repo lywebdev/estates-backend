@@ -87,7 +87,7 @@ class EstatesController extends Controller
                     }
                 }
 
-                $path = 'uploads/estates/' . "$estateCategory/" . $estate->id . '/' . uniqid() . '.';
+                $path = 'uploads/estates/' . "$estateCategory/" . $estate->id . '/' . uniqid();
                 $format = explode('/', explode(';', $fileCopy)[0])[1];
                 $filepath = "$path.$format";
                 $file = base64_decode($imageData);

@@ -12,6 +12,7 @@ class HomeController extends Controller
     {
         $flatEstates = Estate::select('id', 'category', 'price', 'room_size', 'area', 'floor', 'location')
             ->where('category', Estate::CATEGORIES['flats']['slug'])
+            ->where('status', 1)
             ->with([
                 'photos' => function($q) {
                     $q->orderBy('sort', 'asc');

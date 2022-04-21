@@ -33,6 +33,7 @@ DOMLoadedFunctions.push({
         }
 
         // Dropzone
+        /*
         let photoGalleryDropzones = document.querySelectorAll('.dropzoneContainer');
 
         photoGalleryDropzones.forEach((el, index) => {
@@ -92,5 +93,6 @@ DOMLoadedFunctions.push({
             });
 
         });
+        */
     }
 });

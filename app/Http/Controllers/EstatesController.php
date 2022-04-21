@@ -55,7 +55,7 @@ class EstatesController extends Controller
             abort(404);
         }
         $esCategory = (object)Estate::CATEGORIES[$slug];
-        $estates = Estate::where('category', $esCategory->slug);
+        $estates = Estate::where('category', $esCategory->slug)->where('status', 1);
 
         if ($request->input('room_size')) {
             $roomSize = $request->input('room_size');

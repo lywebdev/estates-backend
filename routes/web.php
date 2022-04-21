@@ -39,6 +39,8 @@ Route::post('agreements/sign/{type}/{subtype?}', [\App\Http\Controllers\Agreemen
 
 Route::get('ad-submit/{category}', [\App\Http\Controllers\SubmitController::class, 'submitForm'])->name('submit');
 
+Route::post('ad-submit/flats', [\App\Http\Controllers\SubmitController::class, 'submit_flats'])->name('submit.flats');
+
 
 Route::group([
     'prefix' => 'api',

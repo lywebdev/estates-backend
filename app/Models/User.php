@@ -79,6 +79,11 @@ class User extends Authenticatable
         return $this->role == User::ROLES['admin']['name'];
     }
 
+    public function isAgent()
+    {
+        return $this->role == User::ROLES['agent']['name'];
+    }
+
     public function role()
     {
         return User::ROLES[$this->role]['rus'];

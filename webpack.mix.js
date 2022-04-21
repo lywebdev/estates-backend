@@ -23,6 +23,7 @@ mix
     .minify('resources/js/components/accordion.min.js', 'public/js/components/accordion.min.js')
     .minify('resources/js/components/select.js', 'public/js/components/select.js')
     .minify('resources/js/components/repeater.js', 'public/js/components/repeater.js')
+    .minify('resources/js/components/alert.js', 'public/js/components/alert.js')
 
     .minify('resources/js/components/submit/main.js', 'public/js/components/submit/main.js')
 

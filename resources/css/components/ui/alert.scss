@@ -1,0 +1,115 @@
+.alert-component {
+    width: 100%;
+    min-height: 65px;
+    position: fixed;
+    bottom: 0;
+    background: $color-black;
+    z-index: 10001;
+    box-shadow: 0 0 0 0 rgba(255,255,255,0);
+    transition: all 0.4s;
+
+    transform: translateY(100%);
+
+    &.visible {
+        transform: translateY(0);
+        box-shadow: 0 0 4px 3px rgba(0,0,0,0.1);
+    }
+
+    &.hidden {
+        transform: translateY(100%);
+    }
+
+    &.success-type {
+        background: #28A745;
+    }
+
+    &.warning-type {
+    }
+
+    &.error-type {
+        background: $color-red;
+    }
+
+
+    &.direction_up-down {
+        top: 0 !important;
+        bottom: unset !important;
+        transform: translateY(-100%) !important;
+
+        &.visible {
+            transform: translateY(0) !important;
+        }
+
+        &.hidden {
+            transform: translateY(-100%);
+        }
+    }
+
+
+    &.confirmBtnPosY_bottom {
+        display: flex;
+        flex-direction: column-reverse;
+
+        .alert-component__body {
+            align-self: flex-start;
+            padding-bottom: 0;
+        }
+
+        .alert-component__closing-zone {
+            position: static;
+            top: unset;
+            left: unset;
+            right: unset;
+            bottom: unset;
+            display: inline-block;
+            margin-bottom: 20px;
+            margin-top: 15px;
+            padding: 0 30px;
+        }
+    }
+
+    &.confirmBtnPosX_right {
+        align-items: flex-end;
+    }
+}
+
+.alert-component__closing-zone {
+    position: absolute;
+    right: 30px;
+    color: #fff;
+    top: 12.5px;
+    text-decoration: underline;
+    font-size: 12px;
+    cursor: pointer;
+
+    .understand {
+        color: #fff;
+    }
+}
+
+.alert-component__body {
+    color: #fff;
+    padding: 30px 30px 25px 30px;
+    font-size: 1em;
+    line-height: 125%;
+    font-family: $font-main;
+}
+
+.alert__confirm-btn {
+    padding: 12px 17px;
+    background: #fff;
+    border-radius: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 16px;
+    text-decoration: none;
+    color: $color-black !important;
+    box-shadow: 0 0 15px 3px rgb(255, 255, 255, 20%);
+    transition: all 0.3s ease;
+
+    &:hover {
+        box-shadow: 0 0 12px 6px rgb(255, 255, 255, 17%);
+    }
+}
