@@ -111,6 +111,18 @@ $slideThumbHeight: 172px;
   height: 172px;
   margin-top: 20px;
   position: relative;
+
+    .swiper {
+        height: 100%;
+
+        .swiper-slide {
+            height: 100%;
+
+            .slide__bg {
+                height: 100%;
+            }
+        }
+    }
 }
 
 .ec-slider__thumbs__slide {

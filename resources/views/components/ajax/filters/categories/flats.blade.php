@@ -26,15 +26,15 @@
             <div class="col-md-6 first-screen__filters--cost">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="form-label">Стоимость,</div>
+                        <div class="form-label">Стоимость</div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 col-sm-6 col">
-                        <input type="text" class="input" name="cost_to" placeholder="От">
+                        <input type="text" class="input" name="cost_from" id="cost_from" placeholder="От">
                     </div>
                     <div class="col-md-6 col-sm-6 col">
-                        <input type="text" class="input" name="cost_from" placeholder="До">
+                        <input type="text" class="input" name="cost_to" id="cost_to" placeholder="До">
                     </div>
                 </div>
             </div>
@@ -47,10 +47,10 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6 col-sm-6 col">
-                        <input type="text" class="input" name="area_to" placeholder="От">
+                        <input type="text" class="input" name="area_from" id="area_from" placeholder="От">
                     </div>
                     <div class="col-md-6 col-sm-6 col">
-                        <input type="text" class="input" name="area_from" placeholder="До">
+                        <input type="text" class="input" name="area_to" id="area_to" placeholder="До">
                     </div>
                 </div>
             </div>

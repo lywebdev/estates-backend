@@ -17,7 +17,9 @@ class EstatesController extends Controller
         $esCategory = (object)Estate::CATEGORIES[$category];
         $estate = Estate::where('category', $category)
             ->where('id', $id)
-            ->with(['photos'])
+            ->with(['photos' => function($q) {
+                $q->orderBy('sort', 'asc');
+            }])
             ->first();
         if (!$estate) {
             abort(404);

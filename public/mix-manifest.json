@@ -7,7 +7,6 @@
     "/js/components/repeater.js": "/js/components/repeater.js",
     "/js/components/alert.js": "/js/components/alert.js",
     "/js/components/submit/main.js": "/js/components/submit/main.js",
-    "/js/components/filters/main.js": "/js/components/filters/main.js",
     "/js/components/ajax/filters.js": "/js/components/ajax/filters.js",
     "/js/pages/about.js": "/js/pages/about.js",
     "/js/pages/app-submission.js": "/js/pages/app-submission.js",

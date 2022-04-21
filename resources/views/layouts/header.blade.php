@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" type="image/x-icon" href="{{ asset('img/icons/favicon.png') }}">
+{{--    <link rel="icon" type="image/x-icon" href="{{ asset('img/icons/favicon.png') }}">--}}
 
     {{-- Ext Meta --}}
     <title>@yield('page_title')</title>
@@ -86,6 +86,9 @@
                     </div>
                 </div>
                 <div class="header-topbar__communication f ai-c">
+                    @if (\Illuminate\Support\Facades\Auth::check() && \Illuminate\Support\Facades\Auth::user()->isAdmin())
+                        <a href="{{ route('admin.home') }}" class="header-topbar__communication-item btn btn--no-bg jc-c">Админ-панель</a>
+                    @endif
                     <a href="#" class="header-topbar__communication-item btn btn--no-bg jc-sb important">Важно
                         <span>
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

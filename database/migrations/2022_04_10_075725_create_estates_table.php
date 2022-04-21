@@ -38,21 +38,26 @@ class CreateEstatesTable extends Migration
             $table->integer('sewage_id')->nullable();
             $table->integer('status_id')->nullable();
             $table->integer('estate_location_id')->nullable();
+            $table->integer('sell_variant_id')->nullable();
+            $table->integer('floor_covering_id')->nullable();
 
-            $table->string('location', 255)->index()->nullable();
+//            $table->string('location', 255)->index()->nullable();
             $table->double('area')->index()->nullable();
             $table->double('living_area')->index()->nullable();
             $table->double('kitchen_area')->index()->nullable();
+            $table->double('acres')->index()->nullable();
             $table->tinyInteger('room_size')->index()->default(0)->nullable();
             $table->string('facing', 255)->index()->nullable();
             $table->tinyInteger('floor')->index()->nullable();
             $table->tinyInteger('floors')->index()->nullable();
             $table->integer('year')->index()->nullable(); // Год постройки
             $table->double('ceiling_height')->index()->nullable();
+            $table->string('balcony')->nullable();
 
             $table->boolean('zd_deadend')->nullable();
             $table->boolean('parking')->nullable();
             $table->boolean('furniture')->nullable();
+            $table->boolean('bathroom')->nullable();
 
             $table->string('room_number')->nullable();
             $table->string('house_number')->nullable();

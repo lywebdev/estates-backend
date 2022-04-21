@@ -15,7 +15,7 @@ class BuyerController extends Controller
         $data = (object)$data;
         $agreement = [];
         $date = date('d.m.Y');
-        $time = date('i:s');
+        $time = date('h:i');
 
         $name = $data->name ?? '';
         $surname = $data->surname ?? '';

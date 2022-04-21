@@ -37,91 +37,12 @@
                             <div class="card-header">
                                 <h3 class="card-title">Добавление объекта недвижимости</h3>
                             </div>
-
-
                             <form action="{{ route('admin.estates.store') }}" method="post" enctype="multipart/form-data" id="form" name="form">
                                 @csrf
                                 <div class="card-body">
                                     <input type="hidden" name="category" id="estate_category">
 
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="name">Название</label>
-                                                <input type="text" class="form-control" id="name" name="name" placeholder="Введите название объекта недвижимости">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="price">Стоимость</label>
-                                                <input type="number"
-                                                       class="form-control"
-                                                       id="price"
-                                                       name="price"
-                                                       placeholder="Укажите стоимость"
-                                                >
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="location">Адрес</label>
-                                                <input type="text" class="form-control" id="location" name="location" placeholder="Укажите адрес">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="number">Площадь</label>
-                                                <input type="text" class="form-control" id="area" name="area" placeholder="Укажите площадь">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>Состояние</label>
-                                                <select class="form-control select2" style="width: 100%;" name="condition">
-                                                    <option selected value="-1">Не указано</option>
-                                                    @foreach ($conditions as $row)
-                                                        <option value="{{ $row->id }}">{{ $row->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Город</label>
-                                                <select class="form-control select2" style="width: 100%;" name="city_id">
-                                                    <option selected value="-1">Не указано</option>
-                                                    @foreach ($cities as $city)
-                                                        <option value="{{ $city->id }}">{{ $city->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Район</label>
-                                                <select class="form-control select2" style="width: 100%;" name="district_id">
-                                                    <option selected value="-1">Не указано</option>
-                                                    @foreach ($districts as $district)
-                                                        <option value="{{ $district->id }}">{{ $district->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <div class="icheck-success d-inline">
-                                                    <input type="checkbox" name="sold" id="sold">
-                                                    <label for="sold">Продано</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @include('admin.estates.sections.common')
 
                                     <h4 class="">Выберите тип недвижимости</h4>
                                     <ul class="nav nav-tabs" id="custom-content-above-tab" role="tablist">
@@ -150,106 +71,9 @@
                                              data-estate-category="{{ \App\Models\Estate\Estate::CATEGORIES['flats']['slug'] }}"
                                              role="tabpanel"
                                              aria-labelledby="custom-content-above-home-tab">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="row">
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <label for="flats[living_area]">Жилая площадь</label>
-                                                                <input type="number" class="form-control" id="flats[living_area]" name="flats[living_area]" placeholder="Укажите жилую площадь">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <label for="flats[room_size]">Комнатность</label>
-                                                                <input type="number" class="form-control" id="flats[room_size]" name="flats[room_size]" placeholder="Укажите комнатность">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <label for="flats[facing]">Облицовка</label>
-                                                                <input type="text" class="form-control" id="flats[facing]" name="flats[facing]" placeholder="Какая облицовка?">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <label for="flats[floor]">Этаж</label>
-                                                                <input type="number" class="form-control" id="flats[floor]" name="flats[floor]" placeholder="Укажите этаж">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="flats[year]">Год постройки</label>
-                                                        <input type="number" class="form-control" id="flats[year]" name="flats[year]" placeholder="Год постройки?">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label>Материал стен</label>
-                                                        <select class="form-control select2" style="width: 100%;" name="flats[wall_material]">
-                                                            <option selected value="-1">Не указано</option>
-                                                            @foreach ($wallMaterials as $row)
-                                                                <option value="{{ $row->id }}">{{ $row->name }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="flats[ceiling_height]">Высота потолков</label>
-                                                        <input type="text" class="form-control" id="flats[ceiling_height]" name="flats[ceiling_height]" placeholder="Высота потолков?">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="flats[floors]">Этажность</label>
-                                                        <input type="number" class="form-control" id="flats[floors]" name="flats[floors]" placeholder="Укажите этаж">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label>Мебель</label>
-                                                                <select class="form-control select2" style="width: 100%;" name="flats[furniture]">
-                                                                    <option selected value="-1">Не указано</option>
-                                                                    @foreach ($furniture as $row)
-                                                                        <option value="{{ $row->id }}">{{ $row->name }}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label>Санузел</label>
-                                                                <select class="form-control select2" style="width: 100%;" name="flats[bathroom]">
-                                                                    <option selected value="-1">Не указано</option>
-                                                                    @foreach ($bathrooms as $row)
-                                                                        <option value="{{ $row->id }}">{{ $row->name }}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label>Парковка</label>
-                                                                <select class="form-control select2" style="width: 100%;" name="flats[parking]">
-                                                                    <option selected value="-1">Не указано</option>
-                                                                    @foreach ($parking as $row)
-                                                                        <option value="{{ $row->id }}">{{ $row->name }}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+
+                                            @include('admin.estates.sections.flat')
+
                                         </div>
                                         <div class="tab-pane fade show pt-2"
                                              id="estate_{{ \App\Models\Estate\Estate::CATEGORIES['houses']['slug'] }}"

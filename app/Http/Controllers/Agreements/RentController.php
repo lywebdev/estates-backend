@@ -8,15 +8,14 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class AgentController extends Controller
+class RentController extends Controller
 {
-    public static function agent($data)
+    public static function terant($data)
     {
         $data = (object)$data;
         $agreement = [];
         $date = date('d.m.Y');
         $time = date('h:i');
-        // Сначала вносим в бд - потом генерим. всё делаем в транзакции, если возникает возникает ошибка при генерации pdf - исключение и удаляем из бд этот договор
 
         $name = $data->name ?? '';
         $surname = $data->surname ?? '';
@@ -28,11 +27,13 @@ class AgentController extends Controller
         $estatesAddress = $data->estate_address ?? '';
         $commission = $data->commission_amount ?? null;
         $sms = $data->sms ?? '';
+        $similarObjects = $data->nbs ? $data->nbs : null;
+        $thirdParties = $data->treeface ? $data->treeface : null;
 
 
         try {
             $createdAgreement = Agreement::create([
-                'type' => Agreement::TYPES['agent'],
+                'type' => Agreement::TYPES['buyer'],
                 'subtype' => null,
                 'date' => $date,
                 'time' => $time,
@@ -40,14 +41,14 @@ class AgentController extends Controller
                 'surname' => $surname,
                 'patronymic' => $patronymic,
                 'iin' => $iin,
-                'estate_address' => null,
+                'estate_address' => $estatesAddress,
                 'registration_address' => $registrationAddress,
                 'living_address' => $addressResidence,
                 'agreement_end_date' => null,
                 'commission' => $commission,
                 'phone' => $phone,
-                'third_parties' => null,
-                'similar_objects' => null,
+                'third_parties' => json_encode($thirdParties),
+                'similar_objects' => json_encode($similarObjects),
                 'package' => null,
                 'sms' => null,
             ]);
@@ -73,6 +74,8 @@ class AgentController extends Controller
         $agreement['address_object'] = $estatesAddress;
         $agreement['commission_price'] = $commission;
         $agreement['sms_code'] = $sms;
+        $agreement['nbs'] = implode('|', $similarObjects);
+        $agreement['treeface'] = implode('|', $thirdParties);
 
         $params = [
             'title' => $agreement['title'],
@@ -81,8 +84,8 @@ class AgentController extends Controller
             'time' => $time
         ];
 
-        $pdf = Pdf::loadView('templates.pdfs.agreements.agent', $params);
-        $filename = "agreements/agent-" . $createdAgreement->id . ".pdf";
+        $pdf = Pdf::loadView('templates.pdfs.agreements.rent.terant', $params);
+        $filename = "agreements/rent-terant-" . $createdAgreement->id . ".pdf";
         $encodedData = $pdf->download($filename);
         Storage::disk('hidden')->put($filename, $encodedData);
 

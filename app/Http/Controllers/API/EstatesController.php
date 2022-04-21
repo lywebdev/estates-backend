@@ -30,6 +30,35 @@ class EstatesController extends BaseController
                 $estates->where('room_size', $request->options['roomSize']);
             }
         }
+        if (isset($request->options['district'])) {
+            $district = $request->options['district'];
+            if ($district != -1) {
+                $estates->where('district_id', $request->options['district']);
+            }
+        }
+        if (isset($request->options['city'])) {
+            $city = $request->options['city'];
+            if ($city != -1) {
+                $estates->where('city_id', $request->options['city']);
+            }
+        }
+        if (isset($request->options['cost_from'])) {
+            $costFrom = $request->options['cost_from'];
+            $estates->where('price', '>=', (integer)$costFrom);
+        }
+        if (isset($request->options['cost_to'])) {
+            $costTo = $request->options['cost_to'];
+            $estates->where('price', '<=', (integer)$costTo);
+        }
+        if (isset($request->options['area_from'])) {
+            $areaFrom = $request->options['area_from'];
+            $estates->where('area', '>=', $areaFrom);
+        }
+        if (isset($request->options['area_to'])) {
+            $areaTo = $request->options['area_to'];
+            $estates->where('area', '<=', $areaTo);
+        }
+
 
         $estates->with([
             'photos' => function($q) {
@@ -74,6 +103,23 @@ class EstatesController extends BaseController
                 $estates->where('city_id', $request->options['city']);
             }
         }
+        if (isset($request->options['cost_from'])) {
+            $costFrom = $request->options['cost_from'];
+            $estates->where('price', '>=', $costFrom);
+        }
+        if (isset($request->options['cost_to'])) {
+            $costTo = $request->options['cost_to'];
+            $estates->where('price', '<=', $costTo);
+        }
+        if (isset($request->options['area_from'])) {
+            $areaFrom = $request->options['area_from'];
+            $estates->where('area', '>=', $areaFrom);
+        }
+        if (isset($request->options['area_to'])) {
+            $areaTo = $request->options['area_to'];
+            $estates->where('area', '<=', $areaTo);
+        }
+
 
         $estatesCount = $estates->count();
         $template = "";

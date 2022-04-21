@@ -1,3 +1,8 @@
+// Fonts:
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap');
+
+$font-main: 'Manrope', sans-serif;
+
 .auth-form {
     margin-top: 150px;
     display: flex;
@@ -5,6 +10,7 @@
     justify-content: center;
     align-items: center;
     height: 100%;
+    font-family: $font-main;
 
     form {
         box-shadow: 0 0 15px 3px rgba(0,0,0,0.1);
@@ -46,6 +52,7 @@
         padding: 8px 10px;
         border-radius: 10px;
         color: #fff;
+        font-family: $font-main;
         transition: all 0.3s;
 
         &:hover {
@@ -65,6 +72,7 @@
         background: #fff;
         color: #212137;
         outline: none;
+        font-family: $font-main;
     }
 }
 
@@ -80,7 +88,22 @@
     margin-bottom: 15px;
     font-size: 24px;
     font-weight: bold;
-    font-family: Calibri, sans-serif;
+    font-family: $font-main;
+}
+
+
+.auth-form__redirect-btn {
+    margin-top: 15px;
+    text-align: center;
+
+    a {
+        text-decoration: none;
+        color: black;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
 }
 
 
@@ -100,11 +123,11 @@
             height: auto;
             flex-direction: column !important;
             align-items: flex-start;
-            margin: 0;
+            margin: 0 0 20px 0;
 
             .images-container__item-img {
                 height: 190px;
-                width: 250px;
+                width: 100%;
 
                 img {
                     height: 100%;

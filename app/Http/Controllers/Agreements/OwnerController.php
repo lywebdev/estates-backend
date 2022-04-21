@@ -15,7 +15,7 @@ class OwnerController extends Controller
         $data = (object)$data;
         $agreement = [];
         $date = date('d.m.Y');
-        $time = date('i:s');
+        $time = date('h:i');
         // Сначала вносим в бд - потом генерим. всё делаем в транзакции, если возникает возникает ошибка при генерации pdf - исключение и удаляем из бд этот договор
 
         $name = $data->name ?? '';
@@ -95,7 +95,7 @@ class OwnerController extends Controller
         $data = (object)$data;
         $agreement = [];
         $date = date('d.m.Y');
-        $time = date('i:s');
+        $time = date('h:i');
 
         $name = $data->name ?? '';
         $surname = $data->surname ?? '';
@@ -175,7 +175,7 @@ class OwnerController extends Controller
         $data = (object)$data;
         $agreement = [];
         $date = date('d.m.Y');
-        $time = date('i:s');
+        $time = date('h:i');
 
         $name = $data->name ?? '';
         $surname = $data->surname ?? '';

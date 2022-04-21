@@ -31,9 +31,13 @@
     <div class="room__main">
         <div class="room__top">
             <div class="ls">
-                <div class="room__cost">{{ number_format($estate->price, 2, '', ' ') }}&nbsp;〒</div>
+                @if ($estate->price)
+                    <div class="room__cost">{{ $estate->price }}&nbsp;〒</div>
+                @else
+                    <div class="room__cost">Цену уточнить у агента</div>
+                @endif
                 @if (isset($estate->price) && isset($estate->area))
-                    <div class="room__cost-full">{{ number_format(($estate->price / $estate->area), 2, '', ' ') }}&nbsp;〒/м2</div>
+                    <div class="room__cost-full">{{ $estate->price / $estate->area }}&nbsp;〒/м2</div>
                 @endif
             </div>
             <div class="rs">

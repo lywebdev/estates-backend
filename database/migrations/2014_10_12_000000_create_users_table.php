@@ -35,7 +35,7 @@ class CreateUsersTable extends Migration
             $table->string('gender')->index()->nullable();
             $table->string('auto')->default(0);
             $table->text('about')->nullable();
-            $table->string('role')->default(\App\Models\User::ROLES['admin']['name']);
+            $table->string('role')->default(\App\Models\User::ROLES['user']['name']);
 
             $table->rememberToken();
             $table->timestamps();

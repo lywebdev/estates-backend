@@ -10,10 +10,12 @@ use App\Models\Estate\Bathroom;
 use App\Models\Estate\Category;
 use App\Models\Estate\Condition;
 use App\Models\Estate\Estate;
+use App\Models\Estate\FloorCovering;
 use App\Models\Estate\Furniture;
 use App\Models\Estate\Heating;
 use App\Models\Estate\Parking;
 use App\Models\Estate\Purpose;
+use App\Models\Estate\SellVariant;
 use App\Models\Estate\Sewage;
 use App\Models\Estate\Status;
 use App\Models\Estate\WallMaterial;
@@ -26,9 +28,7 @@ class EstatesController extends Controller
 {
     public function index()
     {
-        $estates = Estate::select('id', 'name')
-            ->orderBy('id', 'desc')
-            ->get();
+        $estates = Estate::orderBy('id', 'desc')->get();
 
         return view('admin.estates.index', compact('estates'));
     }
@@ -47,6 +47,8 @@ class EstatesController extends Controller
         $statuses = Status::all();
         $wallMaterials = WallMaterial::all();
         $parking = Parking::all();
+        $sellVariants = SellVariant::all();
+        $floorCoverings = FloorCovering::all();
 
 
         return view('admin.estates.create', compact(
@@ -61,7 +63,9 @@ class EstatesController extends Controller
             'sewage',
             'statuses',
             'wallMaterials',
-            'parking'
+            'parking',
+            'sellVariants',
+            'floorCoverings'
         ));
     }
 
@@ -119,11 +123,39 @@ class EstatesController extends Controller
         if (!$estate) {
             return redirect()->back()->with('error', 'Не удалось найти объект недвижимости с указанным ID');
         }
+        $estatesCategories = Estate::CATEGORIES;
         $cities = City::all();
         $districts = District::all();
-        $estatesCategories = Estate::CATEGORIES;
+        $bathrooms = Bathroom::all();
+        $conditions = Condition::all();
+        $furniture = Furniture::all();
+        $heating = Heating::all();
+        $purposes = Purpose::all();
+        $sewage = Sewage::all();
+        $statuses = Status::all();
+        $wallMaterials = WallMaterial::all();
+        $parking = Parking::all();
+        $sellVariants = SellVariant::all();
+        $floorCoverings = FloorCovering::all();
 
-        return view('admin.estates.edit', compact('estate', 'estatesCategories', 'cities', 'districts'));
+
+        return view('admin.estates.edit', compact(
+            'estate',
+            'estatesCategories',
+            'cities',
+            'districts',
+            'bathrooms',
+            'conditions',
+            'furniture',
+            'heating',
+            'purposes',
+            'sewage',
+            'statuses',
+            'wallMaterials',
+            'parking',
+            'sellVariants',
+            'floorCoverings'
+        ));
     }
 
     public function update(StoreRequest $request, $id)

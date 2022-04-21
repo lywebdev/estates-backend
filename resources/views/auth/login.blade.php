@@ -18,7 +18,7 @@
     <form action="{{ route('login') }}" method="post">
         @csrf
         <div class="form-input">
-            <input class="input" type="text" name="email" placeholder="Логин">
+            <input class="input" type="text" name="email" placeholder="Email">
             @error('email')
             <span class="auth-form__error">{{ $message }}</span>
             @enderror
@@ -30,6 +30,7 @@
             @enderror
         </div>
         <button type="submit" class="btn submit">Войти</button>
+        <div class="auth-form__redirect-btn"><a href="{{ route('registerForm') }}">Зарегистрироваться</a></div>
     </form>
 </div>
 

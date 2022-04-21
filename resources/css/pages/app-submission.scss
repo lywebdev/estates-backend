@@ -12,6 +12,14 @@
     display: none !important;
   }
 
+    .sortable__item {
+
+        &:hover {
+            background: $color-red !important;
+            color: #fff !important;
+        }
+    }
+
   .col-padding {
     margin-top: auto;
   }

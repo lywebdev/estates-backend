@@ -1140,6 +1140,15 @@ body {
   margin-top: 20px;
   position: relative;
 }
+.ec-slider__thumbs .swiper {
+  height: 100%;
+}
+.ec-slider__thumbs .swiper .swiper-slide {
+  height: 100%;
+}
+.ec-slider__thumbs .swiper .swiper-slide .slide__bg {
+  height: 100%;
+}
 
 .ec-slider__thumbs__slide {
   height: 172px;
@@ -3330,10 +3339,6 @@ body {
   text-decoration: none;
   transition: all 0.4s;
 }
-.sortable__item:hover {
-  background: #AA0001;
-  color: #fff;
-}
 
 .sortable__item--bordered {
   border: 1px solid #AA0001;
@@ -3774,6 +3779,10 @@ body {
 .page__app-submission .add-photo,
 .page__app-submission .add-layout {
   display: none !important;
+}
+.page__app-submission .sortable__item:hover {
+  background: #AA0001 !important;
+  color: #fff !important;
 }
 .page__app-submission .col-padding {
   margin-top: auto;

@@ -43,9 +43,9 @@ class UsersController extends Controller
 
     public function edit($id)
     {
-        $user = User::find($id);
+        $rowUser = User::find($id);
 
-        return view('admin.users.edit', compact('user'));
+        return view('admin.users.edit', compact('rowUser'));
     }
 
     public function update(StoreRequest $request, $id)

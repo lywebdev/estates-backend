@@ -21,6 +21,8 @@ class CreateEstatesOptionsTables extends Migration
         Schema::create('estate_conditions', function (Blueprint $table) {
             $table->id();
             $table->string('name', 100)->index();
+            $table->string('preview')->nullable();
+            $table->text('description')->nullable();
         });
 
         Schema::create('estate_locations', function (Blueprint $table) {
@@ -62,6 +64,16 @@ class CreateEstatesOptionsTables extends Migration
             $table->id();
             $table->string('name', 100)->index();
         });
+
+        Schema::create('estate_sell_variants', function (Blueprint $table) {
+            $table->id();
+            $table->string('name', 100)->index();
+        });
+
+        Schema::create('estate_floor_coverings', function (Blueprint $table) {
+            $table->id();
+            $table->string('name', 100)->index();
+        });
     }
 
     /**
@@ -81,5 +93,7 @@ class CreateEstatesOptionsTables extends Migration
         Schema::dropIfExists('estate_sewage');
         Schema::dropIfExists('estate_statuses');
         Schema::dropIfExists('estate_wall_materials');
+        Schema::dropIfExists('estate_sell_variants');
+        Schema::dropIfExists('estate_floor_coverings');
     }
 }

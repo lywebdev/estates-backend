@@ -37,7 +37,7 @@
                                 <h3 class="card-title">Редактирование пользователя</h3>
                             </div>
 
-                            <form action="{{ route('admin.users.update', $user->id) }}" method="post" enctype="multipart/form-data" id="form" name="form">
+                            <form action="{{ route('admin.users.update', $rowUser->id) }}" method="post" enctype="multipart/form-data" id="form" name="form">
                                 @csrf
                                 @method('PUT')
                                 <div class="card-body">
@@ -51,7 +51,7 @@
                                                     id="name"
                                                     name="name"
                                                     placeholder="Введите имя пользователя"
-                                                    value="{{ $user->name }}"
+                                                    value="{{ $rowUser->name }}"
                                                 >
                                             </div>
                                         </div>
@@ -64,7 +64,7 @@
                                                     id="surname"
                                                     name="surname"
                                                     placeholder="Введите фамилию пользователя"
-                                                    value="{{ $user->surname }}"
+                                                    value="{{ $rowUser->surname }}"
                                                 >
                                             </div>
                                         </div>
@@ -77,7 +77,7 @@
                                                     id="patronymic"
                                                     name="patronymic"
                                                     placeholder="Введите отчество пользователя"
-                                                    value="{{ $user->patronymic }}"
+                                                    value="{{ $rowUser->patronymic }}"
                                                 >
                                             </div>
                                         </div>
@@ -86,35 +86,35 @@
                                                 <label for="role">Роль</label>
                                                 <select class="form-control select2" style="width: 100%;" name="role">
                                                     <option value="{{ \App\Models\User::ROLES['user']['name'] }}"
-                                                        @if ($user->role == \App\Models\User::ROLES['user']['name'])
+                                                        @if ($rowUser->role == \App\Models\User::ROLES['user']['name'])
                                                             selected
                                                         @endif
                                                     >
                                                         {{ \App\Models\User::ROLES['user']['rus'] }}
                                                     </option>
                                                     <option value="{{ \App\Models\User::ROLES['candidat']['name'] }}"
-                                                        @if ($user->role == \App\Models\User::ROLES['candidat']['name'])
+                                                        @if ($rowUser->role == \App\Models\User::ROLES['candidat']['name'])
                                                             selected
                                                         @endif
                                                     >
                                                         {{ \App\Models\User::ROLES['candidat']['rus'] }}
                                                     </option>
                                                     <option value="{{ \App\Models\User::ROLES['agent']['name'] }}"
-                                                        @if ($user->role == \App\Models\User::ROLES['agent']['name'])
+                                                        @if ($rowUser->role == \App\Models\User::ROLES['agent']['name'])
                                                             selected
                                                         @endif
                                                     >
                                                         {{ \App\Models\User::ROLES['agent']['rus'] }}
                                                     </option>
                                                     <option value="{{ \App\Models\User::ROLES['moderator']['name'] }}"
-                                                        @if ($user->role == \App\Models\User::ROLES['moderator']['name'])
+                                                        @if ($rowUser->role == \App\Models\User::ROLES['moderator']['name'])
                                                             selected
                                                         @endif
                                                     >
                                                         {{ \App\Models\User::ROLES['moderator']['rus'] }}
                                                     </option>
                                                     <option value="{{ \App\Models\User::ROLES['admin']['name'] }}"
-                                                        @if ($user->role == \App\Models\User::ROLES['admin']['name'])
+                                                        @if ($rowUser->role == \App\Models\User::ROLES['admin']['name'])
                                                             selected
                                                         @endif
                                                     >
@@ -134,7 +134,7 @@
                                                     id="tg_chat_id"
                                                     name="tg_chat_id"
                                                     placeholder="ID телеграм чата"
-                                                    value="{{ $user->tg_chat_id }}"
+                                                    value="{{ $rowUser->tg_chat_id }}"
                                                 >
                                             </div>
                                         </div>
@@ -147,7 +147,7 @@
                                                     id="age"
                                                     name="age"
                                                     placeholder="Укажите возраст"
-                                                    value="{{ $user->age }}"
+                                                    value="{{ $rowUser->age }}"
                                                 >
                                             </div>
                                         </div>
@@ -160,7 +160,7 @@
                                                     id="phone"
                                                     name="phone"
                                                     placeholder="Номер телефона"
-                                                    value="{{ $user->phone }}"
+                                                    value="{{ $rowUser->phone }}"
                                                 >
                                             </div>
                                         </div>
@@ -170,14 +170,14 @@
                                                 <select class="form-control select2" style="width: 100%;" name="gender">
                                                     <option selected value="-1">Не указан</option>
                                                     <option value="{{ \App\Models\User::GENDERS['man']['name'] }}"
-                                                        @if ($user->gender == \App\Models\User::GENDERS['man']['name'])
+                                                        @if ($rowUser->gender == \App\Models\User::GENDERS['man']['name'])
                                                             selected
                                                         @endif
                                                     >
                                                         {{ \App\Models\User::GENDERS['man']['rus'] }}
                                                     </option>
                                                     <option value="{{ \App\Models\User::GENDERS['woman']['name'] }}"
-                                                        @if ($user->gender == \App\Models\User::GENDERS['woman']['name'])
+                                                        @if ($rowUser->gender == \App\Models\User::GENDERS['woman']['name'])
                                                             selected
                                                         @endif
                                                     >
@@ -198,7 +198,7 @@
                                                     name="email"
                                                     placeholder="Укажите email пользователя"
                                                     readonly
-                                                    value="{{ $user->email }}"
+                                                    value="{{ $rowUser->email }}"
                                                 >
                                             </div>
                                         </div>
@@ -219,7 +219,7 @@
                                 </div>
 
                                 <div class="card-footer">
-                                    <button type="submit" id="submitBtn" name="submitBtn" class="btn btn-primary">Добавить</button>
+                                    <button type="submit" id="submitBtn" name="submitBtn" class="btn btn-primary">Сохранить</button>
                                 </div>
                             </form>
                         </div>

@@ -1,10 +1,5 @@
 DOMLoadedFunctions.push({
     call: () => {
-        /**
-         * Должны прочитать GET запрос, если там параметры есть и тип у нас у формы AJAX - заносим в GET параметры
-         * @param category
-         * @param options
-         */
         let params = helper.getGETParams();
 
         function countOffers(category, options) {
@@ -59,6 +54,19 @@ DOMLoadedFunctions.push({
             if (params.city) {
                 options.city = Number(params.city);
             }
+            if (params.cost_from) {
+                options.cost_from = Number(params.cost_from);
+            }
+            if (params.cost_to) {
+                options.cost_to = Number(params.cost_to);
+            }
+            if (params.area_from) {
+                options.area_from = Number(params.area_from);
+            }
+            if (params.area_to) {
+                options.area_to = Number(params.area_to);
+            }
+
 
             function setValues() {
                 form.find('.hidden').remove();
@@ -88,8 +96,42 @@ DOMLoadedFunctions.push({
                 success: (response) => {
                     $('.first-screen__filters-preloader').addClass('loading');
                     form.append(response.data.template);
-                    // form.html(response.data.template);
                     form.attr('action', response.data.action);
+
+                    let costFromInput = $('#cost_from');
+                    let costToInput = $('#cost_to');
+                    costFromInput.val(options.cost_from);
+                    costToInput.val(options.cost_to);
+                    costFromInput.keyup((e) => {
+                        options.cost_from = e.target.value;
+                    });
+                    costToInput.keyup((e) => {
+                        options.cost_to = e.target.value;
+                    })
+                    costFromInput.change((e) => {
+                        countOffers(category, options);
+                    });
+                    costToInput.change((e) => {
+                        countOffers(category, options);
+                    });
+
+                    let areaFromInput = $('#area_from');
+                    let areaToInput = $('#area_to');
+                    areaFromInput.val(options.area_from);
+                    areaToInput.val(options.area_to);
+                    areaFromInput.keyup((e) => {
+                        options.area_from = e.target.value;
+                    });
+                    areaToInput.keyup((e) => {
+                        options.area_to = e.target.value;
+                    })
+                    areaFromInput.change((e) => {
+                        countOffers(category, options);
+                    });
+                    areaToInput.change((e) => {
+                        countOffers(category, options);
+                    });
+
 
                     $.when(
                         $.ajax({

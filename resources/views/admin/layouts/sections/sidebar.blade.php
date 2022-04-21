@@ -79,12 +79,12 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{ route('admin.estates.index') }}" class="nav-link">
+                                <a href="{{ route('admin.estates.parking.index') }}" class="nav-link">
                                     <p>Все варианты парковки</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('admin.estates.create') }}" class="nav-link">
+                                <a href="{{ route('admin.estates.parking.create') }}" class="nav-link">
                                     <p>Добавить вариант парковки</p>
                                 </a>
                             </li>
@@ -107,6 +107,48 @@
                             <li class="nav-item">
                                 <a href="{{ route('admin.estates.bathrooms.create') }}" class="nav-link">
                                     <p>Добавить вариант санузла</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa-solid fa-house"></i>
+                            <p>
+                                Покрытие пола
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('admin.estates.floor-coverings.index') }}" class="nav-link">
+                                    <p>Все варианты покрытия полов</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.estates.floor-coverings.create') }}" class="nav-link">
+                                    <p>Добавить вариант покрытия пола</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa-solid fa-house"></i>
+                            <p>
+                                Продажа
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('admin.estates.sell-variants.index') }}" class="nav-link">
+                                    <p>Все варианты продажи</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.estates.sell-variants.create') }}" class="nav-link">
+                                    <p>Добавить вариант продажи</p>
                                 </a>
                             </li>
                         </ul>

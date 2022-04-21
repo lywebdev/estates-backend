@@ -131,6 +131,8 @@ Route::group([
         Route::resource('sewage', \App\Http\Controllers\Admin\Estates\SewageController::class);
         Route::resource('status', \App\Http\Controllers\Admin\Estates\StatusController::class);
         Route::resource('wall-material', \App\Http\Controllers\Admin\Estates\WallMaterialsController::class);
+        Route::resource('sell-variants', \App\Http\Controllers\Admin\Estates\SellVariantsController::class);
+        Route::resource('floor-coverings', \App\Http\Controllers\Admin\Estates\FloorCoveringController::class);
     });
 
     Route::resource('estates', \App\Http\Controllers\Admin\EstatesController::class);

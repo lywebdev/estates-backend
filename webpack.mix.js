@@ -27,7 +27,7 @@ mix
 
     .minify('resources/js/components/submit/main.js', 'public/js/components/submit/main.js')
 
-    .minify('resources/js/components/filters/main.js', 'public/js/components/filters/main.js')
+    // .minify('resources/js/components/filters/main.js', 'public/js/components/filters/main.js')
     .minify('resources/js/components/ajax/filters.js', 'public/js/components/ajax/filters.js')
 
     .minify('resources/js/pages/about.js', 'public/js/pages/about.js')
