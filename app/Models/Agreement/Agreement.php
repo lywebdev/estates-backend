@@ -17,7 +17,7 @@ class Agreement extends Model
             'name' => 'Собственник',
             'list' => [
                 'standard' => 'Стандартный для Собственника',
-                'partial_exclusive' => 'Частичный эксклюзив для Собственника',
+                'partialExclusive' => 'Частичный эксклюзив для Собственника',
                 'exclusive' => 'Эксклюзив для собственника'
             ]
         ],

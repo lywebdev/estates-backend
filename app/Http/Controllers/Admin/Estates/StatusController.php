@@ -3,83 +3,57 @@
 namespace App\Http\Controllers\Admin\Estates;
 
 use App\Http\Controllers\Controller;
+use App\Models\Estate\Status;
 use Illuminate\Http\Request;
 
 class StatusController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $statuses = Status::all();
+
+        return view('admin.estates.options.status.index', compact('statuses'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('admin.estates.options.status.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string',
+        ]);
+        $newStatus = Status::create($data);
+        if (!$newStatus) {
+            return redirect()->back()->with('error', 'Не удалось добавить статус');
+        }
+
+        return redirect()->route('admin.estates.status.index')->with('success', 'Статус добавлен');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $status = Status::find($id);
+
+        return view('admin.estates.options.status.edit', compact('status'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string',
+        ]);
+        $status = Status::find($id);
+        $status->update($data);
+
+        return redirect()->back()->with('success', 'Информация обновлена');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        Status::destroy($id);
+        return redirect()->route('admin.estates.status.index')->with('success', 'Статус удалён');
     }
 }

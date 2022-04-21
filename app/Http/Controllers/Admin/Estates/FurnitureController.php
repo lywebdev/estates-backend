@@ -3,83 +3,57 @@
 namespace App\Http\Controllers\Admin\Estates;
 
 use App\Http\Controllers\Controller;
+use App\Models\Estate\Furniture;
 use Illuminate\Http\Request;
 
 class FurnitureController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $furnitures = Furniture::all();
+
+        return view('admin.estates.options.furniture.index', compact('furnitures'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('admin.estates.options.furniture.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string',
+        ]);
+        $newFurniture = Furniture::create($data);
+        if (!$newFurniture) {
+            return redirect()->back()->with('error', 'Не удалось добавить вариант мебели');
+        }
+
+        return redirect()->route('admin.estates.furniture.index')->with('success', 'Вариант мебели добавлен');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $furniture = Furniture::find($id);
+
+        return view('admin.estates.options.furniture.edit', compact('furniture'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string',
+        ]);
+        $furniture = Furniture::find($id);
+        $furniture->update($data);
+
+        return redirect()->back()->with('success', 'Информация обновлена');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        Furniture::destroy($id);
+        return redirect()->route('admin.estates.furniture.index')->with('success', 'Вариант мебели удалён');
     }
 }

@@ -38,13 +38,14 @@ class AgreementController extends Controller
 
         if ($isSubAgreement) {
             $agreement['name'] = Agreement::TYPES[$type]['list'][$subtype];
+            $viewName = "agreements.$type.$subtype";
         }
         else {
             $agreement['name'] = Agreement::TYPES[$type];
+            $viewName = "agreements.$type";
         }
 
-
-        return view("agreements.$type.$subtype", compact('agreement'));
+        return view($viewName, compact('agreement'));
     }
 
     public function sign($type, $subtype = null, Request $request)
@@ -66,6 +67,10 @@ class AgreementController extends Controller
         $agreementType = $type;
         if ($isSubAgreement) {
             $agreementType = $subtype;
+        }
+
+        if (!$request->agreement) {
+            return redirect()->back()->with('error', 'Вы не согласны с политикой');
         }
 
         if (file_exists($controllerPath)) {

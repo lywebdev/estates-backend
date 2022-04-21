@@ -3,83 +3,57 @@
 namespace App\Http\Controllers\Admin\Estates;
 
 use App\Http\Controllers\Controller;
+use App\Models\Estate\Parking;
 use Illuminate\Http\Request;
 
 class ParkingController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $parkings = Parking::all();
+
+        return view('admin.estates.options.parking.index', compact('parkings'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('admin.estates.options.parking.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string',
+        ]);
+        $newParking = Parking::create($data);
+        if (!$newParking) {
+            return redirect()->back()->with('error', 'Не удалось добавить вариант парковки');
+        }
+
+        return redirect()->route('admin.estates.parking.index')->with('success', 'Вариант парковки добавлен');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $parking = Parking::find($id);
+
+        return view('admin.estates.options.parking.edit', compact('parking'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string',
+        ]);
+        $parking = Parking::find($id);
+        $parking->update($data);
+
+        return redirect()->back()->with('success', 'Информация обновлена');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        Parking::destroy($id);
+        return redirect()->route('admin.estates.parking.index')->with('success', 'Вариант парковки удалён');
     }
 }

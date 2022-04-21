@@ -68,6 +68,7 @@
                             </li>
                         </ul>
                     </li>
+
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fa-solid fa-house"></i>
@@ -93,7 +94,7 @@
                         <a href="#" class="nav-link">
                             <i class="nav-icon fa-solid fa-house"></i>
                             <p>
-                                Варианты санузлов
+                                Санузел
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
@@ -106,6 +107,174 @@
                             <li class="nav-item">
                                 <a href="{{ route('admin.estates.bathrooms.create') }}" class="nav-link">
                                     <p>Добавить вариант санузла</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa-solid fa-house"></i>
+                            <p>
+                                Ремонт
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('admin.estates.conditions.index') }}" class="nav-link">
+                                    <p>Все варианты ремонта</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.estates.conditions.create') }}" class="nav-link">
+                                    <p>Добавить вариант ремонта</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa-solid fa-house"></i>
+                            <p>
+                                Мебель
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('admin.estates.furniture.index') }}" class="nav-link">
+                                    <p>Все варианты мебели</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.estates.furniture.create') }}" class="nav-link">
+                                    <p>Добавить вариант мебели</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa-solid fa-house"></i>
+                            <p>
+                                Материал стен
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('admin.estates.wall-material.index') }}" class="nav-link">
+                                    <p>Все материалы стен</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.estates.wall-material.create') }}" class="nav-link">
+                                    <p>Добавить материал стен</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa-solid fa-house"></i>
+                            <p>
+                                Отопление
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('admin.estates.heating.index') }}" class="nav-link">
+                                    <p>Все варианты отопления</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.estates.heating.create') }}" class="nav-link">
+                                    <p>Добавить вариант отопления</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa-solid fa-house"></i>
+                            <p>
+                                Канализация
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('admin.estates.sewage.index') }}" class="nav-link">
+                                    <p>Все варианты канализации</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.estates.sewage.create') }}" class="nav-link">
+                                    <p>Добавить вариант канализации</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa-solid fa-house"></i>
+                            <p>
+                                Статус объекта
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('admin.estates.status.index') }}" class="nav-link">
+                                    <p>Все статусы</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.estates.status.create') }}" class="nav-link">
+                                    <p>Добавить статус</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa-solid fa-house"></i>
+                            <p>
+                                Расположение
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('admin.estates.locations.index') }}" class="nav-link">
+                                    <p>Все варианты расположения</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.estates.locations.create') }}" class="nav-link">
+                                    <p>Добавить вариант расположения</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa-solid fa-house"></i>
+                            <p>
+                                Цели
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('admin.estates.purposes.index') }}" class="nav-link">
+                                    <p>Все цели объектов недвижимости</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.estates.purposes.create') }}" class="nav-link">
+                                    <p>Добавить цель</p>
                                 </a>
                             </li>
                         </ul>

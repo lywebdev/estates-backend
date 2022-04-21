@@ -33,8 +33,8 @@ class StoreRequest extends FormRequest
             'price'       => ['numeric', 'nullable'],
             'location'    => ['string', 'nullable'],
             'area'        => ['numeric', 'nullable'],
-            'condition'   => ['string', 'nullable'],
-            'parking'     => ['boolean'],
+            'condition_id' => ['numeric', 'nullable'],
+            'parking_id'     => ['numeric', 'nullable'],
             'sold'        => ['boolean'],
             'district_id' => ['numeric', 'nullable'],
             'city_id'     => ['numeric', 'nullable'],
@@ -49,10 +49,11 @@ class StoreRequest extends FormRequest
                     'floor'          => ['numeric', 'nullable'],
                     'floors'         => ['numeric', 'nullable'],
                     'year'           => ['numeric', 'nullable'],
-                    'wall_material'  => ['string', 'nullable'],
                     'ceiling_height' => ['nullable'],
-                    'furniture'      => ['boolean'],
-                    'bathroom'       => ['boolean'],
+
+                    'wall_material_id'  => ['numeric', 'nullable'],
+                    'furniture_id'      => ['numeric', 'nullable'],
+                    'bathroom_id'       => ['numeric', 'nullable'],
                 ]);
                 break;
             }
@@ -64,41 +65,65 @@ class StoreRequest extends FormRequest
 
     protected function prepareForValidation()
     {
-        $this->parking  = $this->request->get('parking') ? true : false;
         $this->sold     = $this->request->get('sold') ? true : false;
         $this->flat     = $this->request->get('flats');
         $this->city_id     = $this->request->get('city_id');
         $this->district_id = $this->request->get('district_id');
+        $this->bathroom_id = $this->request->get('bathroom_id');
+        $this->wall_material_id = $this->request->get('wall_material_id');
+        $this->furniture_id = $this->request->get('furniture_id');
+        $this->parking_id = $this->request->get('parking_id');
+        $this->condition_id = $this->request->get('condition_id');
         if ($this->city_id == -1) {
             $this->city_id = null;
         }
         if ($this->district_id == -1) {
             $this->district_id = null;
         }
+        if ($this->bathroom_id == -1) {
+            $this->bathroom_id = null;
+        }
+        if ($this->wall_material_id == -1) {
+            $this->wall_material_id = null;
+        }
+        if ($this->furniture_id == -1) {
+            $this->furniture_id = null;
+        }
+        if ($this->parking_id == -1) {
+            $this->parking_id = null;
+        }
+        if ($this->condition_id == -1) {
+            $this->condition_id = null;
+        }
+
+
 
         if ($this->category == Estate::CATEGORIES['flats']['slug']) {
-            $this->flat['furniture'] = isset($this->flat['furniture']) ? true : false;
-            $this->flat['bathroom']  = isset($this->flat['bathroom']) ? true : false;
+            $this->flat['furniture_id'] = $this->furniture_id;
+            $this->flat['bathroom_id']  = $this->bathroom_id;
+            $this->flat['wall_material_id']  = $this->wall_material_id;
 
             $this->merge([
-                'furniture'      => $this->flat['furniture'],
-                'bathroom'       => $this->flat['bathroom'],
+                'furniture_id'      => $this->flat['furniture_id'],
+                'bathroom_id'       => $this->flat['bathroom_id'],
+                'wall_material_id'  => $this->flat['wall_material_id'],
+
                 'living_area'    => $this->flat['living_area'],
                 'room_size'      => $this->flat['room_size'],
                 'facing'         => $this->flat['facing'],
                 'floor'          => $this->flat['floor'],
                 'floors'         => $this->flat['floors'],
                 'year'           => $this->flat['year'],
-                'wall_material'  => $this->flat['wall_material'],
                 'ceiling_height' => $this->flat['ceiling_height'],
             ]);
         }
 
         $this->merge([
-            'parking' => $this->parking,
             'sold' => $this->sold,
             'city_id' => $this->city_id,
-            'district_id' => $this->district_id
+            'district_id' => $this->district_id,
+            'parking_id' => $this->parking_id,
+            'condition_id' => $this->condition_id,
         ]);
     }
 }

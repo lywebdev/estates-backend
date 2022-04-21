@@ -58,13 +58,13 @@
                             <div class="col-lg-3 col-md-6">
                                 <div class="vacancy-card">
                                     <div class="vacancy-card__name">Частичный эксклюзив для Собственника</div>
-                                    <a href="#" class="vacancy-card__btn btn">Заключить</a>
+                                    <a href="{{ route('agreements.agreement', ['owner', 'partialExclusive']) }}" class="vacancy-card__btn btn">Заключить</a>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6">
                                 <div class="vacancy-card">
                                     <div class="vacancy-card__name">Эксклюзив для собственника</div>
-                                    <a href="#" class="vacancy-card__btn btn">Заключить</a>
+                                    <a href="{{ route('agreements.agreement', ['owner', 'exclusive']) }}" class="vacancy-card__btn btn">Заключить</a>
                                 </div>
                             </div>
                         </div>
@@ -79,13 +79,13 @@
                             <div class="col-lg-3 col-md-6">
                                 <div class="vacancy-card">
                                     <div class="vacancy-card__name">Покупатель</div>
-                                    <a href="#" class="vacancy-card__btn btn">Заключить</a>
+                                    <a href="{{ route('agreements.agreement', ['buyer']) }}" class="vacancy-card__btn btn">Заключить</a>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6">
                                 <div class="vacancy-card">
                                     <div class="vacancy-card__name">Кандидат-агент</div>
-                                    <a href="#" class="vacancy-card__btn btn">Заключить</a>
+                                    <a href="{{ route('agreements.agreement', ['agent']) }}" class="vacancy-card__btn btn">Заключить</a>
                                 </div>
                             </div>
                         </div>

@@ -3,83 +3,57 @@
 namespace App\Http\Controllers\Admin\Estates;
 
 use App\Http\Controllers\Controller;
+use App\Models\Estate\Location;
 use Illuminate\Http\Request;
 
 class EstateLocationsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $locations = Location::all();
+
+        return view('admin.estates.options.locations.index', compact('locations'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('admin.estates.options.locations.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string',
+        ]);
+        $newLocation = Location::create($data);
+        if (!$newLocation) {
+            return redirect()->back()->with('error', 'Не удалось добавить локацию');
+        }
+
+        return redirect()->route('admin.estates.locations.index')->with('success', 'Локация добавлена');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $location = Location::find($id);
+
+        return view('admin.estates.options.locations.edit', compact('location'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string',
+        ]);
+        $location = Location::find($id);
+        $location->update($data);
+
+        return redirect()->back()->with('success', 'Информация обновлена');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        Location::destroy($id);
+        return redirect()->route('admin.estates.locations.index')->with('success', 'Состояние удалено');
     }
 }

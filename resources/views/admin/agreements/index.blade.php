@@ -35,7 +35,7 @@
                                 <h3 class="card-title">Договора</h3>
                             </div>
                             <!-- /.card-header -->
-                            <div class="card-body table-responsive p-0" style="height: 300px;">
+                            <div class="card-body table-responsive p-0" style="height: 1000px;">
                                 @if ($agreements)
                                     <table class="table table-head-fixed text-nowrap">
                                         <thead>

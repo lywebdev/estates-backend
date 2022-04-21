@@ -12,7 +12,6 @@ class AgreementsController extends Controller
     {
         $agreements = Agreement::all();
 
-
         return view('admin.agreements.index', compact('agreements'));
     }
 }

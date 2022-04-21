@@ -6,8 +6,17 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Estates\StoreRequest;
 use App\Models\City;
 use App\Models\District;
+use App\Models\Estate\Bathroom;
 use App\Models\Estate\Category;
+use App\Models\Estate\Condition;
 use App\Models\Estate\Estate;
+use App\Models\Estate\Furniture;
+use App\Models\Estate\Heating;
+use App\Models\Estate\Parking;
+use App\Models\Estate\Purpose;
+use App\Models\Estate\Sewage;
+use App\Models\Estate\Status;
+use App\Models\Estate\WallMaterial;
 use App\Rules\Auth\ValidateDataFilter;
 use App\Services\MediaService;
 use Illuminate\Http\Request;
@@ -29,8 +38,31 @@ class EstatesController extends Controller
         $estatesCategories = Estate::CATEGORIES;
         $cities = City::all();
         $districts = District::all();
+        $bathrooms = Bathroom::all();
+        $conditions = Condition::all();
+        $furniture = Furniture::all();
+        $heating = Heating::all();
+        $purposes = Purpose::all();
+        $sewage = Sewage::all();
+        $statuses = Status::all();
+        $wallMaterials = WallMaterial::all();
+        $parking = Parking::all();
 
-        return view('admin.estates.create', compact('estatesCategories', 'cities', 'districts'));
+
+        return view('admin.estates.create', compact(
+            'estatesCategories',
+            'cities',
+            'districts',
+            'bathrooms',
+            'conditions',
+            'furniture',
+            'heating',
+            'purposes',
+            'sewage',
+            'statuses',
+            'wallMaterials',
+            'parking'
+        ));
     }
 
     public function store(StoreRequest $request)

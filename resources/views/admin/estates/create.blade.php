@@ -78,8 +78,13 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="condition">Состояние</label>
-                                                <input type="text" class="form-control" id="condition" name="condition" placeholder="Каково состояние?">
+                                                <label>Состояние</label>
+                                                <select class="form-control select2" style="width: 100%;" name="condition">
+                                                    <option selected value="-1">Не указано</option>
+                                                    @foreach ($conditions as $row)
+                                                        <option value="{{ $row->id }}">{{ $row->name }}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -109,22 +114,10 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <div class="icheck-success d-inline">
-                                                            <input type="checkbox" name="parking" id="parking">
-                                                            <label for="parking">Парковка</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <div class="icheck-success d-inline">
-                                                            <input type="checkbox" name="sold" id="sold">
-                                                            <label for="sold">Продано</label>
-                                                        </div>
-                                                    </div>
+                                            <div class="form-group">
+                                                <div class="icheck-success d-inline">
+                                                    <input type="checkbox" name="sold" id="sold">
+                                                    <label for="sold">Продано</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -196,8 +189,13 @@
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <label for="flats[wall_material]">Материал стен</label>
-                                                        <input type="text" class="form-control" id="flats[wall_material]" name="flats[wall_material]" placeholder="Материал стен?">
+                                                        <label>Материал стен</label>
+                                                        <select class="form-control select2" style="width: 100%;" name="flats[wall_material]">
+                                                            <option selected value="-1">Не указано</option>
+                                                            @foreach ($wallMaterials as $row)
+                                                                <option value="{{ $row->id }}">{{ $row->name }}</option>
+                                                            @endforeach
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
@@ -214,24 +212,39 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-3">
+                                                <div class="col-md-12">
                                                     <div class="row">
-                                                        <div class="col-md-12">
+                                                        <div class="col-md-4">
                                                             <div class="form-group">
-                                                                <div class="icheck-success d-inline">
-                                                                    <input type="checkbox" name="flats[furniture]" id="flats[furniture]">
-                                                                    <label for="flats[furniture]">Мебель</label>
-                                                                </div>
+                                                                <label>Мебель</label>
+                                                                <select class="form-control select2" style="width: 100%;" name="flats[furniture]">
+                                                                    <option selected value="-1">Не указано</option>
+                                                                    @foreach ($furniture as $row)
+                                                                        <option value="{{ $row->id }}">{{ $row->name }}</option>
+                                                                    @endforeach
+                                                                </select>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
+                                                        <div class="col-md-4">
                                                             <div class="form-group">
-                                                                <div class="icheck-success d-inline">
-                                                                    <input type="checkbox" name="flats[bathroom]" id="flats[bathroom]">
-                                                                    <label for="flats[bathroom]">Ванная</label>
-                                                                </div>
+                                                                <label>Санузел</label>
+                                                                <select class="form-control select2" style="width: 100%;" name="flats[bathroom]">
+                                                                    <option selected value="-1">Не указано</option>
+                                                                    @foreach ($bathrooms as $row)
+                                                                        <option value="{{ $row->id }}">{{ $row->name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Парковка</label>
+                                                                <select class="form-control select2" style="width: 100%;" name="flats[parking]">
+                                                                    <option selected value="-1">Не указано</option>
+                                                                    @foreach ($parking as $row)
+                                                                        <option value="{{ $row->id }}">{{ $row->name }}</option>
+                                                                    @endforeach
+                                                                </select>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -266,8 +279,13 @@
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <label for="house[wall_material]">Материал стен</label>
-                                                        <input type="text" class="form-control" id="house[wall_material]" name="house[wall_material]" placeholder="Материал стен?">
+                                                        <label>Материал стен</label>
+                                                        <select class="form-control select2" style="width: 100%;" name="house[wall_material]">
+                                                            <option selected value="-1">Не указано</option>
+                                                            @foreach ($wallMaterials as $row)
+                                                                <option value="{{ $row->id }}">{{ $row->name }}</option>
+                                                            @endforeach
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">

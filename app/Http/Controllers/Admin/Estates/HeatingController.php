@@ -3,83 +3,57 @@
 namespace App\Http\Controllers\Admin\Estates;
 
 use App\Http\Controllers\Controller;
+use App\Models\Estate\Heating;
 use Illuminate\Http\Request;
 
 class HeatingController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $heating = Heating::all();
+
+        return view('admin.estates.options.heating.index', compact('heating'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('admin.estates.options.heating.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string',
+        ]);
+        $newHeating = Heating::create($data);
+        if (!$newHeating) {
+            return redirect()->back()->with('error', 'Не удалось добавить вариант отопления');
+        }
+
+        return redirect()->route('admin.estates.heating.index')->with('success', 'Вариант отопления добавлен');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $heating = Heating::find($id);
+
+        return view('admin.estates.options.heating.edit', compact('heating'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string',
+        ]);
+        $heating = Heating::find($id);
+        $heating->update($data);
+
+        return redirect()->back()->with('success', 'Информация обновлена');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        Heating::destroy($id);
+        return redirect()->route('admin.estates.heating.index')->with('success', 'Вариант отопления удалён');
     }
 }
