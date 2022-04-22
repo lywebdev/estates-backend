@@ -71,7 +71,9 @@ class CreateEstatesTable extends Migration
             $table->string('owner_phone2')->nullable();
             $table->string('owner_phone3')->nullable();
 
+            $table->string('transformer_substation')->nullable();
             $table->string('electricity_max')->nullable();
+
             $table->string('layout_path')->nullable();
 
             $table->string('map_coords', 255)->nullable();

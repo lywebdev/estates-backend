@@ -107,6 +107,7 @@ function main() {
         let furniture = false;
         let parking   = false;
         let bathroom  = false;
+        let zd_deadend = false;
         $('.furniture-input').each((index, el) => {
             if (el.checked && $(el).val() === 'yes') {
                 furniture = true;
@@ -120,6 +121,11 @@ function main() {
         $('.bathroom-input').each((index, el) => {
             if (el.checked && $(el).val() === 'yes') {
                 bathroom = true;
+            }
+        });
+        $('.zd_deadend-input').each((index, el) => {
+            if (el.checked && $(el).val() === 'yes') {
+                zd_deadend = true;
             }
         });
 
@@ -152,6 +158,8 @@ function main() {
         let kitchen_area = $('#kitchen_area');
         let year = $('#year');
         let ceiling_height = $('#ceiling_height');
+        let transformer_substation = $('#transformer_substation');
+        let electricity_max = $('#electricity_max');
 
         requestData.price  = setNumber(price);
         requestData.area   = setNumber(area);
@@ -164,16 +172,19 @@ function main() {
         requestData.kitchen_area = setNumber(kitchen_area);
         requestData.year = setNumber(year);
         requestData.ceiling_height = setNumber(ceiling_height);
+        requestData.electricity_max = setNumber(electricity_max);
 
         requestData.street = street.val();
         requestData.owner_name  = owner_name.val();
         requestData.owner_phone = owner_phone.val();
         requestData.description = description.val();
+        requestData.transformer_substation = transformer_substation.val();
         // requestData.room_size = Number($('#room_size').val());
 
         requestData.parking   = parking;
         requestData.furniture = furniture;
         requestData.bathroom  = bathroom;
+        requestData.zd_deadend = zd_deadend;
     }
 
     function citiesSelect() {
@@ -411,6 +422,18 @@ function main() {
         sewagesSelect();
     }
 
+    function commercialFormInit() {
+        requestData.category = 'commercial';
+
+        citiesSelect();
+        conditionsSelect();
+        districtsSelect();
+        roomSizeSelect();
+        wallMaterialsSelect();
+        bathroomsSelect();
+        purposesSelect();
+        sewagesSelect();
+    }
 
 
 
@@ -420,6 +443,9 @@ function main() {
     }
     else if (category === 'regions') {
         regionsFormInit();
+    }
+    else if (category === 'commercial') {
+        commercialFormInit();
     }
     else {
         location="/";

@@ -118,7 +118,19 @@
 
   .ac-text {
     font-family: $font-main !important;
-    padding: 45px 0 0 0 !important;
+    padding: 20px 0 0 0 !important;
+
+      .checkbox-block {
+          margin-bottom: 0;
+      }
+
+      .app-submission__option-section {
+          margin-bottom: 15px;
+      }
+
+      .app-submission__option-select {
+          margin-bottom: 15px;
+      }
   }
 }
 

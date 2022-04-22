@@ -42,6 +42,8 @@ class SubmitStoreRequest extends FormRequest
             'year' => ['numeric', 'nullable'],
             'ceiling_height' => ['numeric', 'nullable'],
             'room_size' => ['numeric', 'nullable'],
+            'transformer_substation' => ['string', 'nullable'],
+            'electricity_max' => ['string', 'nullable'],
 
             'parking'   => ['boolean', 'nullable'],
             'furniture' => ['boolean', 'nullable'],
@@ -74,6 +76,8 @@ class SubmitStoreRequest extends FormRequest
         $year   = $this->request->get('year');
         $ceilingHeight = $this->request->get('ceiling_height');
         $roomSize = $this->request->get('room_size');
+        $transformerSubstratction = $this->request->get('transformer_substation');
+        $electricityMax = $this->request->get('electricity_max');
 
         $price  = (isset($price) && $price != "0") ? (double)$price : null;
         $area   = (isset($area) && $area != "0") ? (double)$area : null;
@@ -90,6 +94,8 @@ class SubmitStoreRequest extends FormRequest
         $year   = (isset($year) && $year != "0") ? $year : null;
         $ceilingHeight = (isset($ceilingHeight) && $ceilingHeight != "0") ? (double)$ceilingHeight : null;
         $roomSize = (isset($roomSize) && $roomSize != "0") ? $roomSize : null;
+        $transformerSubstratction = (isset($transformerSubstratction) && $transformerSubstratction != "0") ? $transformerSubstratction : null;
+        $electricityMax = (isset($electricityMax) && $electricityMax != "0") ? $electricityMax : null;
 
         $parking   = $this->request->get('parking');
         $furniture = $this->request->get('furniture');
@@ -132,6 +138,8 @@ class SubmitStoreRequest extends FormRequest
             'year'   => $year,
             'ceiling_height' => $ceilingHeight,
             'room_size' => $roomSize,
+            'transformer_substation' => $transformerSubstratction,
+            'electricity_max' => $electricityMax,
 
             'parking'   => $parking,
             'furniture' => $furniture,

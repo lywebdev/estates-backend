@@ -20,7 +20,17 @@ class HomeController extends Controller
             ->orderBy('id', 'desc')
             ->limit(8)
             ->get();
+        $hotFlats = Estate::where('category', Estate::CATEGORIES['flats']['slug'])
+            ->where('status', 1)
+            ->with([
+                'photos' => function($q) {
+                    $q->orderBy('sort', 'desc');
+                }
+            ])
+            ->inRandomOrder()
+            ->limit(8)
+            ->get();
 
-        return view('home', compact('flatEstates'));
+        return view('home', compact('flatEstates', 'hotFlats'));
     }
 }

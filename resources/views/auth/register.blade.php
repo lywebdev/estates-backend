@@ -41,6 +41,10 @@
             <span class="auth-form__error">{{ $message }}</span>
             @enderror
         </div>
+        <label for="agreement">
+            <input type="checkbox" name="agreement" id="agreement">
+            Я согласен с политикой обработки персональных данных
+        </label>
         <button type="submit" class="btn submit">Создать аккаунт</button>
         <div class="auth-form__redirect-btn"><a href="{{ route('loginForm') }}">Авторизоваться</a></div>
     </form>

@@ -41,8 +41,21 @@ class EstatesController extends Controller
         $estate->info = trim(trim($estate->info, ' '), ',');
         $estate->options = EstateService::getOptionsTemplate($estate);
 
+        $similarEstates = Estate::where('category', Estate::CATEGORIES['flats']['slug'])
+            ->where('id', '!=', $estate->id)
+            ->where(function($query) use ($estate) {
+                $query->orWhere('room_size', $estate->room_size)
+                    ->orWhere('area', $estate->area)
+                    ->orWhere('floor', $estate->floor)
+                    ->orWhere('floors', $estate->floors)
+                    ->orWhere('living_area', $estate->living_area)
+                    ->orWhere('year', $estate->year);
+            })
+            ->limit(4)
+            ->get();
 
-        return view('estates.show', compact('esCategory', 'estate'));
+
+        return view('estates.show', compact('esCategory', 'estate', 'similarEstates'));
     }
 
     public function index()

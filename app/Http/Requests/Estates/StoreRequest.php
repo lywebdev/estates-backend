@@ -94,6 +94,30 @@ class StoreRequest extends FormRequest
                 ]);
                 break;
             }
+            case Estate::CATEGORIES['commercial']['slug']: {
+                $rules = array_merge($rules, [
+                    'acres'          => ['numeric', 'nullable'],
+                    'living_area'    => ['numeric', 'nullable'],
+                    'room_size'      => ['numeric', 'nullable'],
+                    'floor'          => ['numeric', 'nullable'],
+                    'floors'         => ['numeric', 'nullable'],
+                    'ceiling_height' => ['numeric', 'nullable'],
+                    'house_number'   => ['string', 'nullable'],
+                    'transformer_substation' => ['string', 'nullable'],
+                    'electricity_max' => ['string', 'nullable'],
+
+                    'purpose_id'        => ['numeric', 'nullable'],
+                    'wall_material_id'  => ['numeric', 'nullable'],
+                    'sewage_id'         => ['numeric', 'nullable'],
+                    'bathroom_id'       => ['numeric', 'nullable'],
+                    'condition_id'      => ['numeric', 'nullable'],
+
+                    'furniture' => ['boolean', 'nullable'],
+                    'parking'   => ['boolean', 'nullable'],
+                    'zd_deadend' => ['boolean', 'nullable'],
+                ]);
+                break;
+            }
         }
 
 
@@ -109,6 +133,7 @@ class StoreRequest extends FormRequest
 
         $this->flat = $this->request->get('flats');
         $this->region = $this->request->get('regions');
+        $this->commercial = $this->request->get('commercial');
 
         $this->city_id     = $this->request->get('city_id');
         $this->district_id = $this->request->get('district_id');
@@ -130,6 +155,14 @@ class StoreRequest extends FormRequest
                 $this->condition_id = isset($this->region['condition_id']) ? $this->region['condition_id'] : -1;
                 $this->purpose_id = isset($this->region['purpose_id']) ? $this->region['purpose_id'] : -1;
                 $this->sewage_id = isset($this->region['sewage_id']) ? $this->region['sewage_id'] : -1;
+                break;
+            }
+            case 'commercial': {
+                $this->bathroom_id = isset($this->commercial['bathroom_id']) ? $this->commercial['bathroom_id'] : -1;
+                $this->wall_material_id = isset($this->commercial['wall_material_id']) ? $this->commercial['wall_material_id'] : -1;
+                $this->condition_id = isset($this->commercial['condition_id']) ? $this->commercial['condition_id'] : -1;
+                $this->purpose_id = isset($this->commercial['purpose_id']) ? $this->commercial['purpose_id'] : -1;
+                $this->sewage_id = isset($this->commercial['sewage_id']) ? $this->commercial['sewage_id'] : -1;
                 break;
             }
         }
@@ -195,7 +228,6 @@ class StoreRequest extends FormRequest
                 'house_number'   => isset($this->flat['house_number']) ? $this->flat['house_number'] : null,
             ]);
         }
-
         if ($this->category == 'regions') {
             $merge = array_merge($merge, [
                 'wall_material_id'  => $this->wall_material_id,
@@ -213,6 +245,26 @@ class StoreRequest extends FormRequest
                 'furniture'      => isset($this->region['furniture']) ? true : false,
                 'parking'        => isset($this->region['parking']) ? true : false,
                 'house_number'   => isset($this->region['house_number']) ? $this->region['house_number'] : null,
+            ]);
+        }
+        if ($this->category == 'commercial') {
+            $merge = array_merge($merge, [
+                'wall_material_id'  => $this->wall_material_id,
+                'bathroom_id'       => $this->bathroom_id,
+                'condition_id'      => $this->condition_id,
+                'purpose_id'        => $this->purpose_id,
+                'sewage_id'         => $this->sewage_id,
+
+                'kitchen_area'   => isset($this->commercial['kitchen_area']) ? $this->commercial['kitchen_area'] : null,
+                'living_area'    => isset($this->commercial['living_area']) ? $this->commercial['living_area'] : null,
+                'room_size'      => isset($this->commercial['room_size']) ? $this->commercial['room_size'] : null,
+                'floor'          => isset($this->commercial['floor']) ? $this->commercial['floor'] : null,
+                'floors'         => isset($this->commercial['floors']) ? $this->commercial['floors'] : null,
+                'ceiling_height' => isset($this->commercial['ceiling_height']) ? $this->commercial['ceiling_height'] : null,
+                'furniture'      => isset($this->commercial['furniture']) ? true : false,
+                'parking'        => isset($this->commercial['parking']) ? true : false,
+                'zd_deadend'     => isset($this->commercial['zd_deadend']) ? true : false,
+                'house_number'   => isset($this->commercial['house_number']) ? $this->commercial['house_number'] : null,
             ]);
         }
 

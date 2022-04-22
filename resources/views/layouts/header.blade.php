@@ -98,7 +98,7 @@
                             </svg>
                         </span>
                     </a>
-                    <a href="{{ route('submit', 'flats') }}" class="header-topbar__communication-item btn jc-c">Подать объявление</a>
+                    <a href="{{ route('submitForm', 'flats') }}" class="header-topbar__communication-item btn jc-c">Подать объявление</a>
                 </div>
             </div>
 

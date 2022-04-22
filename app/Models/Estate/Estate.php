@@ -38,7 +38,7 @@ class Estate extends Model
             'slug' => 'houses',
             'type' => 'house'
         ],
-        'commerces' => [
+        'commercial' => [
             'name' => 'Коммерция',
             'slug' => 'commercial',
             'type' => 'commerce'
