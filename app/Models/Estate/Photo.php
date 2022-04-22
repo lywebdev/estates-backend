@@ -26,8 +26,8 @@ class Photo extends Model
     {
         parent::boot();
 
-        static::deleted(function ($photo) {
-            MediaService::imageRemove($photo->path);
-        });
+//        static::deleted(function ($photo) {
+//            MediaService::imageRemove($photo->path);
+//        });
     }
 }

@@ -8,6 +8,8 @@ use App\Models\District;
 use App\Models\Estate\Bathroom;
 use App\Models\Estate\Condition;
 use App\Models\Estate\Estate;
+use App\Models\Estate\Purpose;
+use App\Models\Estate\Sewage;
 use App\Models\Estate\WallMaterial;
 use App\Models\User;
 use App\Services\MediaService;
@@ -25,13 +27,13 @@ class SubmitController extends Controller
         $esCategory = (object)Estate::CATEGORIES[$category];
 
         $data = (object)[];
-        if ($esCategory->slug == 'flats') {
-            $data->districts = District::all();
-            $data->conditions = Condition::all();
-            $data->cities = City::all();
-            $data->wall_materials = WallMaterial::all();
-            $data->bathrooms = Bathroom::all();
-        }
+        $data->districts = District::all();
+        $data->conditions = Condition::all();
+        $data->cities = City::all();
+        $data->wall_materials = WallMaterial::all();
+        $data->bathrooms = Bathroom::all();
+        $data->sewages = Sewage::all();
+        $data->purposes = Purpose::all();
         $data = json_encode($data);
 
 
@@ -39,6 +41,38 @@ class SubmitController extends Controller
     }
 
 
+    public function submit(SubmitStoreRequest $request)
+    {
+        $user = Auth::user();
+        if (!$user) {
+            return response()->json([
+                'error' => 'not_auth',
+                'message' => 'Пользователь не авторизован'
+            ], 401);
+        }
+
+        $data  = $request->validated();
+        $files = $request->gallery;
+
+        if ($user->isAgent() || $user->isAdmin()) {
+            $data['status'] = true;
+        }
+        else {
+            $data['status'] = false;
+        }
+        $data['user_id'] = $user->id;
+
+
+        $newEstate = Estate::create($data);
+        if (!$newEstate) {
+            return response()->json(null, 400);
+        }
+
+        $this->loadImages($files, "flats", $newEstate);
+        return response()->json([
+            'status' => $data['status'],
+        ], 201);
+    }
 
     public function submit_flats(SubmitStoreRequest $request)
     {

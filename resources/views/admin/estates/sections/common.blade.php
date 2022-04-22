@@ -75,7 +75,7 @@
                 @foreach ($cities as $city)
                     <option value="{{ $city->id }}"
                         @isset($estate)
-                            @if ($row->id == $estate->city_id) selected @endif
+                            @if ($city->id == $estate->city_id) selected @endif
                         @endisset
                     >{{ $city->name }}
                     </option>

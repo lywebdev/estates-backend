@@ -37,9 +37,9 @@ Route::get('agreements/purchase', [\App\Http\Controllers\AgreementController::cl
 Route::get('agreements/{type}/{subtype?}', [\App\Http\Controllers\AgreementController::class, 'agreement'])->name('agreements.agreement');
 Route::post('agreements/sign/{type}/{subtype?}', [\App\Http\Controllers\AgreementController::class, 'sign'])->name('agreements.sign');
 
-Route::get('ad-submit/{category}', [\App\Http\Controllers\SubmitController::class, 'submitForm'])->name('submit');
+Route::get('ad-submit/{category}', [\App\Http\Controllers\SubmitController::class, 'submitForm'])->name('submitForm');
 
-Route::post('ad-submit/flats', [\App\Http\Controllers\SubmitController::class, 'submit_flats'])->name('submit.flats');
+Route::post('ad-submit', [\App\Http\Controllers\SubmitController::class, 'submit'])->name('submit');
 
 
 Route::group([

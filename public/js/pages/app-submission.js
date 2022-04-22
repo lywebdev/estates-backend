@@ -5,8 +5,10 @@ DOMLoadedFunctions.push({
             func: () => {
                 let rateFreeBtn = document.querySelector('.app-submission__row .rate-free');
                 if (rateFreeBtn && rateFreeBtn.length !== 0) {
-                    let neededRow = document.querySelector('.sortable-section').parentNode.parentNode;
-                    neededRow.append(rateFreeBtn);
+                    if (rateFreeBtn && rateFreeBtn.length !== 0) {
+                        let neededRow = document.querySelector('.sortable-section').parentNode.parentNode;
+                        neededRow.append(rateFreeBtn);
+                    }
                 }
             }
         });
@@ -14,7 +16,9 @@ DOMLoadedFunctions.push({
         setPcVersionHookFunctions.push({
             func: () => {
                 let rateFreeBtn = document.querySelector('.rate-free');
-                document.querySelector('.for-free-rate').append(rateFreeBtn);
+                if (rateFreeBtn && rateFreeBtn.length !== 0) {
+                    document.querySelector('.for-free-rate').append(rateFreeBtn);
+                }
             }
         });
 

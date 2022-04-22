@@ -16,4 +16,9 @@ class MediaService
     {
         return Storage::disk('public')->delete($path);
     }
+
+    public static function deleteDir(string $path)
+    {
+        return Storage::disk('public')->deleteDirectory($path);
+    }
 }

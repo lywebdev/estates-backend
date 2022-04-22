@@ -2,6 +2,7 @@
 
 namespace App\Models\Estate;
 
+use App\Services\MediaService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
@@ -74,8 +75,13 @@ class Estate extends Model
     {
         parent::boot();
 
+
         static::deleted(function ($estate) {
-            $estate->photos()->delete();
+            $estate->photos->map(function ($photo) {
+                $photo->delete();
+            });
+
+            MediaService::deleteDir('uploads/estates/' . $estate->category . "/" . $estate->id);
         });
     }
 }

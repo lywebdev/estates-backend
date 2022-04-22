@@ -10,8 +10,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $flatEstates = Estate::select('id', 'category', 'price', 'room_size', 'area', 'floor', 'location')
-            ->where('category', Estate::CATEGORIES['flats']['slug'])
+        $flatEstates = Estate::where('category', Estate::CATEGORIES['flats']['slug'])
             ->where('status', 1)
             ->with([
                 'photos' => function($q) {

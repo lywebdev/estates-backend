@@ -20,7 +20,7 @@
         </div>
 
         <form class="section mt-30" id="estate-submit-form"
-                 action="{{ route('submit.flats') }}"
+                 action="{{ route('submit') }}"
                  method="post"
                  data-category="{{ $esCategory->slug }}"
                  data-user-auth="{{ \Illuminate\Support\Facades\Auth::check() }}">

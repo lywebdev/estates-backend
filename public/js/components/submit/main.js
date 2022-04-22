@@ -16,12 +16,15 @@ function main() {
         layout: false,
     };
     let requestData = {
-        condition: -1,
-        city: -1,
-        district: -1,
-        roomSize: 1,
-        wallMaterial: -1,
-        bathroom: -1,
+        condition_id: -1,
+        city_id: -1,
+        district_id: -1,
+        wall_material_id: -1,
+        purpose_id: -1,
+        bathroom_id: -1,
+        sewage_id: -1,
+
+        room_size: 1,
     };
 
 
@@ -102,7 +105,8 @@ function main() {
 
     function getData() {
         let furniture = false;
-        let parking = false;
+        let parking   = false;
+        let bathroom  = false;
         $('.furniture-input').each((index, el) => {
             if (el.checked && $(el).val() === 'yes') {
                 furniture = true;
@@ -113,29 +117,66 @@ function main() {
                 parking = true;
             }
         });
+        $('.bathroom-input').each((index, el) => {
+            if (el.checked && $(el).val() === 'yes') {
+                bathroom = true;
+            }
+        });
 
-        requestData.price = Number($('#price').val());
-        requestData.floor = Number($('#floor').val());
-        requestData.floors = Number($('#floors').val());
-        requestData.ceiling_height = Number($('#ceiling_height').val());
-        requestData.year = Number($('#year').val());
-        requestData.area = Number($('#area').val());
-        requestData.living_area = Number($('#living_area').val());
-        requestData.kitchen_area = Number($('#kitchen_area').val());
-        requestData.house_number = Number($('#house_number').val());
-        requestData.room_number = Number($('#room_number').val());
+        function setNumber(el) {
+            if (el !== undefined) {
+                if (el.length !== 0) {
+                    let val = el.val();
+                    return +/\d+/.exec(val);
+                }
 
-        requestData.owner_phone = $('#phone').val();
-        requestData.owner_name = $('#owner_name').val();
-        requestData.description = $('#description').val();
+                return null;
+            }
 
+            return null;
+        }
+
+
+        let price  = $('#price');
+        let area   = $('#area');
+        let acres  = $('#acres');
+        let floor  = $('#floor');
+        let floors = $('#floors');
+        let street = $('#street');
+        let house_number = $('#house_number');
+        let room_number  = $('#room_number');
+        let owner_name   = $('#owner_name');
+        let owner_phone  = $('#owner_phone');
+        let description  = $('#description');
+        let living_area  = $('#living_area');
+        let kitchen_area = $('#kitchen_area');
+        let year = $('#year');
+        let ceiling_height = $('#ceiling_height');
+
+        requestData.price  = setNumber(price);
+        requestData.area   = setNumber(area);
+        requestData.acres  = setNumber(acres);
+        requestData.floor  = setNumber(floor);
+        requestData.floors = setNumber(floors);
+        requestData.house_number = setNumber(house_number);
+        requestData.room_number  = setNumber(room_number);
+        requestData.living_area  = setNumber(living_area);
+        requestData.kitchen_area = setNumber(kitchen_area);
+        requestData.year = setNumber(year);
+        requestData.ceiling_height = setNumber(ceiling_height);
+
+        requestData.street = street.val();
+        requestData.owner_name  = owner_name.val();
+        requestData.owner_phone = owner_phone.val();
+        requestData.description = description.val();
+        // requestData.room_size = Number($('#room_size').val());
+
+        requestData.parking   = parking;
         requestData.furniture = furniture;
-        requestData.parking = parking;
+        requestData.bathroom  = bathroom;
     }
 
-
-
-    function flatsFormInit() {
+    function citiesSelect() {
         // Город
         let citiesData = [
             {id: '1', value: 'Не указан', validId: -1}
@@ -152,11 +193,13 @@ function main() {
             selectedId: '1',
             data: citiesData,
             onSelect(item) {
-                requestData.city = item.validId;
+                requestData.city_id = item.validId;
             }
         });
+    }
 
-        // Состояние
+    function conditionsSelect() {
+// Состояние
         let conditionsData = [
             {id: '1', value: 'Не указано', validId: -1}
         ];
@@ -174,7 +217,7 @@ function main() {
             selectedId: '1',
             data: conditionsData,
             onSelect(item) {
-                requestData.condition = item.validId;
+                requestData.condition_id = item.validId;
                 let conditionTemplate = ``;
 
                 if (item.validId !== -1) {
@@ -210,7 +253,9 @@ function main() {
                 $('.room-preview').html(conditionTemplate);
             }
         });
+    }
 
+    function districtsSelect() {
         // Район
         let districtsData = [
             {id: '1', value: 'Не указан', validId: -1}
@@ -227,10 +272,12 @@ function main() {
             selectedId: '1',
             data: districtsData,
             onSelect(item) {
-                requestData.district = item.validId;
+                requestData.district_id = item.validId;
             }
         });
+    }
 
+    function roomSizeSelect() {
         // Комнатность
         const roomSizeSelect = new Select('.select.roomSize-select', {
             placeholder: 'Выбрать',
@@ -245,10 +292,12 @@ function main() {
                 {id: '7', value: '7 комнатная', validId: 7},
             ],
             onSelect(item) {
-                requestData.roomSize = item.validId;
+                requestData.room_size = item.validId;
             }
         });
+    }
 
+    function wallMaterialsSelect() {
         // Материал стен
         let wallMaterialsData = [
             {id: '1', value: 'Не указан', validId: -1}
@@ -265,10 +314,13 @@ function main() {
             selectedId: '1',
             data: wallMaterialsData,
             onSelect(item) {
-                requestData.wallMaterial = item.validId;
+                requestData.wall_material_id = item.validId;
             }
         });
 
+    }
+
+    function bathroomsSelect() {
         // Санузел
         let bathroomsData = [
             {id: '1', value: 'Не указан', validId: -1}
@@ -285,66 +337,79 @@ function main() {
             selectedId: '1',
             data: bathroomsData,
             onSelect(item) {
-                requestData.bathroom = item.validId;
-            }
-        });
-
-
-
-
-        submitBtn.click((e) => {
-            if (!submitted) {
-                getGalleryData();
-                getData();
-
-
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    url: `${route}`,
-                    type: 'post',
-                    data: requestData,
-                    // dataType: "json",
-                    success: (data, value, response) => {
-                        if (response.status === 201) {
-                            submitted++;
-                            if (data.status) {
-                                const successAlert = new Alert({
-                                    type: 'success',
-                                    text: 'Объект недвижимости успешно добавлен',
-                                });
-                            }
-                            else {
-                                const successAlert = new Alert({
-                                    type: 'success',
-                                    text: 'Объект недвижимости отправлен на рассмотрение',
-                                });
-                            }
-                        }
-                    },
-                    error: (e) => {
-                        if (e.status === 401) {
-                            const notAuthAlert = new Alert({
-                                type: 'error',
-                                text: 'Вам необходимо авторизоваться, чтобы добавить объект недвижимости',
-                                textConfirm: 'Авторизоваться',
-                                link: '/auth/login'
-                            });
-                        }
-                    }
-                });
-            }
-            else {
-                const notAuthAlert = new Alert({
-                    type: 'error',
-                    text: 'Объект недвижимости уже добавлен',
-                    textConfirm: 'Хорошо',
-                });
+                requestData.bathroom_id = item.validId;
             }
         });
     }
 
+    function sewagesSelect( ) {
+        // Санузел
+        let sewagesData = [
+            {id: '1', value: 'Не указан', validId: -1}
+        ];
+        data.sewages.map((el, index) => {
+            sewagesData.push({
+                id: `${index+2}`,
+                value: el.name,
+                validId: el.id
+            });
+        });
+        const sewagesSelect = new Select('.select.sewage-select', {
+            placeholder: 'Выбрать',
+            selectedId: '1',
+            data: sewagesData,
+            onSelect(item) {
+                requestData.bathroom_id = item.validId;
+            }
+        });
+    }
+
+    function purposesSelect( ) {
+        // Санузел
+        let purposesData = [
+            {id: '1', value: 'Не указан', validId: -1}
+        ];
+        data.purposes.map((el, index) => {
+            purposesData.push({
+                id: `${index+2}`,
+                value: el.name,
+                validId: el.id
+            });
+        });
+        const sewagesSelect = new Select('.select.purpose-select', {
+            placeholder: 'Выбрать',
+            selectedId: '1',
+            data: purposesData,
+            onSelect(item) {
+                requestData.bathroom_id = item.validId;
+            }
+        });
+    }
+
+
+    function flatsFormInit() {
+        requestData.category = 'flats';
+
+        citiesSelect();
+        conditionsSelect();
+        districtsSelect();
+        roomSizeSelect();
+        wallMaterialsSelect();
+        bathroomsSelect();
+    }
+
+    function regionsFormInit() {
+        requestData.category = 'regions';
+
+        citiesSelect();
+        conditionsSelect();
+        districtsSelect();
+        roomSizeSelect();
+        wallMaterialsSelect();
+        bathroomsSelect();
+        purposesSelect();
+        sewagesSelect();
+    }
 
 
 
@@ -353,7 +418,63 @@ function main() {
     if (category === 'flats') {
         flatsFormInit();
     }
+    else if (category === 'regions') {
+        regionsFormInit();
+    }
     else {
         location="/";
     }
+
+
+    submitBtn.click((e) => {
+        if (!submitted) {
+            getGalleryData();
+            getData();
+
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: `${route}`,
+                type: 'post',
+                data: requestData,
+                // dataType: "json",
+                success: (data, value, response) => {
+                    if (response.status === 201) {
+                        submitted++;
+                        if (data.status) {
+                            const successAlert = new Alert({
+                                type: 'success',
+                                text: 'Объект недвижимости успешно добавлен',
+                            });
+                        }
+                        else {
+                            const successAlert = new Alert({
+                                type: 'success',
+                                text: 'Объект недвижимости отправлен на рассмотрение',
+                            });
+                        }
+                    }
+                },
+                error: (e) => {
+                    if (e.status === 401) {
+                        const notAuthAlert = new Alert({
+                            type: 'error',
+                            text: 'Вам необходимо авторизоваться, чтобы добавить объект недвижимости',
+                            textConfirm: 'Авторизоваться',
+                            link: '/auth/login'
+                        });
+                    }
+                }
+            });
+        }
+        else {
+            const notAuthAlert = new Alert({
+                type: 'error',
+                text: 'Объект недвижимости уже добавлен',
+                textConfirm: 'Хорошо',
+            });
+        }
+    });
 }
