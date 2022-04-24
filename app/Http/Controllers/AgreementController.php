@@ -70,7 +70,7 @@ class AgreementController extends Controller
         }
 
         if (!$request->agreement) {
-            return redirect()->back()->with('error', 'Вы не согласны с политикой');
+            return redirect()->back()->with('agreement-error', 'Вы не согласны с договором и общими условиями');
         }
 
         if (file_exists($controllerPath)) {

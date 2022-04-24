@@ -29,6 +29,7 @@ class Agreement extends Model
                 'terant' => 'Арендатор',
                 'landlord' => 'Арендодатель'
             ]
-        ]
+        ],
+        'partnership' => 'Соглашение о партнёрстве'
     ];
 }

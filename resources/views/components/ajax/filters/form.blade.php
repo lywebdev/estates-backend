@@ -1,6 +1,6 @@
 <form class="first-screen__filters"
       method="get"
-      data-category="{{ \App\Models\Estate\Estate::CATEGORIES['flats']['slug'] }}"
+      data-category="@if(isset($esCategory)){{ $esCategory->slug }}@else{{ \App\Models\Estate\Estate::CATEGORIES['flats']['slug'] }}@endif"
       data-type="@if(isset($type)){{$type}}@else{{'redirect'}}@endif"
     >
     <div class="first-screen__filters-preloader">

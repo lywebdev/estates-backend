@@ -139,7 +139,7 @@
                                     <p>рыночную стоимость недвижимости</p>
                                 </div>
                                 <div class="info-banner__btns">
-                                    <a href="#" class="btn">Добавить объявление</a>
+                                    <a href="{{ route('submitForm', 'flats') }}" class="btn">Добавить объявление</a>
                                 </div>
                             </div>
 

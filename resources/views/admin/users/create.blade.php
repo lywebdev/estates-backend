@@ -156,6 +156,16 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="row mt-2">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="avatar">Загрузить аватар</label>
+                                                <br>
+                                                <input type="file" name="avatar" id="avatar">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="card-footer">

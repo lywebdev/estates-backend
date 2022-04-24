@@ -1,4 +1,4 @@
-@extends('templates.pdfs.agreements.layouts.app_pdf')
+@extends('templates.pdfs.agreements.layouts.template')
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 @section('content')
     <P ALIGN=CENTER STYLE="margin-bottom: 0in; border: none; padding: 0in">

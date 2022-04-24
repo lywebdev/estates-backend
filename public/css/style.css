@@ -292,6 +292,13 @@ body {
   display: none;
 }
 
+.sortable .sortable__items.active .col-lg-3 {
+  display: block !important;
+}
+.sortable .sortable__items.active .col-lg-3:first-child {
+  margin-bottom: 15px;
+}
+
 .header-topbar {
   height: 47px;
   display: flex;
@@ -360,6 +367,7 @@ body {
 
 .header__nav {
   margin-left: 25px;
+  margin-right: 30px;
 }
 .header__nav ul {
   list-style-type: none;
@@ -400,7 +408,7 @@ body {
 }
 
 .header-main__user {
-  margin-left: 30px;
+  margin-left: auto;
 }
 
 .header-main__user-item:not(:last-child) {
@@ -4386,6 +4394,10 @@ body {
 .page__buildings .preloader {
   display: flex;
   justify-content: center;
+}
+
+.main__container .preloader {
+  margin-top: 50px;
 }
 
 .page__home .section-benefits .section-slider-pagination {

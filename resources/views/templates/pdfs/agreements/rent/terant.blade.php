@@ -1,4 +1,4 @@
-﻿@extends('templates.pdfs.agreements.layouts.app_pdf')
+﻿@extends('templates.pdfs.agreements.layouts.template')
 
 @section('content')
     <h3 style="text-align: center">

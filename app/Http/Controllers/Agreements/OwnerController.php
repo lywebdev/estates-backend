@@ -16,7 +16,6 @@ class OwnerController extends Controller
         $agreement = [];
         $date = date('d.m.Y');
         $time = date('h:i');
-        // Сначала вносим в бд - потом генерим. всё делаем в транзакции, если возникает возникает ошибка при генерации pdf - исключение и удаляем из бд этот договор
 
         $name = $data->name ?? '';
         $surname = $data->surname ?? '';
@@ -81,12 +80,14 @@ class OwnerController extends Controller
             'time' => $time
         ];
 
-        $pdf = Pdf::loadView('templates.pdfs.agreements.owner.standard', $params);
-        $filename = "agreements/owner-standard-" . $createdAgreement->id . ".pdf";
-        $encodedData = $pdf->download($filename);
-        Storage::disk('hidden')->put($filename, $encodedData);
 
-        return $pdf->stream();
+        $filename = "agreements/owner-standard-" . $createdAgreement->id . ".pdf";
+        $pdf = Pdf::loadView('templates.pdfs.agreements.owner.standard', $params);;
+        $path = Storage::disk('hidden')->path($filename);
+        $stream = $pdf->stream();
+        $pdf->save($path);
+
+        return $stream;
     }
 
 
@@ -161,12 +162,14 @@ class OwnerController extends Controller
             'time' => $time
         ];
 
-        $pdf = Pdf::loadView('templates.pdfs.agreements.owner.partialExclusive', $params);
-        $filename = "agreements/owner-partialExclusive-" . $createdAgreement->id . ".pdf";
-        $encodedData = $pdf->download($filename);
-        Storage::disk('hidden')->put($filename, $encodedData);
 
-        return $pdf->stream();
+        $filename = "agreements/owner-partialExclusive-" . $createdAgreement->id . ".pdf";
+        $pdf = Pdf::loadView('templates.pdfs.agreements.owner.partialExclusive', $params);;
+        $path = Storage::disk('hidden')->path($filename);
+        $stream = $pdf->stream();
+        $pdf->save($path);
+
+        return $stream;
     }
 
 
@@ -241,11 +244,13 @@ class OwnerController extends Controller
             'time' => $time
         ];
 
-        $pdf = Pdf::loadView('templates.pdfs.agreements.owner.partialExclusive', $params);
-        $filename = "agreements/owner-partialExclusive-" . $createdAgreement->id . ".pdf";
-        $encodedData = $pdf->download($filename);
-        Storage::disk('hidden')->put($filename, $encodedData);
 
-        return $pdf->stream();
+        $filename = "agreements/owner-exclusive-" . $createdAgreement->id . ".pdf";
+        $pdf = Pdf::loadView('templates.pdfs.agreements.owner.exclusive', $params);;
+        $path = Storage::disk('hidden')->path($filename);
+        $stream = $pdf->stream();
+        $pdf->save($path);
+
+        return $stream;
     }
 }

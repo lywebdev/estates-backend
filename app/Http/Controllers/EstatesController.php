@@ -99,6 +99,7 @@ class EstatesController extends Controller
         ])->orderBy('id', 'desc')
         ->paginate(6);
 
-        return view("estates." . $esCategory->slug, compact('esCategory', 'estates'));
+//        return view("estates." . $esCategory->slug, compact('esCategory', 'estates'));
+        return view("estates.estates-category", compact('esCategory', 'estates'));
     }
 }

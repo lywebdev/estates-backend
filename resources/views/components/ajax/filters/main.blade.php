@@ -19,17 +19,19 @@
                 <div class="col-lg-3 col-md-6 col-xs-12">
                     <div class="col-md-12">
                         <div class="sortable__item"
-                             data-category="{{ \App\Models\Estate\Estate::CATEGORIES['houses']['slug'] }}">Дома и участки</div>
+                             data-route="{{ route('buildingsCategory', 'regions') }}">Дома и участки</div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-xs-12">
                     <div class="col-md-12">
-                        <div class="sortable__item">Коммерческая</div>
+                        <div class="sortable__item"
+                             data-route="{{ route('buildingsCategory', 'regions') }}">Коммерческая</div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-xs-12">
                     <div class="col-md-12">
-                        <div class="sortable__item">Новостройки</div>
+                        <div class="sortable__item"
+                             data-route="{{ route('buildingsCategory', 'buildings') }}">Новостройки</div>
                     </div>
                 </div>
 

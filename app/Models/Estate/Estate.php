@@ -28,26 +28,26 @@ class Estate extends Model
             'slug' => 'flats',
             'type' => 'flat'
         ],
-        'buildings' => [
-            'name' => 'Жилые комплексы',
-            'slug' => 'buildings',
-            'type' => 'building'
-        ],
-        'houses' => [
-            'name' => 'Дома',
-            'slug' => 'houses',
-            'type' => 'house'
+//        'houses' => [
+//            'name' => 'Дома',
+//            'slug' => 'houses',
+//            'type' => 'house'
+//        ],
+        'regions' => [
+            'name' => 'Дома \ Участки',
+            'slug' => 'regions',
+            'type' => 'region'
         ],
         'commercial' => [
             'name' => 'Коммерция',
             'slug' => 'commercial',
             'type' => 'commerce'
         ],
-        'regions' => [
-            'name' => 'Участки',
-            'slug' => 'regions',
-            'type' => 'region'
-        ]
+//        'buildings' => [
+//            'name' => 'Новостройки',
+//            'slug' => 'buildings',
+//            'type' => 'building'
+//        ],
     ];
 
 

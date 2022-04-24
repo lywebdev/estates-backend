@@ -12,7 +12,7 @@
             </div>
             <div class="ac-grid">
                 <div class="breadcrumbs__path">
-                    <a href="#" class="breadcrumbs__item breadcrumbs__prev">Главная</a>
+                    <a href="{{ route('home') }}" class="breadcrumbs__item breadcrumbs__prev">Главная</a>
                     <span class="breadcrumbs__item breadcrumbs__current">Вакансии</span>
                 </div>
                 <div class="breadcrumbs__title">Вакансии</div>

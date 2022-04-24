@@ -16,7 +16,6 @@ class AgentController extends Controller
         $agreement = [];
         $date = date('d.m.Y');
         $time = date('h:i');
-        // Сначала вносим в бд - потом генерим. всё делаем в транзакции, если возникает возникает ошибка при генерации pdf - исключение и удаляем из бд этот договор
 
         $name = $data->name ?? '';
         $surname = $data->surname ?? '';
@@ -81,11 +80,13 @@ class AgentController extends Controller
             'time' => $time
         ];
 
-        $pdf = Pdf::loadView('templates.pdfs.agreements.agent', $params);
-        $filename = "agreements/agent-" . $createdAgreement->id . ".pdf";
-        $encodedData = $pdf->download($filename);
-        Storage::disk('hidden')->put($filename, $encodedData);
 
-        return $pdf->stream();
+        $filename = "agreements/agent-" . $createdAgreement->id . ".pdf";
+        $pdf = Pdf::loadView('templates.pdfs.agreements.agent', $params);;
+        $path = Storage::disk('hidden')->path($filename);
+        $stream = $pdf->stream();
+        $pdf->save($path);
+
+        return $stream;
     }
 }

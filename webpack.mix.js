@@ -24,6 +24,7 @@ mix
     .minify('resources/js/components/select.js', 'public/js/components/select.js')
     .minify('resources/js/components/repeater.js', 'public/js/components/repeater.js')
     .minify('resources/js/components/alert.js', 'public/js/components/alert.js')
+    .minify('resources/js/components/sortable-component.js', 'public/js/components/sortable-component.js')
 
     .minify('resources/js/components/submit/main.js', 'public/js/components/submit/main.js')
 
@@ -47,6 +48,7 @@ mix.copy('resources/css/admin', 'public/css/admin');
 mix.sass('resources/css/admin/customize.scss', 'public/css/admin/customize.css').options({
     processCssUrls: true
 });
+mix.minify('resources/css/templates/app-pdf.css', 'public/css/templates/app-pdf.css');
 
 mix.sass('resources/css/style.scss', 'public/css/style.css').options({
     processCssUrls: true

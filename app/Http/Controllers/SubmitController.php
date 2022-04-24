@@ -54,7 +54,7 @@ class SubmitController extends Controller
         $data  = $request->validated();
         $files = $request->gallery;
 
-        if ($user->isAgent() || $user->isAdmin()) {
+        if (($user->isAgent() && $user->hasVerifiedEmail()) || $user->isAdmin()) {
             $data['status'] = true;
         }
         else {

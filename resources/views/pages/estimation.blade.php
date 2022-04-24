@@ -10,7 +10,7 @@
 
         <div class="first-screen">
             <div class="first-screen__bg">
-                <img src="/img/page-sale__bg.jpg" alt="">
+                <img src="{{ asset('img/page-sale__bg.jpg') }}" alt="">
             </div>
             <div class="container-fluid first-screen__main">
                 <div class="ac-grid">
@@ -58,11 +58,11 @@
                                         </svg>
                                     </div>
                                     <div class="ui-card__title">
-                                        <span>Размещение</span>
-                                        <span>объявления</span>
+                                        <span>Сертифицированные</span>
+                                        <span>специалисты</span>
                                     </div>
                                 </div>
-                                <div class="ui-card__main">Добавьте объявление о своей недвижимости, и через 2 часа покупатели увидят его на сайте. Или просто оставьте свой телефон и мы всё сделаем.</div>
+                                <div class="ui-card__main">Гарантируем качество услуги, проводим регулярное обучение и повышение квалификации оценщиков</div>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -74,11 +74,11 @@
                                         </svg>
                                     </div>
                                     <div class="ui-card__title">
-                                        <span>Размещение</span>
-                                        <span>объявления</span>
+                                        <span>Надежность и</span>
+                                        <span>конфиденциальность</span>
                                     </div>
                                 </div>
-                                <div class="ui-card__main">Добавьте объявление о своей недвижимости, и через 2 часа покупатели увидят его на сайте. Или просто оставьте свой телефон и мы всё сделаем.</div>
+                                <div class="ui-card__main">Отчеты готовим в соответствии с законодательством РФ, поэтому они имеют юридическую силу при решении споров</div>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -90,11 +90,11 @@
                                         </svg>
                                     </div>
                                     <div class="ui-card__title">
-                                        <span>Размещение</span>
-                                        <span>объявления</span>
+                                        <span>Максимально</span>
+                                        <span>короткие сроки</span>
                                     </div>
                                 </div>
-                                <div class="ui-card__main">Добавьте объявление о своей недвижимости, и через 2 часа покупатели увидят его на сайте. Или просто оставьте свой телефон и мы всё сделаем.</div>
+                                <div class="ui-card__main">Готовим отчет от 1-го дня, с минимальными данными подскажем диапазон стоимости объекта</div>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -106,11 +106,11 @@
                                         </svg>
                                     </div>
                                     <div class="ui-card__title">
-                                        <span>Размещение</span>
-                                        <span>объявления</span>
+                                        <span>Бесплатные</span>
+                                        <span>консультации</span>
                                     </div>
                                 </div>
-                                <div class="ui-card__main">Добавьте объявление о своей недвижимости, и через 2 часа покупатели увидят его на сайте. Или просто оставьте свой телефон и мы всё сделаем.</div>
+                                <div class="ui-card__main">Проконсультируем по вопросам с документами и подскажем, где получить недостающие</div>
                             </div>
                         </div>
                     </div>
@@ -131,7 +131,7 @@
                         <div class="col-md-3">
                             <a href="#" class="service-card service-card--estate">
                                 <div class="service-card__image">
-                                    <img src="/img/services/1.jpg" alt="2">
+                                    <img src="{{ asset('img/estimation/estates.jpg') }}" alt="Недвижимость">
                                 </div>
                                 <div class="service-card__main">
                                     <div class="service-card__name">Недвижимость</div>
@@ -144,11 +144,11 @@
                         <div class="col-md-3">
                             <a href="#" class="service-card service-card--estate">
                                 <div class="service-card__image">
-                                    <img src="/img/services/1.jpg" alt="2">
+                                    <img src="{{ asset('img/estimation/movable-property.jpg') }}" alt="2">
                                 </div>
                                 <div class="service-card__main">
-                                    <div class="service-card__name">Недвижимость</div>
-                                    <div class="service-card__description">(квартира, дача, дом, участок)</div>
+                                    <div class="service-card__name">Движимое имущество</div>
+                                    <div class="service-card__description">(все виды транспорта, спецтехника)</div>
                                     <div class="service-card__days">от 1 дня</div>
                                     <div class="service-card__cost">от 2 500 〒</div>
                                 </div>
@@ -157,26 +157,26 @@
                         <div class="col-md-3">
                             <a href="#" class="service-card service-card--estate">
                                 <div class="service-card__image">
-                                    <img src="/img/services/1.jpg" alt="2">
+                                    <img src="{{ asset('img/estimation/business-valuation.jpg') }}" alt="2">
                                 </div>
                                 <div class="service-card__main">
-                                    <div class="service-card__name">Недвижимость</div>
-                                    <div class="service-card__description">(квартира, дача, дом, участок)</div>
-                                    <div class="service-card__days">от 1 дня</div>
-                                    <div class="service-card__cost">от 2 500 〒</div>
+                                    <div class="service-card__name">Оценка бизнеса</div>
+                                    <div class="service-card__description">(все виды транспорта, спецтехника)</div>
+                                    <div class="service-card__days">от 10 дней</div>
+                                    <div class="service-card__cost">от 40 000 〒</div>
                                 </div>
                             </a>
                         </div>
                         <div class="col-md-3">
                             <a href="#" class="service-card service-card--estate">
                                 <div class="service-card__image">
-                                    <img src="/img/services/1.jpg" alt="2">
+                                    <img src="{{ asset('img/estimation/non-resident-premises.jpg') }}" alt="2">
                                 </div>
                                 <div class="service-card__main">
-                                    <div class="service-card__name">Недвижимость</div>
-                                    <div class="service-card__description">(квартира, дача, дом, участок)</div>
-                                    <div class="service-card__days">от 1 дня</div>
-                                    <div class="service-card__cost">от 2 500 〒</div>
+                                    <div class="service-card__name">Нежилые помещения и здания</div>
+{{--                                    <div class="service-card__description">(квартира, дача, дом, участок)</div>--}}
+                                    <div class="service-card__days">от 7 дня</div>
+                                    <div class="service-card__cost">от 10 000 〒</div>
                                 </div>
                             </a>
                         </div>

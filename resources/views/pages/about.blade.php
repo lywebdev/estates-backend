@@ -41,17 +41,17 @@
                         </div>
                         <div class="col-xl-3 col-lg-6 col-sm-12">
                             <div class="advantage">
-                                <div class="advantage__title">1&nbsp;500&nbsp;+</div>
+                                <div class="advantage__title">200&nbsp;+</div>
                                 <div class="advantage__text">
-                                    <span>партнеров среди застройщиков и банков</span>
+                                    <span>офисов в России и за рубежом</span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-3 col-lg-6 col-sm-12">
                             <div class="advantage">
-                                <div class="advantage__title">1&nbsp;500&nbsp;+</div>
+                                <div class="advantage__title">19&nbsp;000&nbsp;+</div>
                                 <div class="advantage__text">
-                                    <span>партнеров среди застройщиков и банков</span>
+                                    <span>профессиональных сотрудников</span>
                                 </div>
                             </div>
                         </div>
@@ -103,7 +103,7 @@
                         <div class="col-md-3">
                             <a href="#" class="service-card service-card--estate">
                                 <div class="service-card__image">
-                                    <img src="/img/services/1.jpg" alt="2">
+                                    <img src="{{ asset('img/full-complex.jpg') }}" alt="Полный комплекс услуг">
                                 </div>
                                 <div class="service-card__main">
                                     <div class="service-card__name">Полный комплекс услуг</div>
@@ -114,33 +114,39 @@
                         <div class="col-md-3">
                             <a href="#" class="service-card service-card--estate">
                                 <div class="service-card__image">
-                                    <img src="/img/services/1.jpg" alt="2">
+                                    <img src="{{ asset('img/fixed-cost.jpg') }}" alt="Фиксированная стоимость услуг">
                                 </div>
                                 <div class="service-card__main">
-                                    <div class="service-card__name">Полный комплекс услуг</div>
-                                    <div class="service-card__description">Компания оказывает все необходимые клиентам услуги на рынке недвижимости. Благодаря глубокой аналитике и исследованию рынка у «Этажей» есть четкое понимание того, что необходимо клиенту.</div>
+                                    <div class="service-card__name">
+                                        <span>Фиксированная</span>
+                                        <span>стоимость услуг</span>
+                                    </div>
+                                    <div class="service-card__description">Прозрачное ценообразование — в этом «Этажи» изменили привычную, в течение долгих лет, схему непрозрачной работы риэлторского бизнеса.</div>
                                 </div>
                             </a>
                         </div>
                         <div class="col-md-3">
                             <a href="#" class="service-card service-card--estate">
                                 <div class="service-card__image">
-                                    <img src="/img/services/1.jpg" alt="2">
+                                    <img src="{{ asset('img/office-available.jpg') }}" alt="Доступность офиса">
                                 </div>
                                 <div class="service-card__main">
-                                    <div class="service-card__name">Полный комплекс услуг</div>
-                                    <div class="service-card__description">Компания оказывает все необходимые клиентам услуги на рынке недвижимости. Благодаря глубокой аналитике и исследованию рынка у «Этажей» есть четкое понимание того, что необходимо клиенту.</div>
+                                    <div class="service-card__name">
+                                        <span>Доступность</span>
+                                        <span>офиса</span>
+                                    </div>
+                                    <div class="service-card__description">Расположение офиса удобно клиентам и сотрудникам компании. Хорошая транспортная развязка позволяет быстро добираться от офиса в любую точку города.</div>
                                 </div>
                             </a>
                         </div>
                         <div class="col-md-3">
                             <a href="#" class="service-card service-card--estate">
                                 <div class="service-card__image">
-                                    <img src="/img/services/1.jpg" alt="2">
+                                    <img src="{{ asset('img/conclusions.jpg') }}" alt="Выгоды">
                                 </div>
                                 <div class="service-card__main">
-                                    <div class="service-card__name">Полный комплекс услуг</div>
-                                    <div class="service-card__description">Компания оказывает все необходимые клиентам услуги на рынке недвижимости. Благодаря глубокой аналитике и исследованию рынка у «Этажей» есть четкое понимание того, что необходимо клиенту.</div>
+                                    <div class="service-card__name">Выгоды</div>
+                                    <div class="service-card__description">«Этажи» заботятся, чтобы клиенты не допускали лишних трат. Финансовая выгода: полный анализ рынка, скидки на ипотечную ставку и страховые услуги.</div>
                                 </div>
                             </a>
                         </div>
@@ -148,44 +154,50 @@
                         <div class="col-md-3">
                             <a href="#" class="service-card service-card--estate">
                                 <div class="service-card__image">
-                                    <img src="/img/services/1.jpg" alt="2">
+                                    <img src="{{ asset('img/saving-time.jpg') }}" alt="Экономия времени">
                                 </div>
                                 <div class="service-card__main">
-                                    <div class="service-card__name">Полный комплекс услуг</div>
-                                    <div class="service-card__description">Компания оказывает все необходимые клиентам услуги на рынке недвижимости. Благодаря глубокой аналитике и исследованию рынка у «Этажей» есть четкое понимание того, что необходимо клиенту.</div>
+                                    <div class="service-card__name">
+                                        <span>Экономия</span>
+                                        <span>времени</span>
+                                    </div>
+                                    <div class="service-card__description">Полный цикл сделки возможен в одном офисе, поскольку в «Этажах» существует интеграция с банками-партнерами и с государственными структурами, что обеспечивает возможность электронной регистрации</div>
                                 </div>
                             </a>
                         </div>
                         <div class="col-md-3">
                             <a href="#" class="service-card service-card--estate">
                                 <div class="service-card__image">
-                                    <img src="/img/services/1.jpg" alt="2">
+                                    <img src="{{ asset('img/fixed-cost.jpg') }}" alt="Безопасность">
                                 </div>
                                 <div class="service-card__main">
-                                    <div class="service-card__name">Полный комплекс услуг</div>
-                                    <div class="service-card__description">Компания оказывает все необходимые клиентам услуги на рынке недвижимости. Благодаря глубокой аналитике и исследованию рынка у «Этажей» есть четкое понимание того, что необходимо клиенту.</div>
+                                    <div class="service-card__name">Безопасность</div>
+                                    <div class="service-card__description">«Гарантия безопасности сделки» от «Этажей»: финансовая ответственность компании за результат сделки. В гарантии предусмотрены: безопасные финансовые расчеты, полное юридическое сопровождение до, во время и после сделки.</div>
                                 </div>
                             </a>
                         </div>
                         <div class="col-md-3">
                             <a href="#" class="service-card service-card--estate">
                                 <div class="service-card__image">
-                                    <img src="/img/services/1.jpg" alt="2">
+                                    <img src="{{ asset('img/office-available.jpg') }}" alt="Доступность офиса">
                                 </div>
                                 <div class="service-card__main">
-                                    <div class="service-card__name">Полный комплекс услуг</div>
-                                    <div class="service-card__description">Компания оказывает все необходимые клиентам услуги на рынке недвижимости. Благодаря глубокой аналитике и исследованию рынка у «Этажей» есть четкое понимание того, что необходимо клиенту.</div>
+                                    <div class="service-card__name">
+                                        <span>Доступность</span>
+                                        <span>офиса</span>
+                                    </div>
+                                    <div class="service-card__description">Расположение офиса удобно клиентам и сотрудникам компании. Хорошая транспортная развязка позволяет быстро добираться от офиса в любую точку города.</div>
                                 </div>
                             </a>
                         </div>
                         <div class="col-md-3">
                             <a href="#" class="service-card service-card--estate">
                                 <div class="service-card__image">
-                                    <img src="/img/services/1.jpg" alt="2">
+                                    <img src="{{ asset('img/conclusions.jpg') }}" alt="Выгоды">
                                 </div>
                                 <div class="service-card__main">
-                                    <div class="service-card__name">Полный комплекс услуг</div>
-                                    <div class="service-card__description">Компания оказывает все необходимые клиентам услуги на рынке недвижимости. Благодаря глубокой аналитике и исследованию рынка у «Этажей» есть четкое понимание того, что необходимо клиенту.</div>
+                                    <div class="service-card__name">Выгоды</div>
+                                    <div class="service-card__description">«Этажи» заботятся, чтобы клиенты не допускали лишних трат. Финансовая выгода: полный анализ рынка, скидки на ипотечную ставку и страховые услуги.</div>
                                 </div>
                             </a>
                         </div>

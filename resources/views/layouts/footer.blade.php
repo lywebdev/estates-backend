@@ -72,7 +72,7 @@
                         </div>
                     </div>
                     <div class="footer__copyright">
-                        <span>© 2021 “Bugachiev”</span>
+                        <span>© 2022 “Bugachiev”</span>
                         <span>Все права защищенны</span>
                     </div>
                 </div>
@@ -84,13 +84,13 @@
                                 <div class="footer__nav-title">Онлайн Сервисы</div>
                                 <ul class="footer__nav-items">
                                     <li class="footer__nav-item">
-                                        <a href="#">Онлайн ипотека</a>
+                                        <a href="{{ route('speedMortgage') }}">Онлайн ипотека</a>
                                     </li>
                                     <li class="footer__nav-item">
                                         <a href="#">Онлайн юридическая консультация</a>
                                     </li>
                                     <li class="footer__nav-item">
-                                        <a href="#">Онлайн оценка недвижимости</a>
+                                        <a href="{{ route('estimation') }}">Онлайн оценка недвижимости</a>
                                     </li>
                                     <li class="footer__nav-item">
                                         <a href="#">Онлайн консультация по покупке\продаже\аренде</a>
@@ -102,7 +102,7 @@
                                         <a href="#">Онлайн Бронь</a>
                                     </li>
                                     <li class="footer__nav-item">
-                                        <a href="#">Онлайн договора</a>
+                                        <a href="{{ route('agreements.purchase') }}">Онлайн договора</a>
                                     </li>
                                 </ul>
                             </div>
@@ -144,7 +144,7 @@
                                         <a href="#">Отзывы от довольных клиентов</a>
                                     </li>
                                     <li class="footer__nav-item">
-                                        <a href="#">Стоимость услуг</a>
+                                        <a href="{{ route('priceServices') }}">Стоимость услуг</a>
                                     </li>
                                     <li class="footer__nav-item">
                                         <a href="#">Скидки для клиентов</a>
@@ -164,7 +164,7 @@
                                 <div class="footer__nav-title">О компании</div>
                                 <ul class="footer__nav-items">
                                     <li class="footer__nav-item">
-                                        <a href="#">История Компании</a>
+                                        <a href="{{ route('about') }}">История Компании</a>
                                     </li>
                                     <li class="footer__nav-item">
                                         <a href="#">Команда профессионалов</a>
@@ -227,7 +227,7 @@
                                         <a href="#">Отзывы</a>
                                     </li>
                                     <li class="footer__nav-item">
-                                        <a href="#">Договоры</a>
+                                        <a href="{{ route('agreements.purchase') }}">Договоры</a>
                                     </li>
                                     <li class="footer__nav-item">
                                         <a href="#">Блог</a>
@@ -240,7 +240,7 @@
                                 <div class="footer__nav-title">Специально для Вас</div>
                                 <ul class="footer__nav-items">
                                     <li class="footer__nav-item">
-                                        <a href="#">Вакансии</a>
+                                        <a href="{{ route('vacancy') }}">Вакансии</a>
                                     </li>
                                     <li class="footer__nav-item">
                                         <a href="#">Трудоустройство без опыта</a>

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Notifications\Auth\VerifyEmail;
+use App\Services\MediaService;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -94,5 +95,17 @@ class User extends Authenticatable implements MustVerifyEmail
     public function role()
     {
         return User::ROLES[$this->role]['rus'];
+    }
+
+
+
+    public static function boot()
+    {
+        parent::boot();
+
+
+        static::deleted(function ($user) {
+            MediaService::deleteDir('uploads/users/' . $user->id);
+        });
     }
 }

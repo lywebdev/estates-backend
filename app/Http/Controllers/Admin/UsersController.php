@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Users\StoreRequest;
 use App\Models\User;
+use App\Services\MediaService;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
@@ -28,10 +29,19 @@ class UsersController extends Controller
         ]);
         $data['email_verified_at'] = now();
         $data['password'] = $request->password;
+
         $newUser = User::create($data);
         if (!$newUser) {
             return redirect()->back()->with('error', 'Не удалось добавить пользователя');
         }
+
+        $photo = $request->file('avatar');
+        if ($photo) {
+            $path = 'uploads/users/' . $newUser->id;
+            $path = MediaService::imageSave($path, $photo);
+            $newUser->update(['photo' => $path]);
+        }
+
 
         return redirect()->route('admin.users.index')->with('success', 'Пользователь добавлен');
     }
@@ -52,6 +62,14 @@ class UsersController extends Controller
     {
         $user = User::find($id);
         $user->update($request->validated());
+
+        $photo = $request->file('avatar');
+        if ($photo) {
+            MediaService::imageRemove($user->photo);
+            $path = 'uploads/users/' . $user->id;
+            $path = MediaService::imageSave($path, $photo);
+            $user->update(['photo' => $path]);
+        }
 
         return redirect()->back()->with('success', 'Информация обновлена');
     }

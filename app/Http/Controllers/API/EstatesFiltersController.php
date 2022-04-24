@@ -26,12 +26,11 @@ class EstatesFiltersController extends BaseController
         $estatesCountByCategory = Estate::where('category', $slug)->count();
         $action = route("buildingsCategory", $slug);
 
-        if ($slug == Estate::CATEGORIES['flats']['slug']) {
-            $html = view('components.ajax.filters.categories.flats', compact('estatesCountByCategory'))->render();
-            return $this->sendResponse([
-                'template' => $html,
-                'action' => $action
-            ], 'Successful.');
-        }
+
+        $html = view('components.ajax.filters.categories.' . $slug, compact('estatesCountByCategory'))->render();
+        return $this->sendResponse([
+            'template' => $html,
+            'action' => $action
+        ], 'Successful.');
     }
 }

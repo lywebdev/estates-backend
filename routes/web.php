@@ -30,6 +30,7 @@ Route::get('about', [\App\Http\Controllers\Pages\AboutController::class, 'index'
 Route::get('sell', [\App\Http\Controllers\Pages\SellController::class, 'index'])->name('sell');
 Route::get('estimation', [\App\Http\Controllers\Pages\EstimationController::class, 'index'])->name('estimation');
 Route::get('speed-mortgage', [\App\Http\Controllers\Pages\MortgageController::class, 'index'])->name('speedMortgage');
+Route::get('price-of-services', [\App\Http\Controllers\Pages\PriceServicesController::class, 'index'])->name('priceServices');
 Route::get('vacancy', [\App\Http\Controllers\Pages\VacancyController::class, 'index'])->name('vacancy');
 Route::get('franchise', [\App\Http\Controllers\Pages\FranchiseController::class, 'index'])->name('franchise');
 
@@ -51,8 +52,8 @@ Route::group([
     Route::post('buildings-category/count-offers', [\App\Http\Controllers\API\EstatesController::class, 'countOffers'])
         ->name('buildingsCountOffers');
 
-    Route::get('filters/categories/flats', [\App\Http\Controllers\API\EstatesFiltersController::class, 'renderFiltersByCategory'])
-        ->name('filters.categories.flats');
+    Route::get('filters/categories/{category}', [\App\Http\Controllers\API\EstatesFiltersController::class, 'renderFiltersByCategory'])
+        ->name('filters.category');
 
 
     Route::resource('cities', \App\Http\Controllers\API\CitiesController::class);
@@ -153,5 +154,6 @@ Route::group([
         Route::resource('estates-photos', \App\Http\Controllers\Admin\API\Estate\PhotoController::class);
         Route::post('estates-photos/change-sort', [\App\Http\Controllers\Admin\API\Estate\PhotoController::class, 'changeSort'])
             ->name('estatesPhotos.changeSort');
+        Route::post('estate-photos/upload', [\App\Http\Controllers\Admin\API\Estate\PhotoController::class, 'upload'])->name('estatePhotos.upload');
     });
 });

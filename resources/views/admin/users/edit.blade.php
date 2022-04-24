@@ -216,6 +216,22 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="row mt-2">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="avatar">Загрузить аватар</label>
+                                                <br>
+                                                <input type="file" name="avatar" id="avatar">
+                                                <br>
+                                                @if ($rowUser->photo)
+                                                    <img src="{{ \Illuminate\Support\Facades\Storage::url($rowUser->photo) }}"
+                                                        style="max-width: 300px; object-fit: cover; margin-top: 15px;"
+                                                    >
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="card-footer">

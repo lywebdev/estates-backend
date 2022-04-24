@@ -106,7 +106,22 @@
                             <div class="col-lg-3 col-md-6">
                                 <div class="vacancy-card">
                                     <div class="vacancy-card__name">Арендодатель</div>
-                                    <a href="#" class="vacancy-card__btn btn">Заключить</a>
+                                    <a href="{{ route('agreements.agreement', ['rent', 'landlord']) }}" class="vacancy-card__btn btn">Заключить</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="agreement-item">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="section__title">Соглашения</div>
+                            </div>
+                        </div>
+                        <div class="row gy-4">
+                            <div class="col-lg-3 col-md-6">
+                                <div class="vacancy-card">
+                                    <div class="vacancy-card__name">Соглашение о партнёрстве</div>
+                                    <a href="{{ route('agreements.agreement', ['partnership']) }}" class="vacancy-card__btn btn">Заключить</a>
                                 </div>
                             </div>
                         </div>

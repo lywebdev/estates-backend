@@ -70,4 +70,9 @@ class PhotoController extends BaseController
 
         return $this->sendResponse([], 'Successful.');
     }
+
+    public function upload(Request $request)
+    {
+        dd($request->image);
+    }
 }

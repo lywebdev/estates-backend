@@ -2,6 +2,14 @@ $(document).ready(() => {
     let files = [];
     let $imagesContainer = $('.images-container');
 
+    let imager = $('#imager');
+    let action = imager.data('action');
+    let ajaxUpload = false;
+    if (action !== 'create') {
+        ajaxUpload = true;
+    }
+
+
     const rerenderFilesContainer = () => {
         $imagesContainer.html('');
 
@@ -45,6 +53,24 @@ $(document).ready(() => {
                 let reader = new FileReader();
                 reader.onload = (e) => {
                     files.push(e.target.result);
+
+                    // if (ajaxUpload) {
+                    //     $.ajax({
+                    //         headers: {
+                    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    //         },
+                    //         url: `/admin/api/estate-photos/upload`,
+                    //         type: 'post',
+                    //         data: {
+                    //             image: e.target.result
+                    //         },
+                    //         success: (response) => {
+                    //
+                    //         },
+                    //         error: (e) => {
+                    //         }
+                    //     });
+                    // }
                 }
                 reader.readAsDataURL(input.files[i]);
                 reader.onloadend = () => {

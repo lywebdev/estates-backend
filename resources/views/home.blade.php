@@ -263,7 +263,7 @@
                 <div class="ac-grid">
                     <div class="row g-sm-4 services-section__container">
                         <div class="col-xl-3 col-lg-6 col-md-12">
-                            <a href="#" class="service-card">
+                            <a href="{{ route('submitForm', 'flats') }}" class="service-card">
                                 <div class="service-card__image">
                                     <img src="/img/services/1.jpg" alt="2">
                                 </div>
@@ -274,7 +274,7 @@
                             </a>
                         </div>
                         <div class="col-xl-3 col-lg-6 col-md-12">
-                            <a href="#" class="service-card">
+                            <a href="{{ route('estimation') }}" class="service-card">
                                 <div class="service-card__image">
                                     <img src="/img/services/2.jpg" alt="2">
                                 </div>
@@ -296,7 +296,7 @@
                             </a>
                         </div>
                         <div class="col-xl-3 col-lg-6 col-md-12">
-                            <a href="#" class="service-card">
+                            <a href="{{ route('speedMortgage') }}" class="service-card">
                                 <div class="service-card__image">
                                     <img src="/img/services/4.jpg" alt="2">
                                 </div>
@@ -1267,4 +1267,5 @@
     <script src="{{ asset('js/pages/home.js') }}"></script>
 {{--    <script src="{{ asset('js/components/filters/main.js') }}"></script>--}}
     <script src="{{ asset('js/components/ajax/filters.js') }}"></script>
+    <script src="{{ asset('js/components/sortable-component.js') }}"></script>
 @endsection

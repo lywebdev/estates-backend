@@ -19,7 +19,7 @@
                             @csrf
                             <div class="form__item">
                                 <label for="surname">Фамилия</label>
-                                <input type="text" class="input" placeholder="Укажите фамилию" name="surname" id="surname">
+                                <input type="text" class="input" placeholder="Укажите фамилию" name="surname" id="surname" required>
                             </div>
                             <div class="form__item">
                                 <label for="name">Имя</label>
@@ -32,7 +32,7 @@
 
                             <div class="form__item">
                                 <label for="iin">ИИН</label>
-                                <input type="text" class="input" placeholder="Укажите ИИН" name="iin" id="iin">
+                                <input type="text" class="input" placeholder="Укажите ИИН" name="iin" id="iin" required>
                             </div>
 
                             <div class="form__item">
@@ -57,7 +57,7 @@
                             </div>
                             <div class="form__item">
                                 <label for="phone">Мобильный номер</label>
-                                <input type="text" class="input" placeholder="Мобильный номер" name="phone" id="phone">
+                                <input type="text" class="input" placeholder="Мобильный номер" name="phone" id="phone" required>
                             </div>
                             <div class="form__item agreement-checkbox">
                                 <label for="agreement">
@@ -65,6 +65,7 @@
                                     <span style="margin-left: 10px; font-size: 14px;">Нажимая на кнопку "Подписать Договор" я подтверждаю, что ознакомлен с Договором и Общими условиями</span>
                                 </label>
                             </div>
+                            @include('agreements.layouts.errors')
 
                             <button class="btn">Подписать договор</button>
                         </form>

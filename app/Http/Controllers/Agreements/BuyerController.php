@@ -84,11 +84,13 @@ class BuyerController extends Controller
             'time' => $time
         ];
 
-        $pdf = Pdf::loadView('templates.pdfs.agreements.buyer', $params);
-        $filename = "agreements/buyer-" . $createdAgreement->id . ".pdf";
-        $encodedData = $pdf->download($filename);
-        Storage::disk('hidden')->put($filename, $encodedData);
 
-        return $pdf->stream();
+        $filename = "agreements/buyer-" . $createdAgreement->id . ".pdf";
+        $pdf = Pdf::loadView('templates.pdfs.agreements.buyer', $params);;
+        $path = Storage::disk('hidden')->path($filename);
+        $stream = $pdf->stream();
+        $pdf->save($path);
+
+        return $stream;
     }
 }

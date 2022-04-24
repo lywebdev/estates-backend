@@ -276,6 +276,473 @@ DOMLoadedFunctions.push({
             });
         }
 
+        function initRegionsFilters(form, category, type) {
+            let options = {};
+            if (params.room_size) {
+                options.roomSize = Number(params.room_size);
+            }
+            if (params.district) {
+                options.district = Number(params.district);
+            }
+            if (params.city) {
+                options.city = Number(params.city);
+            }
+            if (params.cost_from) {
+                options.cost_from = Number(params.cost_from);
+            }
+            if (params.cost_to) {
+                options.cost_to = Number(params.cost_to);
+            }
+            if (params.area_from) {
+                options.area_from = Number(params.area_from);
+            }
+            if (params.area_to) {
+                options.area_to = Number(params.area_to);
+            }
+
+
+            function setValues() {
+                form.find('.hidden').remove();
+                form.append(`<div class="hidden" style="display: none;"></div>`);
+                let $hidden = form.find('.hidden');
+
+                if (options.district) {
+                    $hidden.append(`<input type="hidden" value="${options.district}" name="district">`);
+                }
+                if (options.city) {
+                    $hidden.append(`<input type="hidden" value="${options.city}" name="city">`);
+                }
+                if (options.roomSize) {
+                    $hidden.append(`<input type="hidden" value="${options.roomSize}" name="room_size">`);
+                }
+            }
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: '/api/filters/categories/regions',
+                type: 'get',
+                data: {
+                    slug: `${category}`
+                },
+                success: (response) => {
+                    $('.first-screen__filters-preloader').addClass('loading');
+                    form.append(response.data.template);
+                    form.attr('action', response.data.action);
+
+                    let costFromInput = $('#cost_from');
+                    let costToInput = $('#cost_to');
+                    costFromInput.val(options.cost_from);
+                    costToInput.val(options.cost_to);
+                    costFromInput.keyup((e) => {
+                        options.cost_from = e.target.value;
+                    });
+                    costToInput.keyup((e) => {
+                        options.cost_to = e.target.value;
+                    })
+                    costFromInput.change((e) => {
+                        countOffers(category, options);
+                    });
+                    costToInput.change((e) => {
+                        countOffers(category, options);
+                    });
+
+                    let areaFromInput = $('#area_from');
+                    let areaToInput = $('#area_to');
+                    areaFromInput.val(options.area_from);
+                    areaToInput.val(options.area_to);
+                    areaFromInput.keyup((e) => {
+                        options.area_from = e.target.value;
+                    });
+                    areaToInput.keyup((e) => {
+                        options.area_to = e.target.value;
+                    })
+                    areaFromInput.change((e) => {
+                        countOffers(category, options);
+                    });
+                    areaToInput.change((e) => {
+                        countOffers(category, options);
+                    });
+
+
+                    $.when(
+                        $.ajax({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            url: '/api/districts',
+                            type: 'get',
+                            success: (response) => {
+                                let districtsData = [
+                                    {id: '1', value: 'Любой', validId: -1}
+                                ];
+                                response.data.map((el, index) => {
+                                    districtsData.push({
+                                        id: `${index+2}`,
+                                        value: el.name,
+                                        validId: el.id
+                                    });
+                                });
+                                let districtSelected = false;
+                                districtsData.forEach((el) => {
+                                    if (el.validId === options.district) {
+                                        districtSelected = el.id
+                                    }
+                                });
+                                const districtSelect = new Select('.select.district-select', {
+                                    placeholder: 'Выбрать',
+                                    selectedId: districtSelected,
+                                    data: districtsData,
+                                    onSelect(item) {
+                                        options.district = item.validId;
+                                        countOffers(category, options);
+                                    }
+                                });
+                            }
+                        }),
+                        $.ajax({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            url: '/api/cities',
+                            type: 'get',
+                            success: (response) => {
+                                let citiesData = [
+                                    {id: '1', value: 'Любой', validId: -1}
+                                ];
+                                response.data.map((el, index) => {
+                                    citiesData.push({
+                                        id: `${index+2}`,
+                                        value: el.name,
+                                        validId: el.id
+                                    });
+                                });
+                                let citySelected = false;
+                                citiesData.forEach((el) => {
+                                    if (el.validId === options.city) {
+                                        citySelected = el.id
+                                    }
+                                });
+                                const citySelect = new Select('.select.city-select', {
+                                    placeholder: 'Выбрать',
+                                    selectedId: citySelected,
+                                    data: citiesData,
+                                    onSelect(item) {
+                                        console.log(item);
+                                        options.city = item.validId;
+                                        countOffers(category, options);
+                                    }
+                                });
+                            }
+                        })
+                    ).then(function() {
+                        $('.first-screen__filters-preloader').remove();
+                        countOffers(category, options);
+                    });
+                    let roomSizeData = {
+                        els: [
+                            {id: '1', value: 'Любая', size: -1},
+                            {id: '2', value: '1 комнатная', size: 1},
+                            {id: '3', value: '2 комнатная', size: 2},
+                            {id: '4', value: '3 комнатная', size: 3},
+                            {id: '5', value: '4 комнатная', size: 4},
+                            {id: '6', value: '5 комнатная', size: 5},
+                            {id: '7', value: '6 комнатная', size: 6},
+                        ],
+                        selected: false
+                    };
+                    roomSizeData.els.forEach((el, index) => {
+                        if (el.size === options.roomSize) roomSizeData.selected = el.id;
+                    });
+                    const roomSizeSelect = new Select('.select.roomSize-select', {
+                        placeholder: 'Выбрать',
+                        selectedId: roomSizeData.selected,
+                        data: roomSizeData.els,
+                        onSelect(item) {
+                            options.roomSize = item.size;
+                            countOffers(category, options);
+                        }
+                    });
+
+                    $filterBtn = $('.first-screen__filters__btn');
+                    $filterBtn.click((e) => {
+                        e.preventDefault();
+
+                        if (type === 'redirect') {
+                            setValues();
+                            form.submit();
+                        }
+                        else if (type === 'ajax') {
+                            $.ajax({
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                },
+                                url: `/api/buildings-category`,
+                                type: 'get',
+                                data: {
+                                    slug: `${category}`,
+                                    options
+                                },
+                                beforeSend: () => {
+                                    setContentPreloader();
+                                },
+                                success: (response) => {
+                                    $('.main__container').html(response.data.template);
+                                    startSlider.rooms();
+
+                                    const url = new URL(document.location);
+                                    const searchParams = url.searchParams;
+                                    searchParams.delete('page');
+                                    window.history.pushState({}, '', url.toString());
+                                },
+                                error: (e) => {
+                                    // console.log(e);
+                                }
+                            });
+                        }
+                    });
+                },
+                error: (e) => {
+                    // console.log(e);
+                }
+            });
+        }
+
+        function initCommercialFilters(form, category, type) {
+            let options = {};
+            if (params.room_size) {
+                options.roomSize = Number(params.room_size);
+            }
+            if (params.district) {
+                options.district = Number(params.district);
+            }
+            if (params.city) {
+                options.city = Number(params.city);
+            }
+            if (params.cost_from) {
+                options.cost_from = Number(params.cost_from);
+            }
+            if (params.cost_to) {
+                options.cost_to = Number(params.cost_to);
+            }
+            if (params.area_from) {
+                options.area_from = Number(params.area_from);
+            }
+            if (params.area_to) {
+                options.area_to = Number(params.area_to);
+            }
+
+
+            function setValues() {
+                form.find('.hidden').remove();
+                form.append(`<div class="hidden" style="display: none;"></div>`);
+                let $hidden = form.find('.hidden');
+
+                if (options.district) {
+                    $hidden.append(`<input type="hidden" value="${options.district}" name="district">`);
+                }
+                if (options.city) {
+                    $hidden.append(`<input type="hidden" value="${options.city}" name="city">`);
+                }
+                if (options.roomSize) {
+                    $hidden.append(`<input type="hidden" value="${options.roomSize}" name="room_size">`);
+                }
+            }
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: '/api/filters/categories/commercial',
+                type: 'get',
+                data: {
+                    slug: `${category}`
+                },
+                success: (response) => {
+                    $('.first-screen__filters-preloader').addClass('loading');
+                    form.append(response.data.template);
+                    form.attr('action', response.data.action);
+
+                    let costFromInput = $('#cost_from');
+                    let costToInput = $('#cost_to');
+                    costFromInput.val(options.cost_from);
+                    costToInput.val(options.cost_to);
+                    costFromInput.keyup((e) => {
+                        options.cost_from = e.target.value;
+                    });
+                    costToInput.keyup((e) => {
+                        options.cost_to = e.target.value;
+                    })
+                    costFromInput.change((e) => {
+                        countOffers(category, options);
+                    });
+                    costToInput.change((e) => {
+                        countOffers(category, options);
+                    });
+
+                    let areaFromInput = $('#area_from');
+                    let areaToInput = $('#area_to');
+                    areaFromInput.val(options.area_from);
+                    areaToInput.val(options.area_to);
+                    areaFromInput.keyup((e) => {
+                        options.area_from = e.target.value;
+                    });
+                    areaToInput.keyup((e) => {
+                        options.area_to = e.target.value;
+                    })
+                    areaFromInput.change((e) => {
+                        countOffers(category, options);
+                    });
+                    areaToInput.change((e) => {
+                        countOffers(category, options);
+                    });
+
+
+                    $.when(
+                        $.ajax({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            url: '/api/districts',
+                            type: 'get',
+                            success: (response) => {
+                                let districtsData = [
+                                    {id: '1', value: 'Любой', validId: -1}
+                                ];
+                                response.data.map((el, index) => {
+                                    districtsData.push({
+                                        id: `${index+2}`,
+                                        value: el.name,
+                                        validId: el.id
+                                    });
+                                });
+                                let districtSelected = false;
+                                districtsData.forEach((el) => {
+                                    if (el.validId === options.district) {
+                                        districtSelected = el.id
+                                    }
+                                });
+                                const districtSelect = new Select('.select.district-select', {
+                                    placeholder: 'Выбрать',
+                                    selectedId: districtSelected,
+                                    data: districtsData,
+                                    onSelect(item) {
+                                        options.district = item.validId;
+                                        countOffers(category, options);
+                                    }
+                                });
+                            }
+                        }),
+                        $.ajax({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            url: '/api/cities',
+                            type: 'get',
+                            success: (response) => {
+                                let citiesData = [
+                                    {id: '1', value: 'Любой', validId: -1}
+                                ];
+                                response.data.map((el, index) => {
+                                    citiesData.push({
+                                        id: `${index+2}`,
+                                        value: el.name,
+                                        validId: el.id
+                                    });
+                                });
+                                let citySelected = false;
+                                citiesData.forEach((el) => {
+                                    if (el.validId === options.city) {
+                                        citySelected = el.id
+                                    }
+                                });
+                                const citySelect = new Select('.select.city-select', {
+                                    placeholder: 'Выбрать',
+                                    selectedId: citySelected,
+                                    data: citiesData,
+                                    onSelect(item) {
+                                        console.log(item);
+                                        options.city = item.validId;
+                                        countOffers(category, options);
+                                    }
+                                });
+                            }
+                        })
+                    ).then(function() {
+                        $('.first-screen__filters-preloader').remove();
+                        countOffers(category, options);
+                    });
+                    let roomSizeData = {
+                        els: [
+                            {id: '1', value: 'Любая', size: -1},
+                            {id: '2', value: '1 комнатная', size: 1},
+                            {id: '3', value: '2 комнатная', size: 2},
+                            {id: '4', value: '3 комнатная', size: 3},
+                            {id: '5', value: '4 комнатная', size: 4},
+                            {id: '6', value: '5 комнатная', size: 5},
+                            {id: '7', value: '6 комнатная', size: 6},
+                        ],
+                        selected: false
+                    };
+                    roomSizeData.els.forEach((el, index) => {
+                        if (el.size === options.roomSize) roomSizeData.selected = el.id;
+                    });
+                    const roomSizeSelect = new Select('.select.roomSize-select', {
+                        placeholder: 'Выбрать',
+                        selectedId: roomSizeData.selected,
+                        data: roomSizeData.els,
+                        onSelect(item) {
+                            options.roomSize = item.size;
+                            countOffers(category, options);
+                        }
+                    });
+
+                    $filterBtn = $('.first-screen__filters__btn');
+                    $filterBtn.click((e) => {
+                        e.preventDefault();
+
+                        if (type === 'redirect') {
+                            setValues();
+                            form.submit();
+                        }
+                        else if (type === 'ajax') {
+                            $.ajax({
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                },
+                                url: `/api/buildings-category`,
+                                type: 'get',
+                                data: {
+                                    slug: `${category}`,
+                                    options
+                                },
+                                beforeSend: () => {
+                                    setContentPreloader();
+                                },
+                                success: (response) => {
+                                    $('.main__container').html(response.data.template);
+                                    startSlider.rooms();
+
+                                    const url = new URL(document.location);
+                                    const searchParams = url.searchParams;
+                                    searchParams.delete('page');
+                                    window.history.pushState({}, '', url.toString());
+                                },
+                                error: (e) => {
+                                    // console.log(e);
+                                }
+                            });
+                        }
+                    });
+                },
+                error: (e) => {
+                    // console.log(e);
+                }
+            });
+        }
+
+
         function initFilters() {
             let filtersForm = $('.first-screen__filters');
             let estatesCategory = filtersForm.data('category');
@@ -284,6 +751,14 @@ DOMLoadedFunctions.push({
             switch (estatesCategory) {
                 case 'flats': {
                     initFlatsFilters(filtersForm, estatesCategory, filtersFormType);
+                    break;
+                }
+                case 'regions': {
+                    initRegionsFilters(filtersForm, estatesCategory, filtersFormType);
+                    break;
+                }
+                case 'commercial': {
+                    initCommercialFilters(filtersForm, estatesCategory, filtersFormType);
                     break;
                 }
 

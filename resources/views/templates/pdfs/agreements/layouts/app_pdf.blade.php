@@ -12,9 +12,9 @@
     </title>
 
     <style type="text/css">
-        body {
-            font-family: DejaVu Sans, Arial, sans-serif!important;
-        }
+        /*body {*/
+        /*    font-family: DejaVu Sans, Arial, sans-serif!important;*/
+        /*}*/
 
 
 
@@ -56,16 +56,16 @@
         /**
 SIGN
  */
-        @font-face {
-            font-family: 'Journal';
-            src: url('journal.eot');
-            src: url('journal.eot?#iefix') format('embedded-opentype'),
-            url('journal.woff') format('woff'),
-            url('journal.ttf') format('truetype'),
-            url('journal.svg#JournalRegular') format('svg');
-            font-weight: normal;
-            font-style: normal;
-        }
+        /*@font-face {*/
+        /*    font-family: 'Journal';*/
+        /*    src: url('journal.eot');*/
+        /*    src: url('journal.eot?#iefix') format('embedded-opentype'),*/
+        /*    url('journal.woff') format('woff'),*/
+        /*    url('journal.ttf') format('truetype'),*/
+        /*    url('journal.svg#JournalRegular') format('svg');*/
+        /*    font-weight: normal;*/
+        /*    font-style: normal;*/
+        /*}*/
 
         .sigPad {
             margin: 0;
@@ -238,6 +238,9 @@ SIGN
         /**
         /SIGN
          */
+        * {
+            font-family: Arial, sans-serif;
+        }
     </style>
 </head>
 
@@ -247,8 +250,8 @@ SIGN
     @yield('content')
 </div>
 
-<script src="{{ asset ('js/libs/jquery-3.5.1.min.js') }}"></script>
-<script src="{{ asset ('js/libs/sign.js') }}"></script>
+{{--<script src="{{ asset ('js/libs/jquery-3.5.1.min.js') }}"></script>--}}
+{{--<script src="{{ asset ('js/libs/sign.js') }}"></script>--}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.js"></script>
 <script>
 

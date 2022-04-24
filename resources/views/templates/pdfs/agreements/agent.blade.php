@@ -1,4 +1,4 @@
-@extends('templates.pdfs.agreements.layouts.app_pdf')
+@extends('templates.pdfs.agreements.layouts.template')
 
 @section('content')
     <P ALIGN="CENTER" STYLE="margin-bottom: 0; border: none; padding: 0">

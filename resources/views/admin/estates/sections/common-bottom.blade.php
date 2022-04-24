@@ -7,7 +7,13 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row" id="imager"
+    @if (isset($estate))
+        data-action="edit"
+    @else
+        data-action="create"
+    @endif
+>
     <div class="col-md-12">
         <h3 class="card-title">Работа с изображениями</h3>
         <br>
