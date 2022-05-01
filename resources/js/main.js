@@ -179,9 +179,9 @@ const helper = {
             }
 
             let app = document.querySelector('#app');
-            app.classList.remove('mobile');
-            app.classList.add('pc');
-            helper.options.app.version = 'pc';
+                app.classList.remove('mobile');
+                app.classList.add('pc');
+                helper.options.app.version = 'pc';
 
             initSliders();
         },
